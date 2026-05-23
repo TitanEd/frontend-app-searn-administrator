@@ -4,7 +4,7 @@
 node_modules
 npm-debug.log
 coverage
-module.config.js
+# module.config.js
 
 dist/
 src/i18n/transifex_input.json
@@ -17,5 +17,6 @@ temp/babel-plugin-react-intl
 *~
 /temp
 /.vscode
+/.cursor
 
 webpack.dev-tutor.config.js
