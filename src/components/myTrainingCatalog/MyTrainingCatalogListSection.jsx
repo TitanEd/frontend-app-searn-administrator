@@ -22,7 +22,11 @@ import useMyTrainingCatalogList, {
 import useMyTrainingCatalogMutations from '../../hooks/myTrainingCatalog/useMyTrainingCatalogMutations';
 import useTrainingCatalogRequestAccessMutation from '../../hooks/trainingCatalogRequestAccess/useTrainingCatalogRequestAccessMutation';
 import useTrainingCatalogFilterOptions from '../../hooks/searnTrainingCatalog/useTrainingCatalogFilterOptions';
+import TrainingCatalogRequestAccessCell from '../searnTrainingCatalog/TrainingCatalogRequestAccessCell';
+import TrainingCatalogSelfAssignCell from '../searnTrainingCatalog/TrainingCatalogSelfAssignCell';
+import { TRAINING_ACCESS_REQUEST_STATUS } from '../../api/trainingCatalogRequestAccess/trainingCatalogRequestAccessUtils';
 import catalogMessages from '../../pages/searnTrainingCatalog/messages';
+import useTrainingCatalogSelfAssignMutation from '../../hooks/trainingCatalogSelfAssign/useTrainingCatalogSelfAssignMutation';
 import { getStarFill } from '../../pages/searnTrainingCatalog/starUtils';
 import { hasDisplayValue } from '../../utils/hasDisplayValue';
 import useTrainingCatalogVariant from '../../hooks/myTrainingCatalog/useTrainingCatalogVariant';
@@ -46,15 +50,17 @@ const MyTrainingCatalogListSection = ({
   const isNraVariant = variant.id === TRAINING_CATALOG_VARIANT_IDS.NRA_SPECIFIC_TRAINING_CATALOG;
   const queryClient = useQueryClient();
   const requestAccessMutation = useTrainingCatalogRequestAccessMutation();
+  const selfAssignMutation = useTrainingCatalogSelfAssignMutation();
   const { deleteMutation } = useMyTrainingCatalogMutations();
 
   const canCreateTraining = Boolean(access.canCreateTraining);
   const canEditTraining = Boolean(access.canEditTraining);
   const canDeleteTraining = Boolean(access.canDeleteTraining);
   const canRequestAccess = Boolean(access.canRequestAccess) && isNraVariant;
+  const canSelfAssign = Boolean(access.canSelfAssign);
   const canViewProviderColumn = Boolean(access.canViewProviderColumn) && isNraVariant;
   const showProviderColumn = canViewProviderColumn;
-  const showActionsColumn = canEditTraining || canDeleteTraining || canRequestAccess;
+  const showActionsColumn = canEditTraining || canDeleteTraining || canRequestAccess || canSelfAssign;
 
   const [searchText, setSearchText] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -72,7 +78,9 @@ const MyTrainingCatalogListSection = ({
   const [page, setPage] = useState(1);
   const [pendingDelete, setPendingDelete] = useState(null);
   const [pendingRequestAccess, setPendingRequestAccess] = useState(null);
-  const [requestedTrainingIds, setRequestedTrainingIds] = useState([]);
+  const [requestStatusOverrides, setRequestStatusOverrides] = useState({});
+  const [haveAssignedOverrides, setHaveAssignedOverrides] = useState({});
+  const [pendingSelfAssignId, setPendingSelfAssignId] = useState(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -199,10 +207,6 @@ const MyTrainingCatalogListSection = ({
   const showTable = !isError && visibleItems.length > 0;
   const safePage = Math.min(page, Math.max(1, totalPages));
 
-  const isTrainingRequested = (row) => (
-    Boolean(row.isRequested) || requestedTrainingIds.includes(row.id)
-  );
-
   const handleConfirmRequestAccess = async () => {
     if (!pendingRequestAccess?.id) {
       return;
@@ -213,11 +217,10 @@ const MyTrainingCatalogListSection = ({
         trainingId: pendingRequestAccess.id,
       });
 
-      setRequestedTrainingIds((current) => (
-        current.includes(pendingRequestAccess.id)
-          ? current
-          : [...current, pendingRequestAccess.id]
-      ));
+      setRequestStatusOverrides((current) => ({
+        ...current,
+        [pendingRequestAccess.id]: TRAINING_ACCESS_REQUEST_STATUS.PENDING,
+      }));
 
       await queryClient.invalidateQueries({
         queryKey: myTrainingCatalogListQueryKey({
@@ -246,6 +249,39 @@ const MyTrainingCatalogListSection = ({
         title: formatMessage(catalogMessages.requestAccessCreateErrorTitle),
         description: error?.message || formatMessage(catalogMessages.requestAccessCreateError),
       });
+    }
+  };
+
+  const handleSelfAssign = async (row) => {
+    if (!row?.id) {
+      return;
+    }
+
+    setPendingSelfAssignId(row.id);
+
+    try {
+      const result = await selfAssignMutation.mutateAsync({
+        trainingId: row.id,
+      });
+
+      setHaveAssignedOverrides((current) => ({
+        ...current,
+        [row.id]: true,
+      }));
+
+      showToast({
+        title: formatMessage(catalogMessages.selfAssignSubmittedTitle),
+        description: hasDisplayValue(result.message)
+          ? result.message
+          : formatMessage(catalogMessages.selfAssignSubmittedDescription),
+      });
+    } catch (error) {
+      showToast({
+        title: formatMessage(catalogMessages.selfAssignErrorTitle),
+        description: error?.message || formatMessage(catalogMessages.selfAssignError),
+      });
+    } finally {
+      setPendingSelfAssignId(null);
     }
   };
 
@@ -491,10 +527,10 @@ const MyTrainingCatalogListSection = ({
                                   className="my-training-catalog-page__icon-button"
                                   aria-label={formatMessage(messages.editTraining)}
                                   title={formatMessage(messages.editTraining)}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                navigate(variant.paths.edit(row.id));
-                              }}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    navigate(variant.paths.edit(row.id));
+                                  }}
                                 >
                                   <FontAwesomeIcon icon={faPen} />
                                 </button>
@@ -516,22 +552,19 @@ const MyTrainingCatalogListSection = ({
                             </div>
                           )}
                           {canRequestAccess && (
-                            isTrainingRequested(row) ? (
-                              <span className="searn-training-catalog-page__requested-badge">
-                                {formatMessage(catalogMessages.requested)}
-                              </span>
-                            ) : (
-                              <button
-                                type="button"
-                                className="searn-training-catalog-page__outline-button"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setPendingRequestAccess(row);
-                                }}
-                              >
-                                {formatMessage(catalogMessages.requestAccess)}
-                              </button>
-                            )
+                            <TrainingCatalogRequestAccessCell
+                              row={row}
+                              statusOverrides={requestStatusOverrides}
+                              onRequestClick={setPendingRequestAccess}
+                            />
+                          )}
+                          {canSelfAssign && (
+                            <TrainingCatalogSelfAssignCell
+                              row={row}
+                              assignedOverrides={haveAssignedOverrides}
+                              onSelfAssignClick={handleSelfAssign}
+                              isSubmitting={pendingSelfAssignId === row.id && selfAssignMutation.isPending}
+                            />
                           )}
                         </div>
                       </td>
