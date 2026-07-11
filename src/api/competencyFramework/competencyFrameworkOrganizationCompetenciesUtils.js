@@ -47,9 +47,13 @@ export const mapOrganizationCompetenciesToFormItems = (items) => {
                 id: hasDisplayValue(comp.id)
                   ? `org-comp-${comp.id}`
                   : `org-comp-${compIndex}-${Date.now()}`,
+                // Server-assigned id, kept separate from the React `id` key so the sync
+                // payload can reference it directly and the backend can update the row in
+                // place instead of deleting and recreating it.
+                entryId: hasDisplayValue(comp.id) ? comp.id : null,
                 text: comp.text ?? '',
               }))
-              : [{ id: `org-comp-${Date.now()}-${Math.random()}`, text: '' }],
+              : [{ id: `org-comp-${Date.now()}-${Math.random()}`, entryId: null, text: '' }],
           }))
           : [],
       }))
@@ -78,9 +82,11 @@ export const buildOrganizationCompetenciesSyncPayload = (items) => ({
                 proficiency_level: level.proficiencyLevel,
                 competencies: (level.competencies ?? [])
                   .filter((comp) => hasDisplayValue(comp.text?.trim()))
-                  .map((comp) => ({
-                    text: comp.text.trim(),
-                  })),
+                  .map((comp) => (
+                    hasDisplayValue(comp.entryId)
+                      ? { id: comp.entryId, text: comp.text.trim() }
+                      : { text: comp.text.trim() }
+                  )),
               }))
               .filter((level) => level.competencies.length > 0),
           };

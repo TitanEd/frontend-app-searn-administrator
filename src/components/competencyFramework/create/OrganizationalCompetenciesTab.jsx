@@ -8,7 +8,7 @@ import ConfirmActionDialog from '../../confirmActionDialog/ConfirmActionDialog';
 import SearchableDropdown from '../../searchableDropdown/SearchableDropdown';
 import { useToast } from '../../toast/ToastProvider';
 
-const createCompetencyEntry = () => ({ id: `${Date.now()}-${Math.random()}`, text: '' });
+const createCompetencyEntry = () => ({ id: `${Date.now()}-${Math.random()}`, entryId: null, text: '' });
 const createLevel = () => ({ id: `${Date.now()}-${Math.random()}`, proficiencyLevel: '', competencies: [createCompetencyEntry()] });
 const createDomain = () => ({ id: `${Date.now()}-${Math.random()}`, domain: '', levels: [createLevel()] });
 const createOrgCompetencyType = () => ({ id: `${Date.now()}-${Math.random()}`, competencyType: '', domains: [createDomain()] });
