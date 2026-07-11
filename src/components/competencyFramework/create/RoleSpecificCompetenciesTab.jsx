@@ -10,7 +10,7 @@ import ConfirmActionDialog from '../../confirmActionDialog/ConfirmActionDialog';
 import SearchableDropdown from '../../searchableDropdown/SearchableDropdown';
 import { useToast } from '../../toast/ToastProvider';
 
-const createComp = () => ({ id: `${Date.now()}-${Math.random()}`, text: '' });
+const createComp = () => ({ id: `${Date.now()}-${Math.random()}`, entryId: null, text: '' });
 const createLevelBlock = () => ({
   id: `${Date.now()}-${Math.random()}`,
   proficiencyLevel: '',
