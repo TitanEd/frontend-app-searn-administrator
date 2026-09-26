@@ -127,11 +127,11 @@ const RequestedTrainings = () => {
 
   const canShowTable = true;
   const canSearch = true;
-  const canFilter = true;
   const canRequestTraining = true;
   const showOpenCloseButton = Boolean(access.showOpenCloseButton);
   const showFlagButton = Boolean(access.showFlagButton);
   const showActionsColumn = showOpenCloseButton || showFlagButton;
+  const canFilter = showOpenCloseButton;
 
   const [page, setPage] = useState(1);
   const [searchText, setSearchText] = useState('');
@@ -149,6 +149,8 @@ const RequestedTrainings = () => {
     errorMessage: filtersErrorMessage,
   } = useRequestedTrainingFilters({ enabled: canFilter });
 
+  const listStatus = canFilter ? statusFilter : 'open';
+
   const {
     items,
     count: trainingsCount,
@@ -159,7 +161,7 @@ const RequestedTrainings = () => {
   } = useRequestedTrainingsList({
     page,
     search: searchQuery,
-    status: statusFilter,
+    status: listStatus,
     enabled: canShowTable,
   });
 
@@ -182,7 +184,7 @@ const RequestedTrainings = () => {
 
   useEffect(() => {
     setPage(1);
-  }, [searchQuery, statusFilter]);
+  }, [searchQuery, listStatus]);
 
   useEffect(() => {
     if (!isListError) {

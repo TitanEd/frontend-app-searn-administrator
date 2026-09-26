@@ -5,8 +5,7 @@
   display: flex;
   gap: .25rem;
   flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto hidden;
   scrollbar-width: thin;
 
   &__button {

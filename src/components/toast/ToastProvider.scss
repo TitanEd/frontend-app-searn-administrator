@@ -85,10 +85,7 @@
 
 @media (width >= 640px) {
   .app-toast-viewport {
-    left: auto;
-    top: auto;
-    right: 0;
-    bottom: 0;
+    inset: auto 0 0 auto;
     flex-direction: column;
     width: auto;
   }

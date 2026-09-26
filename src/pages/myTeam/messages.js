@@ -8,7 +8,7 @@ export default defineMessages({
   },
   pageSubtitle: {
     id: 'app.myTeam.page.subtitle',
-    defaultMessage: 'Manage members of your team.',
+    defaultMessage: 'View members of your team.',
     description: 'My Team page subtitle',
   },
   addTeamMember: {
@@ -33,7 +33,7 @@ export default defineMessages({
   },
   empty: {
     id: 'app.myTeam.empty',
-    defaultMessage: 'No team members yet. Click "Add Team Member" to get started.',
+    defaultMessage: 'No team members yet. Click on Add Team Member and add to your team.',
     description: 'Empty state when team has no members',
   },
   listLoadError: {
@@ -139,12 +139,12 @@ export default defineMessages({
   removeDialogTitle: {
     id: 'app.myTeam.removeDialog.title',
     defaultMessage: 'Remove team member?',
-    description: 'Confirm dialog title for removing a team member',
+    description: 'Confirm dialog title when removing a staff member from My Team',
   },
   removeDialogDescription: {
     id: 'app.myTeam.removeDialog.description',
-    defaultMessage: 'Are you sure you want to remove {name} from your team? This action can be undone by adding them back.',
-    description: 'Confirm dialog description for removing a team member',
+    defaultMessage: 'Remove {name} from your team? Their manager will be cleared and they will be notified by email.',
+    description: 'Confirm dialog description when removing a staff member from My Team',
   },
   removeDialogConfirm: {
     id: 'app.myTeam.removeDialog.confirm',
@@ -178,8 +178,8 @@ export default defineMessages({
   },
   dropdownNoOptions: {
     id: 'app.myTeam.dropdown.noOptions',
-    defaultMessage: 'No users found.',
-    description: 'Empty state for user picker dropdown',
+    defaultMessage: 'No staff available to add to your team as of now.',
+    description: 'Empty state for user picker when all staff already have a manager',
   },
   showingCount: {
     id: 'app.myTeam.pagination.showing',

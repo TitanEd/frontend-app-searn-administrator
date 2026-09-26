@@ -24,8 +24,8 @@
     padding: 8px 12px;
     font-weight: 500;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(42, 59, 143, 0.25);
-    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgb(42 59 143 / .25);
+    transition: background .3s ease, transform .2s ease;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -61,7 +61,7 @@
     background: var(--feedback-surface);
     border: 1px solid var(--feedback-border);
     border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 16px rgb(0 0 0 / .15);
     z-index: 1003;
     max-height: 508px;
     overflow-y: auto;
@@ -116,7 +116,7 @@
       font-size: 12px;
       white-space: nowrap;
       z-index: 1004;
-      transition: opacity 0.2s ease;
+      transition: opacity .2s ease;
       opacity: 0;
     }
 
@@ -137,7 +137,7 @@
     line-height: 32px;
     cursor: pointer;
     color: var(--feedback-primary);
-    transition: transform 0.2s ease, color 0.2s ease;
+    transition: transform .2s ease, color .2s ease;
 
     img {
       width: 32px;
@@ -171,7 +171,7 @@
     font-size: 14px;
     background: var(--feedback-surface);
     color: #2A398D;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color .2s ease, box-shadow .2s ease;
     resize: vertical;
     min-height: 80px;
 
@@ -205,7 +205,7 @@
       height: 18px;
       margin: 0;
       accent-color: var(--feedback-primary);
-      transition: transform 0.2s ease;
+      transition: transform .2s ease;
 
       &:hover {
         transform: scale(1.1);
@@ -227,7 +227,7 @@
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: background .2s ease, color .2s ease;
 
     &:hover:not(:disabled) {
       color: var(--feedback-primary);
@@ -290,7 +290,7 @@
   }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (width <= 480px) {
   .feedback-container {
     .feedback-button {
       padding: 6px 8px;

@@ -279,6 +279,11 @@ const usersPageMessages = defineMessages({
     defaultMessage: 'Failed to load managers',
     description: 'Toast title when manager options API fails in user form',
   },
+  managerOptionsEmptyGuide: {
+    id: 'app.users.addUser.modal.manager.emptyGuide',
+    defaultMessage: 'No NRA Managers found. Create an NRA Manager first, then assign them to Staff.',
+    description: 'Empty manager dropdown guidance when adding/editing NRA Staff',
+  },
   detailLoadError: {
     id: 'app.users.detail.loadError',
     defaultMessage: 'Unable to load user details. Please try again.',

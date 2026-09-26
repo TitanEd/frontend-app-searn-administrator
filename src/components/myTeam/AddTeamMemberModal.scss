@@ -26,6 +26,13 @@
     color: #2A398D;
   }
 
+  &__helper {
+    margin: 0;
+    font-size: .75rem;
+    line-height: 1.4;
+    color: #6B7280;
+  }
+
   &__warning {
     display: flex;
     align-items: flex-start;
@@ -45,7 +52,7 @@
     flex-direction: column-reverse;
     gap: .75rem;
 
-    @media (min-width: 640px) {
+    @media (width >= 640px) {
       flex-direction: row;
       justify-content: flex-end;
     }

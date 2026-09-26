@@ -470,7 +470,7 @@ const Users = () => {
                               <FontAwesomeIcon icon={faEye} />
                             </Link>
                           )}
-                          {canEditUser && (
+                          {canEditUser && (user.canEdit !== false) && (
                             <button
                               type="button"
                               className="users-page__icon-button"
@@ -481,7 +481,7 @@ const Users = () => {
                               <FontAwesomeIcon icon={faPen} />
                             </button>
                           )}
-                          {canDeleteUser && (
+                          {canDeleteUser && (user.canDelete !== false) && (
                             <button
                               type="button"
                               className="users-page__icon-button users-page__icon-button--danger"

@@ -25,6 +25,34 @@ export const roleOptionHasSubOptions = (roleOption) => Boolean(
   && roleOption.subOptions.length > 0,
 );
 
+/** Seeded NRA Staff role display name (matches backend NRA_STAFF_ROLE_NAME). */
+export const NRA_STAFF_ROLE_LABEL = 'NRA Staff';
+export const NRA_ADMIN_ROLE_LABEL = 'NRA Admin';
+
+/**
+ * True when the selected role option is NRA Staff (manager field applies).
+ * @param {object|null} roleOption
+ */
+export const isNraStaffRoleOption = (roleOption) => {
+  if (!roleOption) {
+    return false;
+  }
+  const label = String(roleOption.label || roleOption.name || '').trim();
+  return label === NRA_STAFF_ROLE_LABEL;
+};
+
+/**
+ * True when the selected role option is NRA Admin (role cannot be changed).
+ * @param {object|null} roleOption
+ */
+export const isNraAdminRoleOption = (roleOption) => {
+  if (!roleOption) {
+    return false;
+  }
+  const label = String(roleOption.label || roleOption.name || '').trim();
+  return label === NRA_ADMIN_ROLE_LABEL;
+};
+
 /**
  * @param {string} key
  */
@@ -96,6 +124,12 @@ export const mapUserListRow = (row) => ({
   role: row?.role ?? '',
   userProfileImage: row?.user_profile_image ?? row?.userProfileImage ?? '',
   competencyRole: formatUserListCompetencyRole(row?.competency_role ?? row?.competencyRole),
+  canEdit: row?.can_edit === undefined && row?.canEdit === undefined
+    ? null
+    : Boolean(row?.can_edit ?? row?.canEdit),
+  canDelete: row?.can_delete === undefined && row?.canDelete === undefined
+    ? null
+    : Boolean(row?.can_delete ?? row?.canDelete),
 });
 
 /**

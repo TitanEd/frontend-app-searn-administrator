@@ -71,6 +71,11 @@ const AddTeamMemberModal = ({
             searchPlaceholder={formatMessage(messages.addModalUserSearchPlaceholder)}
             noOptionsText={formatMessage(messages.dropdownNoOptions)}
           />
+          {!isCandidatesLoading && dropdownOptions.length === 0 && (
+            <p className="add-team-member-modal__helper">
+              {formatMessage(messages.dropdownNoOptions)}
+            </p>
+          )}
         </div>
 
         <div className="add-team-member-modal__actions">
