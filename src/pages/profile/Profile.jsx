@@ -197,7 +197,8 @@ const Profile = () => {
     || updateMutation.isPending
     || isPageLoading
     || isProfileError
-    || isPickerError;
+    || isPickerError
+    || (showManagerField && !hasDisplayValue(manager));
 
   const applyProfileToForm = (profileData) => {
     if (!profileData) {
@@ -490,10 +491,6 @@ const Profile = () => {
               <div className="profile-page__field profile-page__field--full">
                 <label className="profile-page__label" htmlFor="manager">
                   {formatMessage(messages.manager)}
-                  {' '}
-                  <span className="profile-page__label-optional">
-                    {formatMessage(messages.managerOptional)}
-                  </span>
                 </label>
                 <SearchableDropdown
                   value={manager}

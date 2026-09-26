@@ -138,7 +138,7 @@
     color: #2A3B8F;
     cursor: pointer;
 
-    &:hover:not(:disabled):not(.is-disabled) {
+    &:hover:not(:disabled, .is-disabled) {
       background: rgb(42 59 143 / .06);
     }
 
@@ -153,7 +153,7 @@
   &__icon-button--danger {
     color: #DC2626;
 
-    &:hover:not(:disabled):not(.is-disabled) {
+    &:hover:not(:disabled, .is-disabled) {
       background: rgb(220 38 38 / .06);
     }
   }

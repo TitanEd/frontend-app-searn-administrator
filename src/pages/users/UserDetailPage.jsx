@@ -1,4 +1,5 @@
 import { useIntl } from '@edx/frontend-platform/i18n';
+import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import { useEffect, useState } from 'react';
 import {
   faArrowLeft,
@@ -63,6 +64,10 @@ const UserDetailPage = () => {
   const canViewUserAbout = Boolean(componentAccess?.users?.canViewUserAbout ?? false);
   const canEditUser = Boolean(componentAccess?.users?.canEditUser ?? false);
   const canDeleteUser = Boolean(componentAccess?.users?.canDeleteUser ?? false);
+  const authenticatedUserId = getAuthenticatedUser()?.userId;
+  const isSelfUser = Boolean(userId) && authenticatedUserId != null
+    && String(authenticatedUserId) === String(userId);
+  const showDeleteUser = canDeleteUser && !isSelfUser;
   const canAssignTrainings = Boolean(componentAccess?.users?.canAssignTrainings ?? false);
   const canRemoveAssignedTrainings = Boolean(componentAccess?.users?.canRemoveAssignedTrainings ?? false);
   const canViewAssignedTrainings = Boolean(componentAccess?.users?.canViewAssignedTrainings ?? false);
@@ -232,14 +237,14 @@ const UserDetailPage = () => {
             </div>
           </div>
 
-          {(canEditUser || canDeleteUser) && (
+          {(canEditUser || showDeleteUser) && (
             <div className="user-about-page__hero-actions">
               {canEditUser && (
                 <button type="button" className="user-about-page__hero-action" onClick={() => setEditOpen(true)}>
                   {formatMessage(detailMessages.edit)}
                 </button>
               )}
-              {canDeleteUser && (
+              {showDeleteUser && (
                 <button type="button" className="user-about-page__hero-action user-about-page__hero-action--danger" onClick={() => setDeleteOpen(true)}>
                   {formatMessage(detailMessages.delete)}
                 </button>
@@ -489,7 +494,7 @@ const UserDetailPage = () => {
         />
       )}
 
-      {canDeleteUser && (
+      {showDeleteUser && (
         <ConfirmActionDialog
           isOpen={deleteOpen}
           title={formatMessage(usersMessages.deleteDialogTitle)}

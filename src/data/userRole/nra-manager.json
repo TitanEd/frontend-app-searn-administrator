@@ -132,7 +132,7 @@
           "canRemoveTeamMember": true
         },
         "profile": {
-          "showManagerField": true,
+          "showManagerField": false,
           "showCompetencyRoleField": true,
           "canRequestAdminRole": true
         }

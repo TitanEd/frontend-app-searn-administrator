@@ -7,6 +7,8 @@ import SearchableDropdown from '../searchableDropdown/SearchableDropdown';
 import {
   findRoleOptionByValue,
   formatRoleSubFieldLabel,
+  isNraAdminRoleOption,
+  isNraStaffRoleOption,
   roleOptionHasSubOptions,
 } from '../../api/users/usersUtils';
 import {
@@ -74,7 +76,7 @@ const AddUserModal = ({
   }, [isOpen, mode, userDetail]);
 
   useEffect(() => {
-    if (!isOpen || managerOptions.length === 0 || managerInitializedFor === managerInitKey) {
+    if (!isOpen || managerInitializedFor === managerInitKey) {
       return;
     }
 
@@ -95,15 +97,34 @@ const AddUserModal = ({
   const canShowCompetencyRoleField = Boolean(componentAccess?.users?.userFormFields?.showCompetencyRoleField ?? false);
   const canShowCountryField = Boolean(componentAccess?.users?.userFormFields?.showCountryField ?? false);
 
+  const isEditingNraAdmin = mode === 'edit' && (
+    isNraAdminRoleOption(findRoleOptionByValue(roleOptionRows, userDetail?.role))
+    || String(userDetail?.role || '').trim() === 'NRA Admin'
+  );
+
   const roleDropdownOptions = useMemo(
-    () => roleOptionRows.map(({ value, label }) => ({ value, label })),
-    [roleOptionRows],
+    () => {
+      const options = roleOptionRows.map(({ value, label }) => ({ value, label }));
+      if (!isEditingNraAdmin) {
+        return options;
+      }
+      return options.filter((option) => isNraAdminRoleOption(option));
+    },
+    [isEditingNraAdmin, roleOptionRows],
   );
 
   const selectedRoleDef = useMemo(
     () => findRoleOptionByValue(roleOptionRows, role),
     [role, roleOptionRows],
   );
+
+  const showManagerForSelectedRole = canShowManagerField && isNraStaffRoleOption(selectedRoleDef);
+
+  useEffect(() => {
+    if (!showManagerForSelectedRole && managerId) {
+      setManagerId('');
+    }
+  }, [showManagerForSelectedRole, managerId]);
 
   const needsSubRole = roleOptionHasSubOptions(selectedRoleDef);
 
@@ -118,7 +139,8 @@ const AddUserModal = ({
     const roleInvalid = canShowRoleField && !role;
     const countryInvalid = canShowCountryField && !country;
     const subInvalid = needsSubRole && !roleSub;
-    return base || roleInvalid || countryInvalid || subInvalid;
+    const managerInvalid = showManagerForSelectedRole && !hasDisplayValue(managerId);
+    return base || roleInvalid || countryInvalid || subInvalid || managerInvalid;
   }, [
     canShowCountryField,
     canShowRoleField,
@@ -127,9 +149,11 @@ const AddUserModal = ({
     fullName,
     isLoadingDetail,
     isSaving,
+    managerId,
     needsSubRole,
     role,
     roleSub,
+    showManagerForSelectedRole,
   ]);
 
   const handleSubmit = async () => {
@@ -145,7 +169,7 @@ const AddUserModal = ({
       fieldPermissions: {
         showCountryField: canShowCountryField,
         showRoleField: canShowRoleField,
-        showManagerField: canShowManagerField,
+        showManagerField: showManagerForSelectedRole,
         showCompetencyRoleField: canShowCompetencyRoleField,
       },
     });
@@ -153,6 +177,9 @@ const AddUserModal = ({
 
   const managerLabel = getManagerLabelByValue(managerId, managerOptions);
   const managerTrigger = managerLabel || formatMessage(messages.addUserModalManagerPlaceholder);
+  const managerEmptyText = managerOptions.length === 0
+    ? formatMessage(messages.managerOptionsEmptyGuide)
+    : formatMessage(messages.dropdownNoOptions);
 
   return (
     <PopupDialog
@@ -200,7 +227,7 @@ const AddUserModal = ({
                 setRole(nextRole);
                 setRoleSub('');
               }}
-              disabled={isLoadingDetail || isSaving}
+              disabled={isLoadingDetail || isSaving || isEditingNraAdmin}
               placeholder={formatMessage(messages.addUserModalRolePlaceholder)}
               searchPlaceholder={formatMessage(messages.dropdownSearchPlaceholder)}
               noOptionsText={formatMessage(messages.dropdownNoOptions)}
@@ -238,7 +265,7 @@ const AddUserModal = ({
           </div>
         )}
 
-        {canShowManagerField && (
+        {showManagerForSelectedRole && (
           <div className="add-user-modal__field">
             <label className="add-user-modal__label">{formatMessage(messages.addUserModalManager)}</label>
             <SearchableDropdown
@@ -248,8 +275,11 @@ const AddUserModal = ({
               disabled={isLoadingDetail || isSaving || isManagersLoading}
               triggerLabel={managerTrigger}
               searchPlaceholder={formatMessage(messages.dropdownSearchPlaceholder)}
-              noOptionsText={formatMessage(messages.dropdownNoOptions)}
+              noOptionsText={managerEmptyText}
             />
+            {managerOptions.length === 0 && !isManagersLoading && (
+              <p className="add-user-modal__helper">{formatMessage(messages.managerOptionsEmptyGuide)}</p>
+            )}
           </div>
         )}
 

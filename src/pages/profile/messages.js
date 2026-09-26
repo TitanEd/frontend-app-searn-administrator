@@ -131,14 +131,9 @@ const messages = defineMessages({
     defaultMessage: 'My Manager',
     description: 'Label for manager dropdown',
   },
-  managerOptional: {
-    id: 'app.profile.fields.manager.optional',
-    defaultMessage: '(Optional)',
-    description: 'Optional suffix for manager field label',
-  },
   managerPlaceholder: {
     id: 'app.profile.fields.manager.placeholder',
-    defaultMessage: '— None —',
+    defaultMessage: 'Select manager',
     description: 'Placeholder for manager dropdown',
   },
   managerSearchPlaceholder: {
@@ -148,8 +143,8 @@ const messages = defineMessages({
   },
   managerNoOptions: {
     id: 'app.profile.fields.manager.empty',
-    defaultMessage: 'No managers found.',
-    description: 'Empty state for manager dropdown',
+    defaultMessage: 'No NRA Managers found. Ask your NRA Admin to create an NRA Manager first.',
+    description: 'Empty state for manager dropdown on profile',
   },
   managerOptionsLoadError: {
     id: 'app.profile.managerOptions.loadError',

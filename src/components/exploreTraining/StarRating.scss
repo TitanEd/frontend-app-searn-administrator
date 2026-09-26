@@ -1,7 +1,7 @@
 .explore-star-rating {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
+  gap: .375rem;
 
   &__stars {
     display: inline-flex;
@@ -10,10 +10,10 @@
   }
 
   &__star {
-    width: 0.875rem;
-    height: 0.875rem;
-    font-size: 0.875rem;
-    color: rgb(148 163 184 / 0.45);
+    width: .875rem;
+    height: .875rem;
+    font-size: .875rem;
+    color: rgb(148 163 184 / .45);
   }
 
   &__star--fill {
@@ -23,8 +23,8 @@
   &__star-wrap {
     position: relative;
     display: inline-block;
-    width: 0.875rem;
-    height: 0.875rem;
+    width: .875rem;
+    height: .875rem;
   }
 
   &__star-wrap .explore-star-rating__star {
@@ -44,7 +44,7 @@
   }
 
   &__count {
-    font-size: 0.75rem;
+    font-size: .75rem;
     color: #64748B;
   }
 }

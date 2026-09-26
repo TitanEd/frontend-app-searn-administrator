@@ -146,6 +146,7 @@ const MyTeam = () => {
 
   const handleRemoveTeamMember = async () => {
     if (!pendingRemove?.id) {
+      setPendingRemove(null);
       return;
     }
 
@@ -253,6 +254,8 @@ const MyTeam = () => {
           })}
           cancelLabel={formatMessage(messages.addModalCancel)}
           confirmLabel={formatMessage(messages.removeDialogConfirm)}
+          isCancelDisabled={removeMutation.isPending}
+          isConfirmDisabled={removeMutation.isPending}
           onCancel={() => setPendingRemove(null)}
           onConfirm={handleRemoveTeamMember}
         />

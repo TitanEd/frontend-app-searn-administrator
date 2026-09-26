@@ -13,9 +13,8 @@
     min-width: 0;
 
     @media (width >= 640px) {
-      flex-direction: row;
+      flex-flow: row wrap;
       align-items: center;
-      flex-wrap: wrap;
     }
   }
 
@@ -167,7 +166,7 @@
     font-size: .75rem;
     color: #6B7280;
     max-width: 40rem;
-    display: -webkit-box;
+    display: box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
