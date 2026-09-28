@@ -31,6 +31,11 @@ const commonMessages = defineMessages({
     defaultMessage: 'Remove {label}',
     description: 'Accessible label for removing one multi-select badge',
   },
+  multiSelectNoMatches: {
+    id: 'app.common.multiSelect.noMatches',
+    defaultMessage: 'No matches',
+    description: 'Empty text when multi-select search has no matching options',
+  },
   tablePagination: {
     id: 'app.common.pagination.table',
     defaultMessage: 'Table pagination',

@@ -33,6 +33,13 @@
     gap: .5rem;
   }
 
+  &__empty {
+    margin: 0;
+    padding: .375rem;
+    font-size: .875rem;
+    color: #6B7280;
+  }
+
   &__badges {
     display: flex;
     flex-wrap: wrap;

@@ -58,7 +58,11 @@ const SearchableDropdown = ({
       return options;
     }
 
-    return options.filter(option => option.label.toLowerCase().startsWith(trimmed));
+    const tokens = trimmed.split(/\s+/).filter(Boolean);
+    return options.filter((option) => {
+      const haystack = String(option?.label ?? '').toLowerCase();
+      return tokens.every((token) => haystack.includes(token));
+    });
   }, [options, searchTerm]);
   const shouldShowSearch = options.length > 5;
 

@@ -364,6 +364,7 @@ const MyTrainingCatalogCreate = () => {
               selectedValues={nraObjectives}
               onChange={setNraObjectives}
               searchPlaceholder={dropdownSearchPlaceholder}
+              noOptionsText={dropdownNoOptions}
             />
 
             <div className="my-training-create__registration">
@@ -411,6 +412,7 @@ const MyTrainingCatalogCreate = () => {
               selectedValues={mappedCompetencies}
               onChange={setMappedCompetencies}
               searchPlaceholder={dropdownSearchPlaceholder}
+              noOptionsText={dropdownNoOptions}
             />
 
             <span className="my-training-create__label">
@@ -422,6 +424,7 @@ const MyTrainingCatalogCreate = () => {
               selectedValues={mappedActivities}
               onChange={setMappedActivities}
               searchPlaceholder={dropdownSearchPlaceholder}
+              noOptionsText={dropdownNoOptions}
             />
           </div>
         </div>
