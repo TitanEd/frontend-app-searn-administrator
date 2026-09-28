@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import commonMessages from '../../messages/commonMessages';
 import './MultiSelectInput.scss';
 
+const optionSearchText = (option) => String(option?.label ?? '').toLowerCase();
+
 const MultiSelectInput = ({
   options = [],
   selectedValues: selectedValuesProp = [],
@@ -13,15 +15,17 @@ const MultiSelectInput = ({
   disabled = false,
   searchPlaceholder,
   removeAllLabel,
+  noOptionsText,
   onSearchChange,
   filterOptionsLocally = true,
 }) => {
   const { formatMessage } = useIntl();
   const selectedValues = Array.isArray(selectedValuesProp) ? selectedValuesProp : [];
   const [searchTerm, setSearchTerm] = useState('');
-  const shouldShowSearch = filterOptionsLocally ? options.length > 5 : true;
+  const shouldShowSearch = filterOptionsLocally ? options.length > 0 : true;
   const filterPlaceholder = searchPlaceholder ?? formatMessage(commonMessages.multiSelectFilterPlaceholder);
   const clearAllLabel = removeAllLabel ?? formatMessage(commonMessages.multiSelectRemoveAll);
+  const emptyText = noOptionsText ?? formatMessage(commonMessages.multiSelectNoMatches);
 
   const filteredOptions = useMemo(() => {
     if (!filterOptionsLocally) {
@@ -33,7 +37,11 @@ const MultiSelectInput = ({
       return options;
     }
 
-    return options.filter(option => option.label.toLowerCase().startsWith(query));
+    const tokens = query.split(/\s+/).filter(Boolean);
+    return options.filter((option) => {
+      const haystack = optionSearchText(option);
+      return tokens.every((token) => haystack.includes(token));
+    });
   }, [filterOptionsLocally, options, searchTerm]);
   const selectedOptions = useMemo(
     () => options.filter(option => selectedValues.includes(option.value)),
@@ -58,7 +66,7 @@ const MultiSelectInput = ({
       )}
 
       <div className="multi-select-input__options">
-        {filteredOptions.map(option => {
+        {filteredOptions.length > 0 ? filteredOptions.map(option => {
           const isSelected = selectedValues.includes(option.value);
           return (
             <label className="multi-select-input__option" key={option.value}>
@@ -82,7 +90,9 @@ const MultiSelectInput = ({
               <span className="multi-select-input__label">{option.label}</span>
             </label>
           );
-        })}
+        }) : (
+          <p className="multi-select-input__empty">{emptyText}</p>
+        )}
       </div>
 
       {selectedOptions.length > 0 && (
