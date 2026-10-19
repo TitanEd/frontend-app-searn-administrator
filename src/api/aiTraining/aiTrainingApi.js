@@ -122,7 +122,7 @@ const normalizeExtracted = (data) => {
     page_size: Math.max(1, asNumber(body.page_size, AI_TRAINING_REVIEW_PAGE_SIZE)),
     total: asNumber(body.total, items.length),
     total_pages: Math.max(1, asNumber(body.total_pages, 1)),
-    matching_ids: asArray(body.matching_ids),
+    matching_ids: asArray(body.matching_ids).map((id) => asString(id)),
     summary: {
       total: asNumber(summary.total, items.length),
       approved: asNumber(summary.approved),
@@ -150,6 +150,7 @@ const normalizeHistory = (data) => asArray(data).map((row) => {
   const item = asObject(row);
   return {
     id: asString(item.id),
+    // Backend returns plain integer draft pk (legacy job_*_t* normalized server-side).
     training_id: asString(item.training_id),
     actor: asString(item.actor),
     training_name: asString(item.training_name),

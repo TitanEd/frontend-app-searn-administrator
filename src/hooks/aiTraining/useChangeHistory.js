@@ -19,10 +19,18 @@ const useChangeHistory = ({ jobId, trainingId, trainingName, enabled = true } = 
         throw new Error(result.message || formatMessage(messages.drawerHistoryEmpty));
       }
       const rows = Array.isArray(result.data) ? result.data : [];
-      return rows.filter((entry) => (
-        entry.training_id === trainingId
-        || (!entry.training_id && entry.training_name === trainingName)
-      ));
+      const wanted = String(trainingId ?? '');
+      return rows.filter((entry) => {
+        const entryId = String(entry.training_id ?? '');
+        if (wanted && entryId && entryId === wanted) {
+          return true;
+        }
+        // Legacy composite ids: job_<doc>_t<draft>
+        if (wanted && entryId.endsWith(`_t${wanted}`)) {
+          return true;
+        }
+        return !entry.training_id && entry.training_name === trainingName;
+      });
     },
   });
 
