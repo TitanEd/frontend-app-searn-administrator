@@ -12,10 +12,10 @@ import {
 } from '../endpoints';
 import { getApiBaseUrl, getHttpClient } from '../httpClient';
 import aiTrainingMessages from './aiTrainingMessages';
-import { normalizeAiJobId } from './aiTrainingUtils';
+import { normalizeAiJobId, normalizeProcessingSteps } from './aiTrainingUtils';
 import { hasDisplayValue } from '../../utils/hasDisplayValue';
 
-export { STEP_ORDER, normalizeAiJobId } from './aiTrainingUtils';
+export { normalizeAiJobId, normalizeProcessingSteps } from './aiTrainingUtils';
 
 const enc = (value) => encodeURIComponent(String(value ?? ''));
 
@@ -64,16 +64,18 @@ const normalizeImportHistory = (data, page, pageSize) => {
 
 const normalizeStatus = (data, jobId) => {
   const body = asObject(data);
+  const steps = normalizeProcessingSteps(body.steps);
   return {
     job_id: normalizeAiJobId(body.job_id || jobId),
     status: asString(body.status, 'processing'),
-    current_step: asString(body.current_step, 'validating_document'),
+    current_step: asString(body.current_step, steps[0]?.key || 'validating_document'),
     progress: asNumber(body.progress),
     message: asString(body.message, 'Processing...'),
     total_records: asNumber(body.total_records),
     processed_records: asNumber(body.processed_records),
     error: body.error == null ? null : body.error,
     started_at: body.started_at || null,
+    steps,
   };
 };
 

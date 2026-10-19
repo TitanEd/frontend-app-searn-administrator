@@ -16,7 +16,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { formatFileSize, normalizeAiJobId, STEP_ORDER } from '../../api/aiTraining/aiTrainingUtils';
+import { formatFileSize, normalizeAiJobId } from '../../api/aiTraining/aiTrainingUtils';
 import AIReviewList from '../../components/aiTraining/AIReviewList';
 import AIStepIndicator from '../../components/aiTraining/AIStepIndicator';
 import ExtractedTrainingDrawer from '../../components/aiTraining/ExtractedTrainingDrawer';
@@ -48,19 +48,6 @@ const isHttpUrl = (value) => {
   } catch {
     return false;
   }
-};
-
-const PROCESS_STEP_MESSAGES = {
-  validating_document: messages.processStepValidating,
-  reading_document: messages.processStepReading,
-  extracting_data: messages.processStepExtracting,
-  identifying_trainings: messages.processStepIdentifying,
-  mapping_fields: messages.processStepMappingFields,
-  mapping_competencies: messages.processStepMappingCompetencies,
-  mapping_activities: messages.processStepMappingActivities,
-  validating_records: messages.processStepValidatingRecords,
-  preparing_results: messages.processStepPreparing,
-  completed: messages.processStepCompleted,
 };
 
 const SparklesIcon = () => (
@@ -423,8 +410,13 @@ const AITrainingCreate = () => {
   };
 
   const stepNumber = phase === 'upload' ? 1 : (phase === 'processing' || phase === 'failed' ? 2 : 3);
-  const currentIndex = status ? STEP_ORDER.indexOf(status.current_step) : 0;
-  const visibleSteps = STEP_ORDER.filter((step) => step !== 'completed');
+  // Processing timeline keys/labels come from backend status.steps (AI pipeline source of truth).
+  const backendSteps = Array.isArray(status?.steps) ? status.steps : [];
+  const visibleSteps = backendSteps.filter((step) => step.key && step.key !== 'completed');
+  const currentIndex = visibleSteps.findIndex((step) => step.key === status?.current_step);
+  const activeStepIndex = status?.current_step === 'completed' || status?.status === 'completed'
+    ? visibleSteps.length
+    : (currentIndex >= 0 ? currentIndex : 0);
   const isReviewLoading = loadingResults && items.length === 0 && !resultsError;
 
   return (
@@ -595,17 +587,12 @@ const AITrainingCreate = () => {
               </div>
               <ol className="ai-training-create__timeline">
                 {visibleSteps.map((step, idx) => {
-                  const index = STEP_ORDER.indexOf(step);
-                  const done = index < currentIndex;
-                  const active = index === currentIndex;
+                  const done = idx < activeStepIndex || status?.status === 'completed';
+                  const active = status?.status !== 'completed' && idx === activeStepIndex;
                   const isLast = idx === visibleSteps.length - 1;
-                  const stepMessage = PROCESS_STEP_MESSAGES[step];
-                  if (!stepMessage) {
-                    return null;
-                  }
-                  const label = formatMessage(stepMessage);
+                  const label = step.label || step.key;
                   return (
-                    <li key={step} className={`ai-training-create__timeline-row ${done ? 'is-done' : ''} ${active ? 'is-active' : ''}`}>
+                    <li key={step.key} className={`ai-training-create__timeline-row ${done ? 'is-done' : ''} ${active ? 'is-active' : ''}`}>
                       {!isLast && <span className={`ai-training-create__connector ${done ? 'is-done' : ''}`} aria-hidden />}
                       <span className="ai-training-create__node">
                         {done && <FontAwesomeIcon icon={faCheck} aria-hidden />}

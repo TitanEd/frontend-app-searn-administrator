@@ -18,18 +18,31 @@ export const normalizeAiJobId = (value) => {
   return raw;
 };
 
-export const STEP_ORDER = [
-  'validating_document',
-  'reading_document',
-  'extracting_data',
-  'identifying_trainings',
-  'mapping_fields',
-  'mapping_competencies',
-  'mapping_activities',
-  'validating_records',
-  'preparing_results',
-  'completed',
-];
+/**
+ * Normalize backend processing timeline steps.
+ * FE must render these labels from the API (not a hardcoded frontend list).
+ */
+export const normalizeProcessingSteps = (steps) => {
+  if (!Array.isArray(steps)) {
+    return [];
+  }
+  return steps
+    .map((row, index) => {
+      const item = row && typeof row === 'object' ? row : {};
+      const key = String(item.key ?? item.id ?? item.step ?? '').trim();
+      if (!key) {
+        return null;
+      }
+      const orderValue = Number(item.order);
+      return {
+        key,
+        label: String(item.label ?? item.message ?? key),
+        order: Number.isFinite(orderValue) ? orderValue : index,
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.order - b.order);
+};
 
 export const fileTypeFromName = (fileName) => {
   if (!fileName || typeof fileName !== 'string') {
