@@ -114,13 +114,39 @@ const ExtractedTrainingDrawer = ({
     setError(null);
   }, [training, tab]);
 
+  const suggestionToOptions = (suggestions = []) => (
+    suggestions
+      .map((item) => {
+        const name = typeof item === 'string' ? item : item?.name;
+        if (!hasDisplayValue(name)) return null;
+        const score = typeof item === 'object' ? Number(item.score || 0) : null;
+        return {
+          id: (typeof item === 'object' && item.id) || name,
+          value: name,
+          label: score != null && Number.isFinite(score) ? `${name} (${Math.round(score)}%)` : name,
+        };
+      })
+      .filter(Boolean)
+  );
+
+  // Prefer AI suggestions from this training (not global mock catalog) so checks match the card.
   const competencyOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.competencies?.results, draft?.competencies),
-    [draft?.competencies],
+    () => mergeSelectOptions(
+      suggestionToOptions(training?.competency_suggestions).length
+        ? suggestionToOptions(training?.competency_suggestions)
+        : (catalogOptions.competencies?.results || []),
+      draft?.competencies,
+    ),
+    [training?.competency_suggestions, draft?.competencies],
   );
   const activityOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.activities?.results, draft?.activities),
-    [draft?.activities],
+    () => mergeSelectOptions(
+      suggestionToOptions(training?.activity_suggestions).length
+        ? suggestionToOptions(training?.activity_suggestions)
+        : (catalogOptions.activities?.results || []),
+      draft?.activities,
+    ),
+    [training?.activity_suggestions, draft?.activities],
   );
   const nraObjectiveOptions = useMemo(
     () => mergeSelectOptions(catalogOptions.nraObjectives?.results, draft?.nra_objectives),
@@ -215,18 +241,25 @@ const ExtractedTrainingDrawer = ({
               const actorName = hasDisplayValue(event.actor)
                 ? event.actor
                 : formatMessage(messages.historyActorUser);
-              const isAiEvent = String(actorName).toLowerCase() === 'ai';
+              const actorKey = String(actorName).toLowerCase();
+              const isAiEvent = actorKey === 'ai';
+              const isSystemEvent = actorKey === 'system';
+              const canRevert = !isAiEvent && !isSystemEvent;
               const fieldMessage = HISTORY_FIELD_MESSAGES[event.field];
               const fieldLabel = fieldMessage
                 ? formatMessage(fieldMessage)
-                : (event.field || formatMessage(messages.drawerTrainingUpdated));
+                : (event.field && event.field !== 'created'
+                  ? event.field
+                  : (isSystemEvent ? '' : formatMessage(messages.drawerTrainingUpdated)));
               return (
                 <article className="ai-drawer__history-item" key={event.id}>
                   <div className="ai-drawer__history-meta">
-                    <span className={`ai-drawer__actor ${isAiEvent ? 'is-ai' : ''}`}>
+                    <span className={`ai-drawer__actor ${isAiEvent ? 'is-ai' : ''} ${isSystemEvent ? 'is-system' : ''}`}>
                       {isAiEvent
                         ? formatMessage(messages.historyActorAi)
-                        : formatMessage(messages.historyActorEdited, { name: actorName })}
+                        : isSystemEvent
+                          ? formatMessage(messages.historyActorSystem)
+                          : formatMessage(messages.historyActorEdited, { name: actorName })}
                     </span>
                     {hasDisplayValue(event.timestamp) && (
                       <time>{new Date(event.timestamp).toLocaleString()}</time>
@@ -245,7 +278,7 @@ const ExtractedTrainingDrawer = ({
                       {formatMessage(messages.drawerAfter)} {formatHistoryValue(event.after)}
                     </p>
                   )}
-                  {!isAiEvent && (
+                  {canRevert && (
                     <button type="button" className="ai-drawer__outline-button" disabled={isSaving} onClick={() => onRevert?.(event)}>
                       <FontAwesomeIcon icon={faUndo} aria-hidden />
                       {formatMessage(messages.revertAndSave)}
@@ -460,12 +493,22 @@ const ExtractedTrainingDrawer = ({
         <button type="button" className="ai-drawer__outline-button" onClick={onClose}>
           {formatMessage(messages.cancel)}
         </button>
-        <button type="button" className="ai-drawer__outline-button" disabled={isSaving} onClick={persist}>
+        <button
+          type="button"
+          className="ai-drawer__outline-button"
+          disabled={isSaving}
+          onClick={() => persist({ syncCatalog: false })}
+        >
           {isSaving && <FontAwesomeIcon icon={faSpinner} spin aria-hidden />}
           {formatMessage(messages.saveDrawer)}
         </button>
         {training.created ? (
-          <button type="button" className="ai-drawer__primary-button" disabled={isSaving} onClick={persist}>
+          <button
+            type="button"
+            className="ai-drawer__primary-button"
+            disabled={isSaving}
+            onClick={() => persist({ syncCatalog: true })}
+          >
             {formatMessage(messages.saveAndUpdate)}
           </button>
         ) : (
@@ -474,7 +517,7 @@ const ExtractedTrainingDrawer = ({
             className="ai-drawer__primary-button"
             disabled={isSaving}
             onClick={async () => {
-              const saved = await persist({ skipSuccessToast: true });
+              const saved = await persist({ skipSuccessToast: true, syncCatalog: false });
               if (saved) onCreateOne?.(draft);
             }}
           >

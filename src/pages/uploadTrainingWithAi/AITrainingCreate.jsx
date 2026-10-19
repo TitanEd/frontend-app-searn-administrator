@@ -120,7 +120,9 @@ const AITrainingCreate = () => {
   const {
     items,
     summary,
+    pageSize: backendPageSize,
     totalPages,
+    total: extractedTotal,
     matchingIds,
     results,
     isLoading: loadingResults,
@@ -135,6 +137,7 @@ const AITrainingCreate = () => {
     filters,
     enabled: (phase === 'review' || phase === 'creating') && Boolean(jobId),
   });
+  const pageSize = backendPageSize || PAGE_SIZE;
   const { updateMappings, updateTraining, reanalyzeTraining, revertHistory, isUpdating } = useUpdateExtractedTraining({ jobId });
   const { create, isCreating } = useCreateTrainings({ jobId });
 
@@ -155,7 +158,12 @@ const AITrainingCreate = () => {
     if (phase !== 'processing' || !status) return;
     if (status.status === 'completed') setPhase('review');
     else if (status.status === 'failed') {
-      const message = status.error?.message || formatMessage(messages.toastProcessFailed);
+      const message = (
+        (typeof status.error === 'string' && status.error)
+        || status.error?.message
+        || status.message
+        || formatMessage(messages.toastProcessFailed)
+      );
       setProcessError(message);
       showToast({
         title: formatMessage(messages.toastProcessFailed),
@@ -243,7 +251,17 @@ const AITrainingCreate = () => {
 
   const handleToggleMapping = async (training, kind, name) => {
     const current = training[kind] || [];
-    const next = current.includes(name) ? current.filter((item) => item !== name) : [...current, name];
+    const needle = String(name || '').trim().toLowerCase();
+    const alreadyOn = current.some((item) => {
+      const hay = String(item || '').trim().toLowerCase();
+      return hay === needle || hay.includes(needle) || needle.includes(hay);
+    });
+    const next = alreadyOn
+      ? current.filter((item) => {
+        const hay = String(item || '').trim().toLowerCase();
+        return !(hay === needle || hay.includes(needle) || needle.includes(hay));
+      })
+      : [...current, name];
     try {
       await updateMappings({ trainingId: training.id, payload: { [kind]: next } });
       await refetchResults();
@@ -312,21 +330,28 @@ const AITrainingCreate = () => {
     }
   };
 
-  const handleDrawerSave = async (form, { skipSuccessToast = false } = {}) => {
+  const handleDrawerSave = async (form, { skipSuccessToast = false, syncCatalog = false } = {}) => {
     if (!editing) return;
     const trainingId = editing.id;
     const trainingName = hasDisplayValue(editing.training_name)
       ? editing.training_name
       : formatMessage(messages.untitled);
     try {
-      const result = await updateTraining({ trainingId, payload: form });
+      const result = await updateTraining({
+        trainingId,
+        payload: { ...form, sync_catalog: Boolean(syncCatalog) },
+      });
       setEditing(null);
       if (!skipSuccessToast) {
+        const synced = Boolean(result?.data?.catalog_synced || syncCatalog);
         showToast({
-          title: formatMessage(messages.toastSavedTitle),
+          title: formatMessage(synced ? messages.toastUpdatedTitle : messages.toastSavedTitle),
           description: hasDisplayValue(result.message)
             ? result.message
-            : formatMessage(messages.toastSavedDescription, { name: trainingName }),
+            : formatMessage(
+              synced ? messages.toastUpdatedDescription : messages.toastDraftSavedDescription,
+              { name: trainingName },
+            ),
         });
       }
     } catch (err) {
@@ -337,16 +362,19 @@ const AITrainingCreate = () => {
       throw err;
     }
 
-    setReanalyzing((prev) => new Set(prev).add(trainingId));
-    try {
-      await reanalyzeTraining({ trainingId });
-    } catch (err) {
-      showToast({
-        title: formatMessage(messages.toastReanalyzeFailed),
-        description: hasDisplayValue(err?.message) ? err.message : formatMessage(messages.toastReanalyzeFailed),
-      });
-    } finally {
-      setReanalyzing((prev) => { const next = new Set(prev); next.delete(trainingId); return next; });
+    // Re-score mappings only for draft saves / create path — not when pushing to live catalog.
+    if (!syncCatalog) {
+      setReanalyzing((prev) => new Set(prev).add(trainingId));
+      try {
+        await reanalyzeTraining({ trainingId });
+      } catch (err) {
+        showToast({
+          title: formatMessage(messages.toastReanalyzeFailed),
+          description: hasDisplayValue(err?.message) ? err.message : formatMessage(messages.toastReanalyzeFailed),
+        });
+      } finally {
+        setReanalyzing((prev) => { const next = new Set(prev); next.delete(trainingId); return next; });
+      }
     }
     await refetchResults();
   };
@@ -711,7 +739,7 @@ const AITrainingCreate = () => {
                 />
                 <span>{formatMessage(messages.selectPage)}</span>
               </label>
-              {results && results.total > PAGE_SIZE && (
+              {extractedTotal > pageSize && (
                 <button type="button" className="ai-training-create__text-btn" onClick={() => setSelected(new Set(matchingIds))}>
                   {formatMessage(messages.selectAllMatching, { count: matchingIds.length.toLocaleString() })}
                 </button>
@@ -753,9 +781,9 @@ const AITrainingCreate = () => {
               onPageChange={handlePageChange}
               paginationLabel={formatMessage(messages.extractedPaginationLabel)}
               footerContent={formatMessage(messages.showingResults, {
-                start: items.length ? ((page - 1) * PAGE_SIZE) + 1 : 0,
-                end: Math.min(page * PAGE_SIZE, results?.total || items.length),
-                total: (results?.total || items.length).toLocaleString(),
+                start: items.length ? ((page - 1) * pageSize) + 1 : 0,
+                end: Math.min(page * pageSize, extractedTotal || items.length),
+                total: (extractedTotal || items.length).toLocaleString(),
               })}
             />
           </div>

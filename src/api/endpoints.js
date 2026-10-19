@@ -3,11 +3,99 @@
 /** Default `page_size` for paginated list endpoints. */
 export const API_PAGE_SIZE = 20;
 
-/** `page_size` for Upload Training with AI import history. */
-export const AI_TRAINING_IMPORT_HISTORY_PAGE_SIZE = 15;
+/** Default `page_size` for Upload Training with AI import history (backend default). */
+export const AI_TRAINING_IMPORT_HISTORY_PAGE_SIZE = 20;
 
-/** `page_size` for Review AI Extracted Trainings. */
-export const AI_TRAINING_REVIEW_PAGE_SIZE = 15;
+/** Default `page_size` for Review AI Extracted Trainings (backend default). */
+export const AI_TRAINING_REVIEW_PAGE_SIZE = 20;
+
+/** Upload Training with AI (job-based API). */
+export const AI_TRAINING_IMPORTS = '/api/v1/ai-training/imports/';
+export const AI_TRAINING_UPLOAD = '/api/v1/ai-training/upload/';
+
+const encAi = (value) => encodeURIComponent(String(value ?? ''));
+
+/** @param {string} jobId */
+export const aiTrainingImportDetail = (jobId) => `/api/v1/ai-training/imports/${encAi(jobId)}/`;
+
+/** @param {string} jobId */
+export const aiTrainingChangeHistory = (jobId) => `/api/v1/ai-training/imports/${encAi(jobId)}/history/`;
+
+/** @param {string} jobId @param {string} eventId */
+export const aiTrainingHistoryRevert = (jobId, eventId) => (
+  `/api/v1/ai-training/imports/${encAi(jobId)}/history/${encAi(eventId)}/revert/`
+);
+
+/** @param {string} jobId */
+export const aiTrainingJobStatus = (jobId) => `/api/v1/ai-training/jobs/${encAi(jobId)}/status/`;
+
+/** @param {string} jobId */
+export const aiTrainingExtracted = (jobId) => `/api/v1/ai-training/jobs/${encAi(jobId)}/extracted/`;
+
+/** @param {string} jobId @param {string} trainingId */
+export const aiTrainingExtractedDetail = (jobId, trainingId) => (
+  `/api/v1/ai-training/jobs/${encAi(jobId)}/extracted/${encAi(trainingId)}/`
+);
+
+/** @param {string} jobId @param {string} trainingId */
+export const aiTrainingExtractedMappings = (jobId, trainingId) => (
+  `/api/v1/ai-training/jobs/${encAi(jobId)}/extracted/${encAi(trainingId)}/mappings/`
+);
+
+/** @param {string} jobId @param {string} trainingId */
+export const aiTrainingExtractedReanalyze = (jobId, trainingId) => (
+  `/api/v1/ai-training/jobs/${encAi(jobId)}/extracted/${encAi(trainingId)}/reanalyze/`
+);
+
+/** @param {string} jobId */
+export const aiTrainingCreate = (jobId) => `/api/v1/ai-training/jobs/${encAi(jobId)}/create/`;
+
+/** @param {string} createJobId */
+export const aiTrainingCreateJobStatus = (createJobId) => (
+  `/api/v1/ai-training/create-jobs/${encAi(createJobId)}/`
+);
+
+/** Legacy Create Training with AI document APIs. */
+export const TRAININGS_CATALOG_AI_DOCUMENTS = '/api/v1/trainings-catalog-ai/documents/';
+export const TRAININGS_CATALOG_AI_DRAFT_OPTIONS = '/api/v1/trainings-catalog-ai/drafts/options/';
+export const TRAININGS_CATALOG_AI_PAGE_SIZE = 20;
+
+/** @param {string|number} documentId */
+export const trainingsCatalogAiDocumentProcess = (documentId) => (
+  `/api/v1/trainings-catalog-ai/documents/${documentId}/process/`
+);
+/** @param {string|number} documentId */
+export const trainingsCatalogAiDocumentSummary = (documentId) => (
+  `/api/v1/trainings-catalog-ai/documents/${documentId}/summary/`
+);
+/** @param {string|number} documentId */
+export const trainingsCatalogAiDocumentMatchFilters = (documentId) => (
+  `/api/v1/trainings-catalog-ai/documents/${documentId}/filters/match/`
+);
+/** @param {string|number} documentId */
+export const trainingsCatalogAiDocumentStatusFilters = (documentId) => (
+  `/api/v1/trainings-catalog-ai/documents/${documentId}/filters/status/`
+);
+/** @param {string|number} documentId */
+export const trainingsCatalogAiDocumentCreatableIds = (documentId) => (
+  `/api/v1/trainings-catalog-ai/documents/${documentId}/creatable-ids/`
+);
+/** @param {string|number} documentId */
+export const trainingsCatalogAiDocumentDrafts = (documentId) => (
+  `/api/v1/trainings-catalog-ai/documents/${documentId}/drafts/`
+);
+/** @param {string|number} documentId */
+export const trainingsCatalogAiCreateSelected = (documentId) => (
+  `/api/v1/trainings-catalog-ai/documents/${documentId}/create-selected/`
+);
+/** @param {string|number} draftId */
+export const trainingsCatalogAiDraftDetail = (draftId) => (
+  `/api/v1/trainings-catalog-ai/drafts/${draftId}/`
+);
+/** @param {string|number} draftId */
+export const trainingsCatalogAiDraftCreate = (draftId) => (
+  `/api/v1/trainings-catalog-ai/drafts/${draftId}/create/`
+);
 
 export const CORE_PERMISSIONS = '/api/v1/core-permissions/';
 

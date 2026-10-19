@@ -126,8 +126,8 @@ These routes are **always routable** (no `withAccess(...)` guard in `src/App.jsx
 - **`accessSettings`**
   - **Route**: `/admin/settings` → `src/pages/settings/Settings.jsx`
 - **`accessUploadTrainingWithAi`**
-  - **Route**: `/admin/upload-training-with-ai` → `src/pages/uploadTrainingWithAi/UploadTrainingWithAi.jsx` (renders `PlaceholderPage`)
-  - **Role**: enabled for `super-user`
+  - **Route**: `/admin/upload-training-with-ai` → `src/pages/uploadTrainingWithAi/UploadTrainingWithAi.jsx`
+  - **Role**: enabled for `training-provider` and `super-user`
 
 ---
 

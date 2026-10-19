@@ -23,7 +23,7 @@
         "accessRoles": false,
         "accessSettings": false,
         "accessReports": true,
-        "accessUploadTrainingWithAi": false
+        "accessUploadTrainingWithAi": true
       },
       "componentAccess": {
         "dashboard": {

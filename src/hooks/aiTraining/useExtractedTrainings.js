@@ -44,7 +44,9 @@ const useExtractedTrainings = ({
   return {
     items: query.data?.items ?? [],
     summary: query.data?.summary ?? null,
+    pageSize: query.data?.page_size ?? pageSize,
     totalPages: query.data?.total_pages ?? 1,
+    total: query.data?.total ?? 0,
     matchingIds: query.data?.matching_ids ?? [],
     results: query.data ?? null,
     isLoading: query.isLoading,

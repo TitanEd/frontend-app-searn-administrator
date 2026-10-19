@@ -1,127 +1,246 @@
-/* eslint-disable no-promise-executor-return, no-param-reassign */
 /**
- * AI Training upload / extract / create API.
- * Currently mock-backed via data/aiTraining/mockImports.
- * Swap bodies to real HTTP (executeApiRequest + endpoints) when backend is ready.
+ * AI Training upload / extract / create API (real HTTP).
+ * Contract matches /api/v1/ai-training/* on trainings_catalog_ai.
+ * Every response is normalized so missing/empty fields never break the UI.
  */
-import { AI_TRAINING_IMPORT_HISTORY_PAGE_SIZE, AI_TRAINING_REVIEW_PAGE_SIZE } from '../endpoints';
-import MOCK_IMPORTS, {
-  MOCK_CHANGE_HISTORY,
-  MOCK_EXTRACTED,
-} from '../../data/aiTraining/mockImports';
-import { buildReviewExtracted } from '../../mock/uploadTrainingWithAi/buildReviewExtracted';
-import PROCESSING_STEPS from '../../mock/uploadTrainingWithAi/processingSteps.json';
-import { STEP_ORDER, buildExtractedSummary } from './aiTrainingUtils';
+import { executeApiRequest } from '../apiRequest';
+import {
+  AI_TRAINING_IMPORT_HISTORY_PAGE_SIZE,
+  AI_TRAINING_IMPORTS,
+  AI_TRAINING_REVIEW_PAGE_SIZE,
+  AI_TRAINING_UPLOAD,
+} from '../endpoints';
+import { getApiBaseUrl, getHttpClient } from '../httpClient';
 import aiTrainingMessages from './aiTrainingMessages';
 import { hasDisplayValue } from '../../utils/hasDisplayValue';
 
 export { STEP_ORDER } from './aiTrainingUtils';
 
-const PROCESSING_STEP_ROWS = PROCESSING_STEPS.results ?? PROCESSING_STEPS;
+const enc = (value) => encodeURIComponent(String(value ?? ''));
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-const store = {
-  imports: MOCK_IMPORTS.map((r) => ({ ...r })),
-  extracted: JSON.parse(JSON.stringify(MOCK_EXTRACTED)),
-  jobs: {},
-  createJobs: {},
-  history: JSON.parse(JSON.stringify(MOCK_CHANGE_HISTORY)),
-};
-
-const ok = (data) => ({ ok: true, data, message: null });
-const fail = (message) => ({ ok: false, data: null, message });
-
-const markCreated = (items, createdCount) => {
-  const count = Math.max(0, Math.min(Number(createdCount) || 0, items.length));
-  return items.map((item, index) => (
-    index < count
-      ? { ...item, created: true, status: 'created', edited: false }
-      : item
-  ));
-};
-
-const ensureExtracted = (jobId) => {
-  if (!Array.isArray(store.extracted[jobId])) {
-    const imp = store.imports.find((row) => row.job_id === jobId);
-    if (!imp) {
-      return null;
-    }
-    const total = Number(imp.total_records) || 0;
-    const created = Number(imp.created) || 0;
-    store.extracted[jobId] = total > 0
-      ? markCreated(buildReviewExtracted(jobId, total), created)
-      : [];
-  }
-
-  store.extracted[jobId] = store.extracted[jobId].map((item, index) => ({
-    ...item,
-    id: item.id || `${jobId}_t${index + 1}`,
-  }));
-  return store.extracted[jobId];
-};
-
-const asCount = (value) => {
+const asArray = (value) => (Array.isArray(value) ? value : []);
+const asObject = (value) => (value && typeof value === 'object' && !Array.isArray(value) ? value : {});
+const asNumber = (value, fallback = 0) => {
   const numeric = Number(value);
-  return Number.isFinite(numeric) ? numeric : 0;
+  return Number.isFinite(numeric) ? numeric : fallback;
 };
+const asString = (value, fallback = '') => (
+  value == null ? fallback : String(value)
+);
+
+const normalizeImportRow = (row) => {
+  const item = asObject(row);
+  const jobId = asString(item.job_id || item.id);
+  return {
+    id: jobId,
+    job_id: jobId,
+    file_name: asString(item.file_name),
+    uploaded_by: asString(item.uploaded_by),
+    uploaded_at: item.uploaded_at || null,
+    total_records: asNumber(item.total_records),
+    created: asNumber(item.created),
+    needs_review: asNumber(item.needs_review),
+    failed: asNumber(item.failed),
+    status: asString(item.status, 'completed'),
+    timeline: asArray(item.timeline),
+  };
+};
+
+const normalizeImportHistory = (data, page, pageSize) => {
+  const body = asObject(data);
+  const results = asArray(body.results).map(normalizeImportRow);
+  const count = asNumber(body.count, results.length);
+  const size = Math.max(1, asNumber(body.page_size, pageSize));
+  const totalPages = Math.max(1, asNumber(body.total_pages, Math.ceil(count / size) || 1));
+  return {
+    results,
+    count,
+    page: Math.min(Math.max(1, asNumber(body.page, page)), totalPages),
+    page_size: size,
+    total_pages: totalPages,
+  };
+};
+
+const normalizeStatus = (data, jobId) => {
+  const body = asObject(data);
+  return {
+    job_id: asString(body.job_id, jobId),
+    status: asString(body.status, 'processing'),
+    current_step: asString(body.current_step, 'validating_document'),
+    progress: asNumber(body.progress),
+    message: asString(body.message, 'Processing...'),
+    total_records: asNumber(body.total_records),
+    processed_records: asNumber(body.processed_records),
+    error: body.error == null ? null : body.error,
+    started_at: body.started_at || null,
+  };
+};
+
+const normalizeExtractedItem = (row) => {
+  const item = asObject(row);
+  return {
+    ...item,
+    id: asString(item.id),
+    training_name: asString(item.training_name),
+    description: asString(item.description),
+    domain: asString(item.domain),
+    sub_domain: asString(item.sub_domain),
+    language: asString(item.language),
+    duration: asString(item.duration),
+    cost: asString(item.cost),
+    training_mode: asString(item.training_mode),
+    approach: asString(item.approach),
+    evaluation: asString(item.evaluation),
+    outcome: asString(item.outcome),
+    product_type: asString(item.product_type),
+    registration_by: asString(item.registration_by, 'URL'),
+    registration_value: asString(item.registration_value),
+    nra_objectives: asArray(item.nra_objectives),
+    competencies: asArray(item.competencies),
+    activities: asArray(item.activities),
+    competency_suggestions: asArray(item.competency_suggestions),
+    activity_suggestions: asArray(item.activity_suggestions),
+    status: asString(item.status, 'needs_review'),
+    confidence: asNumber(item.confidence),
+    created: Boolean(item.created),
+    edited: Boolean(item.edited || item.status === 'edited'),
+    provider: asString(item.provider),
+    maturity_level: asString(item.maturity_level),
+    target_audience: asString(item.target_audience),
+    source_id: asString(item.source_id),
+    source_file: asString(item.source_file),
+  };
+};
+
+const normalizeExtracted = (data) => {
+  const body = asObject(data);
+  const items = asArray(body.items).map(normalizeExtractedItem);
+  const summary = asObject(body.summary);
+  return {
+    items,
+    page: Math.max(1, asNumber(body.page, 1)),
+    page_size: Math.max(1, asNumber(body.page_size, AI_TRAINING_REVIEW_PAGE_SIZE)),
+    total: asNumber(body.total, items.length),
+    total_pages: Math.max(1, asNumber(body.total_pages, 1)),
+    matching_ids: asArray(body.matching_ids),
+    summary: {
+      total: asNumber(summary.total, items.length),
+      approved: asNumber(summary.approved),
+      edited_pending: asNumber(summary.edited_pending),
+      pending: asNumber(summary.pending),
+    },
+  };
+};
+
+const normalizeCreateJob = (data) => {
+  const body = asObject(data);
+  return {
+    create_job_id: asString(body.create_job_id),
+    status: asString(body.status, 'completed'),
+    created: asNumber(body.created),
+    failed: asNumber(body.failed),
+    remaining: asNumber(body.remaining),
+    progress: asNumber(body.progress, body.status === 'completed' ? 100 : 0),
+    total: asNumber(body.total),
+    failures: asArray(body.failures),
+  };
+};
+
+const normalizeHistory = (data) => asArray(data).map((row) => {
+  const item = asObject(row);
+  return {
+    id: asString(item.id),
+    training_id: asString(item.training_id),
+    actor: asString(item.actor),
+    training_name: asString(item.training_name),
+    field: asString(item.field),
+    before: item.before == null ? '' : item.before,
+    after: item.after == null ? '' : item.after,
+    timestamp: item.timestamp || null,
+  };
+});
+
+const withNormalized = async (result, normalize) => {
+  if (!result?.ok) {
+    return result;
+  }
+  try {
+    return { ...result, data: normalize(result.data) };
+  } catch {
+    return { ...result, data: normalize(null) };
+  }
+};
+
+/** @param {string} jobId */
+const importsUrl = (jobId) => `/api/v1/ai-training/imports/${enc(jobId)}/`;
+/** @param {string} jobId */
+const historyUrl = (jobId) => `/api/v1/ai-training/imports/${enc(jobId)}/history/`;
+/** @param {string} jobId @param {string} eventId */
+const historyRevertUrl = (jobId, eventId) => (
+  `/api/v1/ai-training/imports/${enc(jobId)}/history/${enc(eventId)}/revert/`
+);
+/** @param {string} jobId */
+const statusUrl = (jobId) => `/api/v1/ai-training/jobs/${enc(jobId)}/status/`;
+/** @param {string} jobId */
+const extractedUrl = (jobId) => `/api/v1/ai-training/jobs/${enc(jobId)}/extracted/`;
+/** @param {string} jobId @param {string} trainingId */
+const extractedDetailUrl = (jobId, trainingId) => (
+  `/api/v1/ai-training/jobs/${enc(jobId)}/extracted/${enc(trainingId)}/`
+);
+/** @param {string} jobId @param {string} trainingId */
+const mappingsUrl = (jobId, trainingId) => (
+  `/api/v1/ai-training/jobs/${enc(jobId)}/extracted/${enc(trainingId)}/mappings/`
+);
+/** @param {string} jobId @param {string} trainingId */
+const reanalyzeUrl = (jobId, trainingId) => (
+  `/api/v1/ai-training/jobs/${enc(jobId)}/extracted/${enc(trainingId)}/reanalyze/`
+);
+/** @param {string} jobId */
+const createUrl = (jobId) => `/api/v1/ai-training/jobs/${enc(jobId)}/create/`;
+/** @param {string} createJobId */
+const createJobStatusUrl = (createJobId) => `/api/v1/ai-training/create-jobs/${enc(createJobId)}/`;
 
 /**
  * List AI document import history.
- * @param {{ formatMessage: Function, page?: number, pageSize?: number }} params
  */
 export const fetchImportHistory = async ({
   formatMessage,
   page = 1,
   pageSize = AI_TRAINING_IMPORT_HISTORY_PAGE_SIZE,
-}) => {
-  try {
-    const sorted = store.imports
-      .map((row) => ({
-        ...row,
-        total_records: asCount(row.total_records),
-        created: asCount(row.created),
-        needs_review: asCount(row.needs_review),
-        failed: asCount(row.failed),
-      }))
-      .sort((left, right) => new Date(right.uploaded_at) - new Date(left.uploaded_at));
-    const currentPage = Math.max(1, Number(page) || 1);
-    const size = Math.max(1, Number(pageSize) || AI_TRAINING_IMPORT_HISTORY_PAGE_SIZE);
-    const count = sorted.length;
-    const totalPages = Math.max(1, Math.ceil(count / size));
-    const safePage = Math.min(currentPage, totalPages);
-    const start = (safePage - 1) * size;
-    return ok({
-      results: sorted.slice(start, start + size),
-      count,
-      page: safePage,
-      page_size: size,
-      total_pages: totalPages,
-    });
-  } catch {
-    return fail(formatMessage(aiTrainingMessages.historyLoadError));
-  }
-};
+}) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${AI_TRAINING_IMPORTS}`, {
+      params: { page, page_size: pageSize },
+    }),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.historyLoadError,
+  }),
+  (data) => normalizeImportHistory(data, page, pageSize),
+);
 
 /**
  * Single import details.
- * @param {{ formatMessage: Function, jobId: string }} params
  */
-export const fetchImportDetails = async ({ formatMessage, jobId }) => {
-  const record = store.imports.find((r) => r.job_id === jobId);
-  if (!record) {
-    return fail(formatMessage(aiTrainingMessages.jobNotFound));
-  }
-  return ok({ ...record });
-};
+export const fetchImportDetails = async ({ formatMessage, jobId }) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${importsUrl(jobId)}`),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.jobNotFound,
+  }),
+  (data) => normalizeImportRow(data),
+);
 
 /**
  * Change history for a job.
- * @param {{ jobId: string }} params
  */
-export const fetchChangeHistory = async ({ jobId }) => {
-  return ok(JSON.parse(JSON.stringify(store.history[jobId] || [])));
-};
+export const fetchChangeHistory = async ({ formatMessage, jobId }) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${historyUrl(jobId)}`),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.historyLoadError,
+  }),
+  normalizeHistory,
+);
 
 const isHttpUrl = (value) => {
   try {
@@ -134,22 +253,38 @@ const isHttpUrl = (value) => {
 
 /**
  * Upload a training document (file or URL) and start AI processing.
- * @param {{ formatMessage: Function, file?: File, fileName?: string, sourceUrl?: string, onProgress?: (pct: number) => void }} params
+ * @param {{
+ *   formatMessage: Function,
+ *   file?: File,
+ *   fileName?: string,
+ *   sourceUrl?: string,
+ *   trainingProviderId?: number|string,
+ *   onProgress?: (pct: number) => void,
+ * }} params
  */
 export const uploadTrainingDocument = async ({
   formatMessage,
   file,
   fileName,
   sourceUrl,
+  trainingProviderId,
   onProgress,
 }) => {
   const url = hasDisplayValue(sourceUrl) ? String(sourceUrl).trim() : '';
   const usingUrl = Boolean(url);
   if (!file && !usingUrl) {
-    return fail(formatMessage(aiTrainingMessages.uploadError));
+    return {
+      ok: false,
+      data: null,
+      message: formatMessage(aiTrainingMessages.uploadError),
+    };
   }
   if (usingUrl && !isHttpUrl(url)) {
-    return fail(formatMessage(aiTrainingMessages.invalidSourceUrl));
+    return {
+      ok: false,
+      data: null,
+      message: formatMessage(aiTrainingMessages.invalidSourceUrl),
+    };
   }
 
   const name = usingUrl
@@ -159,154 +294,72 @@ export const uploadTrainingDocument = async ({
     const ext = name.split('.').pop()?.toLowerCase();
     const allowed = ['pdf', 'docx', 'doc', 'xlsx', 'xls', 'csv', 'txt'];
     if (ext && !allowed.includes(ext)) {
-      return fail(formatMessage(aiTrainingMessages.unsupportedFile));
+      return {
+        ok: false,
+        data: null,
+        message: formatMessage(aiTrainingMessages.unsupportedFile),
+      };
     }
   }
 
-  try {
-    for (let p = 10; p <= 100; p += 15) {
-      await delay(120);
-      if (typeof onProgress === 'function') {
-        onProgress(Math.min(100, p));
-      }
-    }
-
-    const jobId = `job_${Date.now()}`;
-    const now = new Date().toISOString();
-
-    store.jobs[jobId] = {
-      job_id: jobId,
-      status: 'processing',
-      current_step: 'validating_document',
-      progress: 8,
-      message: 'Validating your document...',
-      total_records: 0,
-      processed_records: 0,
-      error: null,
-      started_at: now,
-    };
-
-    store.imports.unshift({
-      id: jobId,
-      job_id: jobId,
-      file_name: name,
-      uploaded_by: 'You',
-      uploaded_at: now,
-      total_records: 0,
-      created: 0,
-      needs_review: 0,
-      failed: 0,
-      status: 'processing',
-      timeline: [{
-        id: `${jobId}_tl_1`,
-        at: now,
-        label: usingUrl ? 'URL submitted' : 'Document uploaded',
-      }],
-    });
-
-    const template = store.extracted.job_seed_template || store.extracted.job_seed_2026 || [];
-    store.extracted[jobId] = template.map((t, i) => ({
-      ...JSON.parse(JSON.stringify(t)),
-      id: `${jobId}_t${i + 1}`,
-      source_file: name,
-      created: false,
-      status: 'needs_review',
-    }));
-
-    runProcessingSimulation(jobId);
-    return ok({ job_id: jobId });
-  } catch {
-    return fail(formatMessage(aiTrainingMessages.uploadError));
-  }
+  return withNormalized(
+    await executeApiRequest({
+      request: () => {
+        const body = new FormData();
+        if (usingUrl) {
+          body.append('source_type', 'url');
+          body.append('document_url', url);
+          body.append('document_name', name);
+        } else {
+          body.append('document_file', file);
+          body.append('source_type', 'file');
+          body.append('document_name', name);
+        }
+        if (trainingProviderId != null && trainingProviderId !== '') {
+          body.append('training_provider_id', String(trainingProviderId));
+        }
+        if (typeof onProgress === 'function') {
+          onProgress(usingUrl ? 50 : 30);
+        }
+        return getHttpClient().post(`${getApiBaseUrl()}${AI_TRAINING_UPLOAD}`, body, {
+          onUploadProgress: (event) => {
+            if (usingUrl || typeof onProgress !== 'function' || !event.total) {
+              return;
+            }
+            onProgress(Math.min(100, Math.round((event.loaded / event.total) * 100)));
+          },
+        }).then((response) => {
+          if (typeof onProgress === 'function') {
+            onProgress(100);
+          }
+          return response;
+        });
+      },
+      formatMessage,
+      fallbackMessage: aiTrainingMessages.uploadError,
+    }),
+    (data) => {
+      const body = asObject(data);
+      const nested = asObject(body.results);
+      return { job_id: asString(body.job_id || nested.job_id) };
+    },
+  );
 };
-
-function runProcessingSimulation(jobId) {
-  const steps = PROCESSING_STEP_ROWS.map((step, index) => ({
-    step: step.id,
-    progress: Math.round(((index + 1) / (PROCESSING_STEP_ROWS.length + 1)) * 100),
-    message: `${step.label}...`,
-    wait: 800,
-  }));
-  steps.push({
-    step: 'completed',
-    progress: 100,
-    message: 'Processing complete.',
-    wait: 400,
-  });
-
-  let i = 0;
-  const tick = async () => {
-    const job = store.jobs[jobId];
-    if (!job || job.status === 'failed') {
-      return;
-    }
-    const s = steps[i];
-    if (!s) {
-      return;
-    }
-    job.current_step = s.step;
-    job.progress = s.progress;
-    job.message = s.message;
-    const items = store.extracted[jobId] || [];
-    if (s.step === 'identifying_trainings') {
-      job.total_records = items.length;
-      job.processed_records = Math.min(items.length, Math.ceil(items.length * 0.4));
-    }
-    if (s.step === 'mapping_activities' || s.step === 'preparing_results') {
-      job.processed_records = items.length;
-      job.total_records = items.length;
-    }
-    if (s.step === 'completed') {
-      job.status = 'completed';
-      const imp = store.imports.find((r) => r.job_id === jobId);
-      if (imp) {
-        imp.status = 'completed';
-        imp.total_records = items.length;
-        imp.needs_review = items.filter((t) => !t.created).length;
-        imp.created = items.filter((t) => t.created).length;
-        imp.timeline = [
-          ...(imp.timeline || []),
-          { at: new Date().toISOString(), label: 'AI extraction completed' },
-          { at: new Date().toISOString(), label: 'Competency matching completed' },
-        ];
-      }
-      return;
-    }
-    i += 1;
-    await delay(s.wait);
-    tick();
-  };
-  tick();
-}
 
 /**
  * Poll AI processing status for a job.
- * @param {{ formatMessage: Function, jobId: string }} params
  */
-export const fetchProcessingStatus = async ({ formatMessage, jobId }) => {
-  const job = store.jobs[jobId];
-  if (!job) {
-    if (store.extracted[jobId]) {
-      const items = store.extracted[jobId] || [];
-      return ok({
-        job_id: jobId,
-        status: 'completed',
-        current_step: 'completed',
-        progress: 100,
-        message: 'Processing complete.',
-        total_records: items.length,
-        processed_records: items.length,
-        error: null,
-      });
-    }
-    return fail(formatMessage(aiTrainingMessages.jobNotFound));
-  }
-  return ok({ ...job });
-};
+export const fetchProcessingStatus = async ({ formatMessage, jobId }) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${statusUrl(jobId)}`),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.jobNotFound,
+  }),
+  (data) => normalizeStatus(data, jobId),
+);
 
 /**
  * Paginated extracted trainings for review.
- * @param {{ formatMessage: Function, jobId: string, page?: number, pageSize?: number, search?: string }} params
  */
 export const fetchExtractedTrainings = async ({
   formatMessage,
@@ -315,280 +368,106 @@ export const fetchExtractedTrainings = async ({
   pageSize = AI_TRAINING_REVIEW_PAGE_SIZE,
   search = '',
   filters = { confidence: 'all', created: 'all' },
-}) => {
-  const extracted = ensureExtracted(jobId);
-  if (!extracted) {
-    return fail(formatMessage(aiTrainingMessages.resultsLoadError));
-  }
-  let items = extracted;
-  items = items.map((t) => ({
-    ...t,
-    edited: Boolean(t.edited || t.status === 'edited'),
-  }));
-
-  const q = String(search || '').trim().toLowerCase();
-  if (q) {
-    items = items.filter(
-      (t) => (t.training_name || '').toLowerCase().includes(q)
-        || (t.description || '').toLowerCase().includes(q)
-        || (t.domain || '').toLowerCase().includes(q)
-        || (t.sub_domain || '').toLowerCase().includes(q)
-        || (t.provider || '').toLowerCase().includes(q)
-        || (t.competencies || []).some((value) => String(value).toLowerCase().includes(q))
-        || (t.activities || []).some((value) => String(value).toLowerCase().includes(q)),
-    );
-  }
-
-  if (filters?.created === 'created') {
-    items = items.filter((t) => t.created);
-  } else if (filters?.created === 'not_created') {
-    items = items.filter((t) => !t.created);
-  }
-
-  if (filters?.confidence === 'high') {
-    items = items.filter((t) => Number(t.confidence || 0) >= 0.75);
-  } else if (filters?.confidence === 'medium') {
-    items = items.filter((t) => Number(t.confidence || 0) >= 0.5 && Number(t.confidence || 0) < 0.75);
-  } else if (filters?.confidence === 'low') {
-    items = items.filter((t) => Number(t.confidence || 0) < 0.5);
-  }
-
-  const total = items.length;
-  const matchingIds = items
-    .filter((t) => !t.created && (t.activities || []).length > 0 && (t.competencies || []).length > 0)
-    .map((t) => t.id);
-  const size = Math.max(1, Number(pageSize) || AI_TRAINING_REVIEW_PAGE_SIZE);
-  const totalPages = Math.max(1, Math.ceil(total / size) || 1);
-  const currentPage = Math.min(Math.max(1, Number(page) || 1), totalPages);
-  const start = (currentPage - 1) * size;
-  const pageItems = items.slice(start, start + size);
-  const all = store.extracted[jobId] || [];
-
-  return ok({
-    items: pageItems,
-    page: currentPage,
-    page_size: size,
-    total,
-    total_pages: totalPages,
-    matching_ids: matchingIds,
-    summary: buildExtractedSummary(all),
-  });
-};
+}) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${extractedUrl(jobId)}`, {
+      params: {
+        page,
+        page_size: pageSize,
+        search: search || undefined,
+        confidence: filters?.confidence || 'all',
+        created: filters?.created || 'all',
+      },
+    }),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.resultsLoadError,
+  }),
+  normalizeExtracted,
+);
 
 /**
  * Toggle competencies / activities arrays.
- * @param {{ formatMessage: Function, jobId: string, trainingId: string, payload: object }} params
  */
-export const updateMappings = async ({ formatMessage, jobId, trainingId, payload }) => {
-  const list = store.extracted[jobId];
-  if (!list) {
-    return fail(formatMessage(aiTrainingMessages.jobNotFound));
-  }
-  const idx = list.findIndex((t) => t.id === trainingId);
-  if (idx < 0) {
-    return fail(formatMessage(aiTrainingMessages.updateError));
-  }
-  const next = {
-    ...list[idx],
-    ...payload,
-    status: list[idx].status === 'needs_review' ? 'edited' : list[idx].status,
-    edited: !list[idx].created,
-  };
-  list[idx] = next;
-  pushHistory(jobId, next, payload);
-  return ok({ ...next });
-};
+export const updateMappings = async ({ formatMessage, jobId, trainingId, payload }) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().patch(
+      `${getApiBaseUrl()}${mappingsUrl(jobId, trainingId)}`,
+      payload || {},
+    ),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.updateError,
+  }),
+  normalizeExtractedItem,
+);
 
 /**
  * Full field update from edit drawer.
- * @param {{ formatMessage: Function, jobId: string, trainingId: string, payload: object }} params
  */
-export const updateExtractedTraining = async ({ formatMessage, jobId, trainingId, payload }) => {
-  const list = store.extracted[jobId];
-  if (!list) {
-    return fail(formatMessage(aiTrainingMessages.jobNotFound));
-  }
-  const idx = list.findIndex((t) => t.id === trainingId);
-  if (idx < 0) {
-    return fail(formatMessage(aiTrainingMessages.updateError));
-  }
-  const prev = list[idx];
-  const next = { ...prev, ...payload, status: 'edited', edited: !prev.created };
-  list[idx] = next;
-  pushHistory(jobId, next, payload, prev);
-  return ok({ ...next });
-};
+export const updateExtractedTraining = async ({ formatMessage, jobId, trainingId, payload }) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().patch(
+      `${getApiBaseUrl()}${extractedDetailUrl(jobId, trainingId)}`,
+      payload || {},
+    ),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.updateError,
+  }),
+  normalizeExtractedItem,
+);
 
 /**
- * Mock-backed re-analysis of competency/activity mappings.
- * Replace this adapter with the real AI re-analysis endpoint when available.
+ * Re-analysis of competency/activity mappings.
  */
-export const reanalyzeExtractedTraining = async ({ formatMessage, jobId, trainingId }) => {
-  const list = store.extracted[jobId];
-  if (!list) return fail(formatMessage(aiTrainingMessages.jobNotFound));
-  const index = list.findIndex((item) => item.id === trainingId);
-  if (index < 0) return fail(formatMessage(aiTrainingMessages.updateError));
-
-  const current = list[index];
-  const selectedSuggestions = [
-    ...(current.competency_suggestions || []).filter((item) => (current.competencies || []).includes(item.name)),
-    ...(current.activity_suggestions || []).filter((item) => (current.activities || []).includes(item.name)),
-  ];
-  const confidence = selectedSuggestions.length
-    ? selectedSuggestions.reduce((sum, item) => sum + Number(item.score || 0), 0) / selectedSuggestions.length / 100
-    : Number(current.confidence || 0);
-  const updated = { ...current, confidence, status: current.created ? current.status : 'edited' };
-  list[index] = updated;
-  if (!store.history[jobId]) store.history[jobId] = [];
-  store.history[jobId].unshift({
-    id: `ev_${Date.now()}_reanalyze`,
-    training_id: updated.id,
-    actor: 'AI',
-    training_name: updated.training_name,
-    field: 'competencies and activities',
-    before: '',
-    after: `Re-analysis completed. Match score: ${Math.round(confidence * 100)}%`,
-    timestamp: new Date().toISOString(),
-  });
-  return ok({ ...updated });
-};
+export const reanalyzeExtractedTraining = async ({ formatMessage, jobId, trainingId }) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().post(
+      `${getApiBaseUrl()}${reanalyzeUrl(jobId, trainingId)}`,
+      {},
+    ),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.updateError,
+  }),
+  normalizeExtractedItem,
+);
 
 /**
  * Start bulk create job for selected training ids.
- * @param {{ formatMessage: Function, jobId: string, trainingIds: string[] }} params
  */
-export const createTrainings = async ({ formatMessage, jobId, trainingIds }) => {
-  const list = store.extracted[jobId];
-  if (!list) {
-    return fail(formatMessage(aiTrainingMessages.jobNotFound));
-  }
-  if (!trainingIds?.length) {
-    return fail(formatMessage(aiTrainingMessages.createError));
-  }
-
-  const createJobId = `create_${Date.now()}`;
-  store.createJobs[createJobId] = {
-    create_job_id: createJobId,
-    status: 'processing',
-    created: 0,
-    failed: 0,
-    remaining: trainingIds.length,
-    progress: 0,
-    total: trainingIds.length,
-    failures: [],
-  };
-
-  setTimeout(() => {
-    let created = 0;
-    let failed = 0;
-    const failures = [];
-    trainingIds.forEach((id) => {
-      const idx = list.findIndex((t) => t.id === id);
-      if (idx < 0) {
-        failed += 1;
-        failures.push({ id, training_name: id, reason: 'Record not found' });
-        return;
-      }
-      const item = list[idx];
-      if (!item.competencies?.length || !item.activities?.length) {
-        failed += 1;
-        failures.push({ id, training_name: item.training_name, reason: 'Missing competency or activity' });
-        return;
-      }
-      list[idx] = { ...item, created: true, status: 'created', edited: false };
-      created += 1;
-    });
-    store.createJobs[createJobId] = {
-      create_job_id: createJobId,
-      status: 'completed',
-      created,
-      failed,
-      remaining: 0,
-      progress: 100,
-      total: trainingIds.length,
-      failures,
-    };
-    const imp = store.imports.find((r) => r.job_id === jobId);
-    if (imp) {
-      const all = store.extracted[jobId] || [];
-      imp.created = all.filter((t) => t.created).length;
-      imp.needs_review = all.filter((t) => !t.created).length;
-    }
-  }, 1500);
-
-  return ok({ ...store.createJobs[createJobId] });
-};
+export const createTrainings = async ({ formatMessage, jobId, trainingIds }) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().post(
+      `${getApiBaseUrl()}${createUrl(jobId)}`,
+      { training_ids: asArray(trainingIds) },
+    ),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.createError,
+  }),
+  normalizeCreateJob,
+);
 
 /**
  * Poll create job status.
- * @param {{ formatMessage: Function, createJobId: string }} params
  */
-export const fetchCreateJobStatus = async ({ formatMessage, createJobId }) => {
-  const job = store.createJobs[createJobId];
-  if (!job) {
-    return fail(formatMessage(aiTrainingMessages.createError));
-  }
-  return ok({ ...job });
-};
-
-function serializeHistoryValue(value) {
-  if (Array.isArray(value)) {
-    return value;
-  }
-  if (value == null) {
-    return '';
-  }
-  return value;
-}
-
-function valuesEqual(left, right) {
-  return JSON.stringify(serializeHistoryValue(left)) === JSON.stringify(serializeHistoryValue(right));
-}
-
-function pushHistory(jobId, training, payload, prev) {
-  if (!store.history[jobId]) {
-    store.history[jobId] = [];
-  }
-  Object.keys(payload || {}).forEach((field) => {
-    const before = prev ? serializeHistoryValue(prev[field]) : '';
-    const after = serializeHistoryValue(payload[field]);
-    if (valuesEqual(before, after)) {
-      return;
-    }
-    store.history[jobId].unshift({
-      id: `ev_${Date.now()}_${field}`,
-      training_id: training.id,
-      actor: 'User',
-      training_name: training.training_name,
-      field,
-      before,
-      after,
-      timestamp: new Date().toISOString(),
-    });
-  });
-}
+export const fetchCreateJobStatus = async ({ formatMessage, createJobId }) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${createJobStatusUrl(createJobId)}`),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.createError,
+  }),
+  normalizeCreateJob,
+);
 
 /**
  * Revert a single change-history event onto the extracted training.
  */
-export const revertHistoryEvent = async ({ formatMessage, jobId, eventId }) => {
-  const events = store.history[jobId] || [];
-  const event = events.find((entry) => entry.id === eventId);
-  const list = store.extracted[jobId];
-  if (!event || !list) {
-    return fail(formatMessage(aiTrainingMessages.updateError));
-  }
-  const idx = list.findIndex((item) => item.id === event.training_id);
-  if (idx < 0) {
-    return fail(formatMessage(aiTrainingMessages.updateError));
-  }
-  const prev = list[idx];
-  const next = {
-    ...prev,
-    [event.field]: event.before,
-    status: prev.created ? prev.status : 'edited',
-  };
-  list[idx] = next;
-  pushHistory(jobId, next, { [event.field]: event.before }, prev);
-  return ok({ ...next });
-};
+export const revertHistoryEvent = async ({ formatMessage, jobId, eventId }) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().post(
+      `${getApiBaseUrl()}${historyRevertUrl(jobId, eventId)}`,
+      {},
+    ),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.updateError,
+  }),
+  normalizeExtractedItem,
+);

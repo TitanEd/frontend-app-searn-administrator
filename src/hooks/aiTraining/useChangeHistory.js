@@ -14,7 +14,7 @@ const useChangeHistory = ({ jobId, trainingId, trainingName, enabled = true } = 
     queryKey: changeHistoryQueryKey(jobId, trainingId),
     enabled: Boolean(jobId) && Boolean(trainingId) && enabled,
     queryFn: async () => {
-      const result = await fetchChangeHistory({ jobId });
+      const result = await fetchChangeHistory({ formatMessage, jobId });
       if (!result.ok) {
         throw new Error(result.message || formatMessage(messages.drawerHistoryEmpty));
       }

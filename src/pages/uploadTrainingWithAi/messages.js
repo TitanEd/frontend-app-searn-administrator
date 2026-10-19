@@ -403,13 +403,28 @@ const messages = defineMessages({
   },
   toastSavedTitle: {
     id: 'app.uploadTrainingWithAi.toast.saved.title',
-    defaultMessage: 'Training saved',
-    description: 'Toast title after saving extracted training edits',
+    defaultMessage: 'Draft saved',
+    description: 'Toast title after saving extracted training draft only',
   },
   toastSavedDescription: {
     id: 'app.uploadTrainingWithAi.toast.saved.description',
     defaultMessage: '{name} has been updated.',
-    description: 'Toast description after saving extracted training edits',
+    description: 'Legacy toast description after saving extracted training edits',
+  },
+  toastDraftSavedDescription: {
+    id: 'app.uploadTrainingWithAi.toast.draftSaved.description',
+    defaultMessage: '{name} was saved as a draft. Live catalog was not changed.',
+    description: 'Toast when Save changes only updates the AI draft',
+  },
+  toastUpdatedTitle: {
+    id: 'app.uploadTrainingWithAi.toast.updated.title',
+    defaultMessage: 'Training updated',
+    description: 'Toast title after Save & Update pushes to live catalog',
+  },
+  toastUpdatedDescription: {
+    id: 'app.uploadTrainingWithAi.toast.updated.description',
+    defaultMessage: '{name} was updated in your training catalog.',
+    description: 'Toast when Save & Update syncs the live catalog row',
   },
   saveErrorTitle: {
     id: 'app.uploadTrainingWithAi.toast.saveErrorTitle',
@@ -631,6 +646,11 @@ const messages = defineMessages({
     id: 'app.uploadTrainingWithAi.history.actor.ai',
     defaultMessage: 'AI Extraction',
     description: 'History chip for AI-generated changes',
+  },
+  historyActorSystem: {
+    id: 'app.uploadTrainingWithAi.history.actor.system',
+    defaultMessage: 'System',
+    description: 'History chip for system events such as create-in-catalog',
   },
   historyActorEdited: {
     id: 'app.uploadTrainingWithAi.history.actor.edited',

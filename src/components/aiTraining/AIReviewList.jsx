@@ -88,6 +88,15 @@ const FieldLabel = ({ label, info }) => (
   </span>
 );
 
+const isSelectedName = (selected = [], name) => {
+  const needle = String(name || '').trim().toLowerCase();
+  if (!needle) return false;
+  return selected.some((value) => {
+    const hay = String(value || '').trim().toLowerCase();
+    return hay === needle || hay.includes(needle) || needle.includes(hay);
+  });
+};
+
 const SuggestionChips = ({ label, suggestions = [], selected = [], disabled, onToggle }) => (
   <div className="ai-review-list__section">
     <span className="ai-review-list__section-label">{label}</span>
@@ -98,7 +107,7 @@ const SuggestionChips = ({ label, suggestions = [], selected = [], disabled, onT
           return null;
         }
         const score = typeof item === 'object' ? Number(item.score || 0) : null;
-        const isOn = selected.includes(name);
+        const isOn = isSelectedName(selected, name);
         const scoreClass = score >= 75 ? 'is-high' : score >= 50 ? 'is-mid' : 'is-low';
         return (
           <button

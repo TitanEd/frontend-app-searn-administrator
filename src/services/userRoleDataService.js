@@ -24,7 +24,7 @@ import superUserRolePayload from '../data/userRole/super-user.json';
 
 // ─── Permissions plug-in (change here only) here only two change required line number 27 cahnge api to local and on line 30 choose any one role have listed on line 29───────────────────────────────────
 /** @type {'api' | 'local'} */
-export const ROLE_DATA_SOURCE = 'local';
+export const ROLE_DATA_SOURCE = 'api';
 
 /** @type {'super-user' | 'secretariat' | 'training-provider' | 'nra-admin' | 'nra-manager' | 'nra-staff'} */
 export const LOCAL_ROLE_DATA_KEY = 'super-user';
