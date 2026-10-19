@@ -12,9 +12,10 @@ import {
 } from '../endpoints';
 import { getApiBaseUrl, getHttpClient } from '../httpClient';
 import aiTrainingMessages from './aiTrainingMessages';
+import { normalizeAiJobId } from './aiTrainingUtils';
 import { hasDisplayValue } from '../../utils/hasDisplayValue';
 
-export { STEP_ORDER } from './aiTrainingUtils';
+export { STEP_ORDER, normalizeAiJobId } from './aiTrainingUtils';
 
 const enc = (value) => encodeURIComponent(String(value ?? ''));
 
@@ -30,7 +31,7 @@ const asString = (value, fallback = '') => (
 
 const normalizeImportRow = (row) => {
   const item = asObject(row);
-  const jobId = asString(item.job_id || item.id);
+  const jobId = normalizeAiJobId(item.job_id || item.id);
   return {
     id: jobId,
     job_id: jobId,
@@ -64,7 +65,7 @@ const normalizeImportHistory = (data, page, pageSize) => {
 const normalizeStatus = (data, jobId) => {
   const body = asObject(data);
   return {
-    job_id: asString(body.job_id, jobId),
+    job_id: normalizeAiJobId(body.job_id || jobId),
     status: asString(body.status, 'processing'),
     current_step: asString(body.current_step, 'validating_document'),
     progress: asNumber(body.progress),
@@ -342,7 +343,7 @@ export const uploadTrainingDocument = async ({
     (data) => {
       const body = asObject(data);
       const nested = asObject(body.results);
-      return { job_id: asString(body.job_id || nested.job_id) };
+      return { job_id: normalizeAiJobId(body.job_id || nested.job_id) };
     },
   );
 };

@@ -16,7 +16,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { formatFileSize, STEP_ORDER } from '../../api/aiTraining/aiTrainingUtils';
+import { formatFileSize, normalizeAiJobId, STEP_ORDER } from '../../api/aiTraining/aiTrainingUtils';
 import AIReviewList from '../../components/aiTraining/AIReviewList';
 import AIStepIndicator from '../../components/aiTraining/AIStepIndicator';
 import ExtractedTrainingDrawer from '../../components/aiTraining/ExtractedTrainingDrawer';
@@ -81,7 +81,7 @@ const AITrainingCreate = () => {
   const { showToast } = useToast();
   const fileRef = useRef(null);
   const isNewUploadFlow = location.pathname.includes('/new');
-  const resumeJob = searchParams.get('job');
+  const resumeJob = normalizeAiJobId(searchParams.get('job'));
 
   const [phase, setPhase] = useState(() => {
     if (!hasDisplayValue(resumeJob)) return 'upload';
@@ -142,9 +142,19 @@ const AITrainingCreate = () => {
   const { create, isCreating } = useCreateTrainings({ jobId });
 
   useEffect(() => {
-    const resume = searchParams.get('job');
+    const rawJob = searchParams.get('job');
+    const resume = normalizeAiJobId(rawJob);
     if (!hasDisplayValue(resume)) return;
     setJobId(resume);
+    // Rewrite legacy ?job=job_52 bookmarks to ?job=52
+    if (hasDisplayValue(rawJob) && rawJob !== resume) {
+      navigate(
+        isNewUploadFlow
+          ? ADMIN_PATHS.uploadTrainingWithAiNewJob(resume)
+          : ADMIN_PATHS.uploadTrainingWithAiJob(resume),
+        { replace: true },
+      );
+    }
     if (isNewUploadFlow) {
       setPhase((current) => (current === 'upload' ? 'processing' : current));
       return;
@@ -152,7 +162,7 @@ const AITrainingCreate = () => {
     setPhase((current) => (
       current === 'upload' || current === 'processing' ? 'review' : current
     ));
-  }, [isNewUploadFlow, searchParams]);
+  }, [isNewUploadFlow, navigate, searchParams]);
 
   useEffect(() => {
     if (phase !== 'processing' || !status) return;

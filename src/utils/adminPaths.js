@@ -39,12 +39,14 @@ export const ADMIN_PATHS = {
   nraSpecificTrainingCatalogEdit: (trainingId) => adminPath(`/admin/nra-specific-training-catalog/${trainingId}/edit`),
   uploadTrainingWithAi: '/admin/upload-training-with-ai/',
   uploadTrainingWithAiNew: '/admin/upload-training-with-ai/new/',
-  uploadTrainingWithAiJob: (jobId) => (
-    `/admin/upload-training-with-ai/?job=${encodeURIComponent(jobId)}`
-  ),
-  uploadTrainingWithAiNewJob: (jobId) => (
-    `/admin/upload-training-with-ai/new/?job=${encodeURIComponent(jobId)}`
-  ),
+  uploadTrainingWithAiJob: (jobId) => {
+    const id = String(jobId ?? '').replace(/^job_/i, '');
+    return `/admin/upload-training-with-ai/?job=${encodeURIComponent(id)}`;
+  },
+  uploadTrainingWithAiNewJob: (jobId) => {
+    const id = String(jobId ?? '').replace(/^job_/i, '');
+    return `/admin/upload-training-with-ai/new/?job=${encodeURIComponent(id)}`;
+  },
   myTraining: '/admin/my-training/',
   nras: '/admin/nras/',
   countries: '/admin/countries/',

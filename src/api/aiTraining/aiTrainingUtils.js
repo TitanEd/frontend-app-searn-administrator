@@ -2,6 +2,22 @@
  * Helpers for AI training import domain.
  */
 
+/**
+ * Normalize public job ids to plain document pk strings.
+ * Accepts ``52`` / ``"52"`` and legacy ``job_52``.
+ */
+export const normalizeAiJobId = (value) => {
+  const raw = String(value ?? '').trim();
+  if (!raw) {
+    return '';
+  }
+  const legacy = /^job_(\d+)$/i.exec(raw);
+  if (legacy) {
+    return legacy[1];
+  }
+  return raw;
+};
+
 export const STEP_ORDER = [
   'validating_document',
   'reading_document',
