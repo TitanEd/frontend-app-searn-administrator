@@ -28,6 +28,7 @@ const DEFAULT_NAVBAR_ACCESS = {
   accessRoles: false,
   accessSettings: false,
   accessReports: false,
+  accessUploadTrainingWithAi: false,
 };
 
 const DEFAULT_COMPONENT_ACCESS = {

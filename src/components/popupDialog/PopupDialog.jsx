@@ -2,8 +2,46 @@
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect } from 'react';
 import commonMessages from '../../messages/commonMessages';
 import './PopupDialog.scss';
+
+let activeScrollLocks = 0;
+let previousScrollStyles = {
+  htmlOverflow: '',
+  bodyOverflow: '',
+  bodyPaddingRight: '',
+};
+
+const lockPageScroll = () => {
+  if (activeScrollLocks === 0 && typeof document !== 'undefined') {
+    const html = document.documentElement;
+    const { body } = document;
+    previousScrollStyles = {
+      htmlOverflow: html.style.overflow,
+      bodyOverflow: body.style.overflow,
+      bodyPaddingRight: body.style.paddingRight,
+    };
+    const scrollbarWidth = window.innerWidth - html.clientWidth;
+    html.style.overflow = 'hidden';
+    body.style.overflow = 'hidden';
+    if (scrollbarWidth > 0) {
+      body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+    html.classList.add('is-popup-open');
+  }
+  activeScrollLocks += 1;
+};
+
+const unlockPageScroll = () => {
+  activeScrollLocks = Math.max(0, activeScrollLocks - 1);
+  if (activeScrollLocks === 0 && typeof document !== 'undefined') {
+    document.documentElement.style.overflow = previousScrollStyles.htmlOverflow;
+    document.body.style.overflow = previousScrollStyles.bodyOverflow;
+    document.body.style.paddingRight = previousScrollStyles.bodyPaddingRight;
+    document.documentElement.classList.remove('is-popup-open');
+  }
+};
 
 const PopupDialog = ({
   isOpen,
@@ -13,6 +51,17 @@ const PopupDialog = ({
   children,
 }) => {
   const { formatMessage } = useIntl();
+
+  useEffect(() => {
+    if (!isOpen) {
+      return undefined;
+    }
+
+    lockPageScroll();
+    return () => {
+      unlockPageScroll();
+    };
+  }, [isOpen]);
 
   if (!isOpen) {
     return null;

@@ -3,6 +3,12 @@
 /** Default `page_size` for paginated list endpoints. */
 export const API_PAGE_SIZE = 20;
 
+/** `page_size` for Upload Training with AI import history. */
+export const AI_TRAINING_IMPORT_HISTORY_PAGE_SIZE = 15;
+
+/** `page_size` for Review AI Extracted Trainings. */
+export const AI_TRAINING_REVIEW_PAGE_SIZE = 15;
+
 export const CORE_PERMISSIONS = '/api/v1/core-permissions/';
 
 export const DASHBOARD_STATS = '/api/v1/dashboard/stats/';

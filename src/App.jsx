@@ -14,6 +14,8 @@ import CompetencyFramework from './pages/competencyFramework/CompetencyFramework
 import Activities from './pages/activities/Activities';
 import ExploreTraining from './pages/exploreTraining/ExploreTraining';
 import ExploreTrainingRole from './pages/exploreTraining/ExploreTrainingRole';
+import UploadTrainingWithAi from './pages/uploadTrainingWithAi/UploadTrainingWithAi';
+import AITrainingCreate from './pages/uploadTrainingWithAi/AITrainingCreate';
 import SearnTrainingCatalog from './pages/searnTrainingCatalog/SearnTrainingCatalog';
 import SearnTrainingDetail from './pages/searnTrainingCatalog/SearnTrainingDetail';
 import SearnTrainingFeedback from './pages/searnTrainingCatalog/SearnTrainingFeedback';
@@ -180,6 +182,12 @@ const getHeaderMeta = (pathname, formatMessage, userName) => {
     };
   }
 
+  if (pathname.startsWith('/admin/upload-training-with-ai')) {
+    return {
+      title: formatMessage(appMessages.uploadTrainingWithAiTitle),
+    };
+  }
+
   if (pathname.startsWith('/admin/my-training-catalog')) {
     return {
       title: formatMessage(appMessages.myTrainingCatalogTitle),
@@ -251,6 +259,9 @@ const hasNavbarAccessForPath = (pathname, navbarAccess) => {
   if (pathname.startsWith('/admin/explore-training')) {
     return true;
   }
+  if (pathname.startsWith('/admin/upload-training-with-ai')) {
+    return Boolean(navbarAccess.accessUploadTrainingWithAi);
+  }
   if (pathname.startsWith('/admin/nra-specific-training-catalog')) {
     return Boolean(navbarAccess.accessNraSpecificTrainingCatalog);
   }
@@ -286,6 +297,14 @@ const RoutedLayout = () => {
         <Route path={ADMIN_PATHS.activities} element={withAccess(navbarAccess.accessActivities, <Activities />)} />
         <Route path="/admin/explore-training/:roleId/" element={<ExploreTrainingRole />} />
         <Route path={ADMIN_PATHS.exploreTraining} element={<ExploreTraining />} />
+        <Route
+          path={ADMIN_PATHS.uploadTrainingWithAi}
+          element={withAccess(navbarAccess.accessUploadTrainingWithAi, <UploadTrainingWithAi />)}
+        />
+        <Route
+          path={ADMIN_PATHS.uploadTrainingWithAiNew}
+          element={withAccess(navbarAccess.accessUploadTrainingWithAi, <AITrainingCreate />)}
+        />
         <Route path="/admin/searn-training-catalog/providers/:providerSlug/catalog/" element={<SearnTrainingProviderCatalog />} />
         <Route path="/admin/searn-training-catalog/providers/:providerSlug/" element={<SearnTrainingProvider />} />
         <Route path="/admin/searn-training-catalog/:trainingId/feedback/" element={<SearnTrainingFeedback />} />

@@ -26,6 +26,9 @@ const navigationItems = [
     key: 'nraSpecificTrainingCatalog', labelKey: 'navNraSpecificTrainingCatalog', iconKey: 'nraSpecificTrainingCatalog', path: ADMIN_PATHS.nraSpecificTrainingCatalog,
   },
   {
+    key: 'uploadTrainingWithAi', labelKey: 'navUploadTrainingWithAi', iconKey: 'uploadTrainingWithAi', path: ADMIN_PATHS.uploadTrainingWithAi,
+  },
+  {
     key: 'nras', labelKey: 'navNras', iconKey: 'nras', path: ADMIN_PATHS.nras,
   },
   {
@@ -93,6 +96,7 @@ const navigationAccessMap = {
   roles: 'accessRoles',
   settings: 'accessSettings',
   reports: 'accessReports',
+  uploadTrainingWithAi: 'accessUploadTrainingWithAi',
 };
 
 const getNavigationItemsByAccess = (navbarAccess = {}) => navigationItems.filter((item) => {

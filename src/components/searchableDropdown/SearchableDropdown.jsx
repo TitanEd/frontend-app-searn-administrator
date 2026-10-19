@@ -21,6 +21,7 @@ const SearchableDropdown = ({
   noOptionsText,
   disabled = false,
   readOnly = false,
+  className = '',
 }) => {
   const [open, setOpen] = useState(false);
   const isInteractive = !disabled && !readOnly;
@@ -103,6 +104,7 @@ const SearchableDropdown = ({
     <div
       className={[
         'searchable-dropdown',
+        className,
         disabled ? 'is-disabled' : '',
         readOnly ? 'is-readonly' : '',
       ].filter(Boolean).join(' ')}

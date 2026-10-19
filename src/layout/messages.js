@@ -56,6 +56,11 @@ const layoutMessages = defineMessages({
     defaultMessage: 'NRA-Specific Training Catalog',
     description: 'Sidebar navigation label for NRA-specific training catalog',
   },
+  navUploadTrainingWithAi: {
+    id: 'app.layout.sidebar.nav.uploadTrainingWithAi',
+    defaultMessage: 'Upload Training with AI',
+    description: 'Sidebar navigation label for upload training with AI',
+  },
   navNras: {
     id: 'app.layout.sidebar.nav.nras',
     defaultMessage: 'NRAs Management',

@@ -7,15 +7,19 @@ const SearchInput = ({
   value,
   placeholder,
   onChange,
+  className = '',
+  ariaLabel,
+  type = 'text',
 }) => (
-  <div className="search-input">
-    <FontAwesomeIcon icon={faSearch} className="search-input__icon" />
+  <div className={['search-input', className].filter(Boolean).join(' ')}>
+    <FontAwesomeIcon icon={faSearch} className="search-input__icon" aria-hidden />
     <input
-      type="text"
+      type={type}
       className="search-input__field"
       value={value}
       placeholder={placeholder}
       onChange={onChange}
+      aria-label={ariaLabel || placeholder}
     />
   </div>
 );
