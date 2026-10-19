@@ -115,39 +115,39 @@ const ExtractedTrainingDrawer = ({
   }, [training, tab]);
 
   const competencyOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.competencies, draft?.competencies),
+    () => mergeSelectOptions(catalogOptions.competencies?.results, draft?.competencies),
     [draft?.competencies],
   );
   const activityOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.activities, draft?.activities),
+    () => mergeSelectOptions(catalogOptions.activities?.results, draft?.activities),
     [draft?.activities],
   );
   const nraObjectiveOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.nraObjectives, draft?.nra_objectives),
+    () => mergeSelectOptions(catalogOptions.nraObjectives?.results, draft?.nra_objectives),
     [draft?.nra_objectives],
   );
   const languageOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.languages, draft?.language),
+    () => mergeSelectOptions(catalogOptions.languages?.results, draft?.language),
     [draft?.language],
   );
   const modeOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.modes, draft?.training_mode),
+    () => mergeSelectOptions(catalogOptions.modes?.results, draft?.training_mode),
     [draft?.training_mode],
   );
   const approachOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.approaches, draft?.approach),
+    () => mergeSelectOptions(catalogOptions.approaches?.results, draft?.approach),
     [draft?.approach],
   );
   const evaluationOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.evaluations, draft?.evaluation),
+    () => mergeSelectOptions(catalogOptions.evaluations?.results, draft?.evaluation),
     [draft?.evaluation],
   );
   const outcomeOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.outcomes, draft?.outcome),
+    () => mergeSelectOptions(catalogOptions.outcomes?.results, draft?.outcome),
     [draft?.outcome],
   );
   const productTypeOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.productTypes, draft?.product_type),
+    () => mergeSelectOptions(catalogOptions.productTypes?.results, draft?.product_type),
     [draft?.product_type],
   );
 

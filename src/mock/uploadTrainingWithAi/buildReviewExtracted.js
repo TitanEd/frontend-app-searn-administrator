@@ -60,14 +60,22 @@ const MATURITY = ['Level 1 - Foundational', 'Level 2 - Intermediate', 'Level 3 -
 
 const pick = (list, index) => list[index % list.length];
 
-const scored = (name, score) => ({ name, score });
+const suggestionId = (prefix, name, index) => {
+  const slug = String(name || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+  return `${prefix}-${slug || index + 1}`;
+};
 
-const suggestionsFor = (pool, index, count) => {
+const scored = (id, name, score) => ({ id, name, score });
+
+const suggestionsFor = (pool, index, count, prefix) => {
   const items = [];
   for (let i = 0; i < count; i += 1) {
     const name = pick(pool, index + i);
     if (!items.some((row) => row.name === name)) {
-      items.push(scored(name, 98 - ((index + i) % 28)));
+      items.push(scored(suggestionId(prefix, name, i), name, 98 - ((index + i) % 28)));
     }
   }
   return items;
@@ -83,8 +91,13 @@ export const buildReviewExtracted = (jobId, count = 50) => (
     const n = i + 1;
     const skipActivities = n % 9 === 0;
     const skipCompetencies = n % 11 === 0;
-    const competencySuggestions = skipCompetencies ? suggestionsFor(COMPETENCY_POOL, i, 2) : suggestionsFor(COMPETENCY_POOL, i, 3 + (i % 2));
-    const activitySuggestions = skipActivities ? suggestionsFor(ACTIVITY_POOL, i, 2) : suggestionsFor(ACTIVITY_POOL, i + 2, 2 + (i % 2));
+    const rowId = `${jobId}_t${n}`;
+    const competencySuggestions = skipCompetencies
+      ? suggestionsFor(COMPETENCY_POOL, i, 2, `${rowId}_cs`)
+      : suggestionsFor(COMPETENCY_POOL, i, 3 + (i % 2), `${rowId}_cs`);
+    const activitySuggestions = skipActivities
+      ? suggestionsFor(ACTIVITY_POOL, i, 2, `${rowId}_as`)
+      : suggestionsFor(ACTIVITY_POOL, i + 2, 2 + (i % 2), `${rowId}_as`);
     const competencies = skipCompetencies ? [] : competencySuggestions.filter((_, idx) => idx === 0 || n % 5 !== 0).map((row) => row.name);
     const activities = skipActivities ? [] : activitySuggestions.filter((_, idx) => idx === 0 || n % 6 !== 0).map((row) => row.name);
     const emptyDescription = n % 13 === 0;
@@ -98,7 +111,7 @@ export const buildReviewExtracted = (jobId, count = 50) => (
     const created = n % 8 === 0;
 
     return {
-      id: `${jobId}_t${n}`,
+      id: rowId,
       training_name: `${pick(TITLES, i)} ${n}`,
       description: emptyDescription ? '' : pick(DESCRIPTIONS, i),
       domain: pick(DOMAINS, i),

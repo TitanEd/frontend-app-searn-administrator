@@ -1,1060 +1,1218 @@
-[
-  {
-    "job_id": "job_hist_04",
-    "file_name": "capacity-building-q3.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-16T11:21:00.000Z",
-    "total_records": 18,
-    "created": 0,
-    "needs_review": 18,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-16T11:21:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-16T11:21:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_03",
-    "file_name": "SEARN_Vigilance_UMC.xlsx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-16T10:14:00.000Z",
-    "total_records": 12,
-    "created": 0,
-    "needs_review": 12,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-16T10:14:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-16T10:14:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_02",
-    "file_name": "NRA_Onboarding_Pack.docx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-16T09:07:00.000Z",
-    "total_records": 8,
-    "created": 0,
-    "needs_review": 8,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-16T09:07:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-16T09:07:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_01",
-    "file_name": "competency-framework-template.csv",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-16T08:00:00.000Z",
-    "total_records": 3,
-    "created": 2,
-    "needs_review": 1,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-16T08:00:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-16T08:00:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_08",
-    "file_name": "pharmacovigilance-modules.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-15T15:49:00.000Z",
-    "total_records": 67,
-    "created": 1,
-    "needs_review": 66,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-15T15:49:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-15T15:49:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_07",
-    "file_name": "inspection-readiness.docx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-15T14:42:00.000Z",
-    "total_records": 48,
-    "created": 0,
-    "needs_review": 48,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-15T14:42:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-15T14:42:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_06",
-    "file_name": "regulatory-affairs-catalogue.csv",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-15T13:35:00.000Z",
-    "total_records": 36,
-    "created": 3,
-    "needs_review": 33,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-15T13:35:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-15T13:35:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_05",
-    "file_name": "maturity-level-matrix.xlsx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-15T12:28:00.000Z",
-    "total_records": 24,
-    "created": 0,
-    "needs_review": 24,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-15T12:28:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-15T12:28:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_10",
-    "file_name": "lab-competency-map.csv",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-14T17:03:00.000Z",
-    "total_records": 3,
-    "created": 0,
-    "needs_review": 3,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-14T17:03:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-14T17:03:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_09",
-    "file_name": "quality-management-system.xlsx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-14T16:56:00.000Z",
-    "total_records": 1140,
-    "created": 0,
-    "needs_review": 1140,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-14T16:56:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-14T16:56:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_mvbu3hso",
-    "file_name": "SEARN_Capacity_building_catalogue.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-14T10:35:00.000Z",
-    "total_records": 50,
-    "created": 0,
-    "needs_review": 50,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-14T10:35:05.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-14T10:35:20.000Z",
-        "label": "Text extraction completed"
-      },
-      {
-        "at": "2026-10-14T10:36:10.000Z",
-        "label": "AI extraction completed"
-      },
-      {
-        "at": "2026-10-14T10:36:40.000Z",
-        "label": "Competency matching completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_12",
-    "file_name": "clinical-trials-overview.docx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-14T09:17:00.000Z",
-    "total_records": 12,
-    "created": 0,
-    "needs_review": 12,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-14T09:17:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-14T09:17:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_seed_2026",
-    "file_name": "bhola.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-14T08:12:00.000Z",
-    "total_records": 3,
-    "created": 0,
-    "needs_review": 3,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-14T08:12:05.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-14T08:13:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_11",
-    "file_name": "gxp-refresher.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-14T08:10:00.000Z",
-    "total_records": 8,
-    "created": 4,
-    "needs_review": 4,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-14T08:10:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-14T08:10:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_16",
-    "file_name": "risk-based-inspection.docx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-13T13:45:00.000Z",
-    "total_records": 48,
-    "created": 5,
-    "needs_review": 43,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-13T13:45:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-13T13:45:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_15",
-    "file_name": "nra-staff-induction.csv",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-13T12:38:00.000Z",
-    "total_records": 36,
-    "created": 1,
-    "needs_review": 35,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-13T12:38:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-13T12:38:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_14",
-    "file_name": "data-integrity-workshop.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-13T11:31:00.000Z",
-    "total_records": 24,
-    "created": 0,
-    "needs_review": 24,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-13T11:31:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-13T11:31:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_13",
-    "file_name": "supply-chain-training.xlsx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-13T10:24:00.000Z",
-    "total_records": 18,
-    "created": 0,
-    "needs_review": 18,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-13T10:24:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-13T10:24:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_20",
-    "file_name": "ethics-committee-training.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-12T17:13:00.000Z",
-    "total_records": 8,
-    "created": 0,
-    "needs_review": 8,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-12T17:13:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-12T17:13:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_19",
-    "file_name": "post-market-surveillance.csv",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-12T16:06:00.000Z",
-    "total_records": 3,
-    "created": 0,
-    "needs_review": 3,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-12T16:06:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-12T16:06:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_18",
-    "file_name": "vaccine-regulation.xlsx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-12T15:59:00.000Z",
-    "total_records": 1140,
-    "created": 0,
-    "needs_review": 1140,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-12T15:59:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-12T15:59:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_17",
-    "file_name": "medical-devices-catalogue.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-12T14:52:00.000Z",
-    "total_records": 67,
-    "created": 0,
-    "needs_review": 67,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-12T14:52:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-12T14:52:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_seed_xlsx_1",
-    "file_name": "All_Courses_with_Maturity_Level_1.xlsx + SEARN_Capacity_building_Vigilance_UMC_1.xlsx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-12T11:52:00.000Z",
-    "total_records": 1,
-    "created": 0,
-    "needs_review": 1,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-12T11:52:05.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-12T11:53:00.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_24",
-    "file_name": "lab-biosafety.csv",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-11T11:41:00.000Z",
-    "total_records": 36,
-    "created": 0,
-    "needs_review": 36,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-11T11:41:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-11T11:41:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_23",
-    "file_name": "border-control-modules.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-11T10:34:00.000Z",
-    "total_records": 24,
-    "created": 0,
-    "needs_review": 24,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-11T10:34:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-11T10:34:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_22",
-    "file_name": "cold-chain-management.xlsx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-11T09:27:00.000Z",
-    "total_records": 18,
-    "created": 1,
-    "needs_review": 17,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-11T09:27:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-11T09:27:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_21",
-    "file_name": "good-manufacturing-practice.docx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-11T08:20:00.000Z",
-    "total_records": 12,
-    "created": 2,
-    "needs_review": 10,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-11T08:20:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-11T08:20:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_28",
-    "file_name": "complaint-handling.csv",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-10T15:09:00.000Z",
-    "total_records": 3,
-    "created": 0,
-    "needs_review": 3,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-10T15:09:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-10T15:09:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_27",
-    "file_name": "audit-findings-2026.xlsx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-10T14:02:00.000Z",
-    "total_records": 1140,
-    "created": 0,
-    "needs_review": 1140,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-10T14:02:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-10T14:02:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_26",
-    "file_name": "stakeholder-engagement.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-10T13:55:00.000Z",
-    "total_records": 67,
-    "created": 3,
-    "needs_review": 64,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-10T13:55:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-10T13:55:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_25",
-    "file_name": "digital-health-regulation.docx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-10T12:48:00.000Z",
-    "total_records": 48,
-    "created": 0,
-    "needs_review": 48,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-10T12:48:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-10T12:48:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_30",
-    "file_name": "variation-assessment.docx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-09T17:23:00.000Z",
-    "total_records": 12,
-    "created": 0,
-    "needs_review": 12,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-09T17:23:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-09T17:23:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_29",
-    "file_name": "import-export-controls.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-09T16:16:00.000Z",
-    "total_records": 8,
-    "created": 1,
-    "needs_review": 7,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-09T16:16:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-09T16:16:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_32",
-    "file_name": "quality-control-labs.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-09T09:37:00.000Z",
-    "total_records": 24,
-    "created": 0,
-    "needs_review": 24,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-09T09:37:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-09T09:37:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_31",
-    "file_name": "stability-studies.xlsx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-09T08:30:00.000Z",
-    "total_records": 18,
-    "created": 4,
-    "needs_review": 14,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-09T08:30:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-09T08:30:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_36",
-    "file_name": "market-authorization.xlsx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-08T13:05:00.000Z",
-    "total_records": 1140,
-    "created": 5,
-    "needs_review": 1135,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-08T13:05:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-08T13:05:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_35",
-    "file_name": "recall-procedures.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-08T12:58:00.000Z",
-    "total_records": 67,
-    "created": 0,
-    "needs_review": 67,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-08T12:58:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-08T12:58:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_34",
-    "file_name": "emergency-use-authorization.docx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-08T11:51:00.000Z",
-    "total_records": 48,
-    "created": 0,
-    "needs_review": 48,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-08T11:51:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-08T11:51:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_33",
-    "file_name": "nra-leadership-programme.csv",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-08T10:44:00.000Z",
-    "total_records": 36,
-    "created": 0,
-    "needs_review": 36,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-08T10:44:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-08T10:44:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_40",
-    "file_name": "searn-annual-catalog.xlsx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-07T17:33:00.000Z",
-    "total_records": 18,
-    "created": 0,
-    "needs_review": 18,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-07T17:33:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-07T17:33:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_39",
-    "file_name": "competency-framework-v2.docx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-07T16:26:00.000Z",
-    "total_records": 12,
-    "created": 0,
-    "needs_review": 12,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-07T16:26:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-07T16:26:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_38",
-    "file_name": "training-needs-assessment.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-07T15:19:00.000Z",
-    "total_records": 8,
-    "created": 0,
-    "needs_review": 8,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-07T15:19:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-07T15:19:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_37",
-    "file_name": "inspection-checklist.csv",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-07T14:12:00.000Z",
-    "total_records": 3,
-    "created": 0,
-    "needs_review": 3,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-07T14:12:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-07T14:12:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_44",
-    "file_name": "who-benchmarking-prep.xlsx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-06T11:01:00.000Z",
-    "total_records": 67,
-    "created": 0,
-    "needs_review": 67,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-06T11:01:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-06T11:01:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_43",
-    "file_name": "regulatory-science-bootcamp.docx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-06T10:54:00.000Z",
-    "total_records": 48,
-    "created": 1,
-    "needs_review": 47,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-06T10:54:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-06T10:54:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_42",
-    "file_name": "lab-proficiency-tests.csv",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-06T09:47:00.000Z",
-    "total_records": 36,
-    "created": 0,
-    "needs_review": 36,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-06T09:47:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-06T09:47:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_41",
-    "file_name": "vigilance-case-studies.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-06T08:40:00.000Z",
-    "total_records": 24,
-    "created": 2,
-    "needs_review": 22,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-06T08:40:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-06T08:40:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_47",
-    "file_name": "horizon-scanning.docx",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-05T14:22:00.000Z",
-    "total_records": 8,
-    "created": 0,
-    "needs_review": 8,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-05T14:22:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-05T14:22:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_46",
-    "file_name": "nra-communications.csv",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-05T13:15:00.000Z",
-    "total_records": 3,
-    "created": 3,
-    "needs_review": 0,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-05T13:15:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-05T13:15:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  },
-  {
-    "job_id": "job_hist_45",
-    "file_name": "gmp-inspector-pathway.pdf",
-    "uploaded_by": "Admin User",
-    "uploaded_at": "2026-10-05T12:08:00.000Z",
-    "total_records": 1140,
-    "created": 0,
-    "needs_review": 1140,
-    "failed": 0,
-    "status": "completed",
-    "timeline": [
-      {
-        "at": "2026-10-05T12:08:00.000Z",
-        "label": "Document uploaded"
-      },
-      {
-        "at": "2026-10-05T12:08:40.000Z",
-        "label": "AI extraction completed"
-      }
-    ]
-  }
-]
+{
+  "results": [
+    {
+      "id": "job_hist_04",
+      "job_id": "job_hist_04",
+      "file_name": "capacity-building-q3.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-16T11:21:00.000Z",
+      "total_records": 18,
+      "created": 0,
+      "needs_review": 18,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_04_tl_1",
+          "at": "2026-10-16T11:21:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_04_tl_2",
+          "at": "2026-10-16T11:21:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_03",
+      "job_id": "job_hist_03",
+      "file_name": "SEARN_Vigilance_UMC.xlsx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-16T10:14:00.000Z",
+      "total_records": 12,
+      "created": 0,
+      "needs_review": 12,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_03_tl_1",
+          "at": "2026-10-16T10:14:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_03_tl_2",
+          "at": "2026-10-16T10:14:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_02",
+      "job_id": "job_hist_02",
+      "file_name": "NRA_Onboarding_Pack.docx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-16T09:07:00.000Z",
+      "total_records": 8,
+      "created": 0,
+      "needs_review": 8,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_02_tl_1",
+          "at": "2026-10-16T09:07:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_02_tl_2",
+          "at": "2026-10-16T09:07:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_01",
+      "job_id": "job_hist_01",
+      "file_name": "competency-framework-template.csv",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-16T08:00:00.000Z",
+      "total_records": 3,
+      "created": 2,
+      "needs_review": 1,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_01_tl_1",
+          "at": "2026-10-16T08:00:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_01_tl_2",
+          "at": "2026-10-16T08:00:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_08",
+      "job_id": "job_hist_08",
+      "file_name": "pharmacovigilance-modules.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-15T15:49:00.000Z",
+      "total_records": 67,
+      "created": 1,
+      "needs_review": 66,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_08_tl_1",
+          "at": "2026-10-15T15:49:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_08_tl_2",
+          "at": "2026-10-15T15:49:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_07",
+      "job_id": "job_hist_07",
+      "file_name": "inspection-readiness.docx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-15T14:42:00.000Z",
+      "total_records": 48,
+      "created": 0,
+      "needs_review": 48,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_07_tl_1",
+          "at": "2026-10-15T14:42:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_07_tl_2",
+          "at": "2026-10-15T14:42:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_06",
+      "job_id": "job_hist_06",
+      "file_name": "regulatory-affairs-catalogue.csv",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-15T13:35:00.000Z",
+      "total_records": 36,
+      "created": 3,
+      "needs_review": 33,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_06_tl_1",
+          "at": "2026-10-15T13:35:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_06_tl_2",
+          "at": "2026-10-15T13:35:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_05",
+      "job_id": "job_hist_05",
+      "file_name": "maturity-level-matrix.xlsx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-15T12:28:00.000Z",
+      "total_records": 24,
+      "created": 0,
+      "needs_review": 24,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_05_tl_1",
+          "at": "2026-10-15T12:28:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_05_tl_2",
+          "at": "2026-10-15T12:28:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_10",
+      "job_id": "job_hist_10",
+      "file_name": "lab-competency-map.csv",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-14T17:03:00.000Z",
+      "total_records": 3,
+      "created": 0,
+      "needs_review": 3,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_10_tl_1",
+          "at": "2026-10-14T17:03:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_10_tl_2",
+          "at": "2026-10-14T17:03:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_09",
+      "job_id": "job_hist_09",
+      "file_name": "quality-management-system.xlsx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-14T16:56:00.000Z",
+      "total_records": 1140,
+      "created": 0,
+      "needs_review": 1140,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_09_tl_1",
+          "at": "2026-10-14T16:56:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_09_tl_2",
+          "at": "2026-10-14T16:56:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_mvbu3hso",
+      "job_id": "job_mvbu3hso",
+      "file_name": "SEARN_Capacity_building_catalogue.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-14T10:35:00.000Z",
+      "total_records": 50,
+      "created": 0,
+      "needs_review": 50,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_mvbu3hso_tl_1",
+          "at": "2026-10-14T10:35:05.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_mvbu3hso_tl_2",
+          "at": "2026-10-14T10:35:20.000Z",
+          "label": "Text extraction completed"
+        },
+        {
+          "id": "job_mvbu3hso_tl_3",
+          "at": "2026-10-14T10:36:10.000Z",
+          "label": "AI extraction completed"
+        },
+        {
+          "id": "job_mvbu3hso_tl_4",
+          "at": "2026-10-14T10:36:40.000Z",
+          "label": "Competency matching completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_12",
+      "job_id": "job_hist_12",
+      "file_name": "clinical-trials-overview.docx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-14T09:17:00.000Z",
+      "total_records": 12,
+      "created": 0,
+      "needs_review": 12,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_12_tl_1",
+          "at": "2026-10-14T09:17:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_12_tl_2",
+          "at": "2026-10-14T09:17:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_seed_2026",
+      "job_id": "job_seed_2026",
+      "file_name": "bhola.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-14T08:12:00.000Z",
+      "total_records": 3,
+      "created": 0,
+      "needs_review": 3,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_seed_2026_tl_1",
+          "at": "2026-10-14T08:12:05.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_seed_2026_tl_2",
+          "at": "2026-10-14T08:13:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_11",
+      "job_id": "job_hist_11",
+      "file_name": "gxp-refresher.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-14T08:10:00.000Z",
+      "total_records": 8,
+      "created": 4,
+      "needs_review": 4,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_11_tl_1",
+          "at": "2026-10-14T08:10:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_11_tl_2",
+          "at": "2026-10-14T08:10:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_16",
+      "job_id": "job_hist_16",
+      "file_name": "risk-based-inspection.docx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-13T13:45:00.000Z",
+      "total_records": 48,
+      "created": 5,
+      "needs_review": 43,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_16_tl_1",
+          "at": "2026-10-13T13:45:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_16_tl_2",
+          "at": "2026-10-13T13:45:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_15",
+      "job_id": "job_hist_15",
+      "file_name": "nra-staff-induction.csv",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-13T12:38:00.000Z",
+      "total_records": 36,
+      "created": 1,
+      "needs_review": 35,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_15_tl_1",
+          "at": "2026-10-13T12:38:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_15_tl_2",
+          "at": "2026-10-13T12:38:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_14",
+      "job_id": "job_hist_14",
+      "file_name": "data-integrity-workshop.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-13T11:31:00.000Z",
+      "total_records": 24,
+      "created": 0,
+      "needs_review": 24,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_14_tl_1",
+          "at": "2026-10-13T11:31:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_14_tl_2",
+          "at": "2026-10-13T11:31:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_13",
+      "job_id": "job_hist_13",
+      "file_name": "supply-chain-training.xlsx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-13T10:24:00.000Z",
+      "total_records": 18,
+      "created": 0,
+      "needs_review": 18,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_13_tl_1",
+          "at": "2026-10-13T10:24:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_13_tl_2",
+          "at": "2026-10-13T10:24:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_20",
+      "job_id": "job_hist_20",
+      "file_name": "ethics-committee-training.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-12T17:13:00.000Z",
+      "total_records": 8,
+      "created": 0,
+      "needs_review": 8,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_20_tl_1",
+          "at": "2026-10-12T17:13:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_20_tl_2",
+          "at": "2026-10-12T17:13:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_19",
+      "job_id": "job_hist_19",
+      "file_name": "post-market-surveillance.csv",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-12T16:06:00.000Z",
+      "total_records": 3,
+      "created": 0,
+      "needs_review": 3,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_19_tl_1",
+          "at": "2026-10-12T16:06:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_19_tl_2",
+          "at": "2026-10-12T16:06:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_18",
+      "job_id": "job_hist_18",
+      "file_name": "vaccine-regulation.xlsx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-12T15:59:00.000Z",
+      "total_records": 1140,
+      "created": 0,
+      "needs_review": 1140,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_18_tl_1",
+          "at": "2026-10-12T15:59:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_18_tl_2",
+          "at": "2026-10-12T15:59:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_17",
+      "job_id": "job_hist_17",
+      "file_name": "medical-devices-catalogue.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-12T14:52:00.000Z",
+      "total_records": 67,
+      "created": 0,
+      "needs_review": 67,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_17_tl_1",
+          "at": "2026-10-12T14:52:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_17_tl_2",
+          "at": "2026-10-12T14:52:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_seed_xlsx_1",
+      "job_id": "job_seed_xlsx_1",
+      "file_name": "All_Courses_with_Maturity_Level_1.xlsx + SEARN_Capacity_building_Vigilance_UMC_1.xlsx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-12T11:52:00.000Z",
+      "total_records": 1,
+      "created": 0,
+      "needs_review": 1,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_seed_xlsx_1_tl_1",
+          "at": "2026-10-12T11:52:05.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_seed_xlsx_1_tl_2",
+          "at": "2026-10-12T11:53:00.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_24",
+      "job_id": "job_hist_24",
+      "file_name": "lab-biosafety.csv",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-11T11:41:00.000Z",
+      "total_records": 36,
+      "created": 0,
+      "needs_review": 36,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_24_tl_1",
+          "at": "2026-10-11T11:41:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_24_tl_2",
+          "at": "2026-10-11T11:41:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_23",
+      "job_id": "job_hist_23",
+      "file_name": "border-control-modules.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-11T10:34:00.000Z",
+      "total_records": 24,
+      "created": 0,
+      "needs_review": 24,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_23_tl_1",
+          "at": "2026-10-11T10:34:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_23_tl_2",
+          "at": "2026-10-11T10:34:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_22",
+      "job_id": "job_hist_22",
+      "file_name": "cold-chain-management.xlsx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-11T09:27:00.000Z",
+      "total_records": 18,
+      "created": 1,
+      "needs_review": 17,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_22_tl_1",
+          "at": "2026-10-11T09:27:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_22_tl_2",
+          "at": "2026-10-11T09:27:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_21",
+      "job_id": "job_hist_21",
+      "file_name": "good-manufacturing-practice.docx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-11T08:20:00.000Z",
+      "total_records": 12,
+      "created": 2,
+      "needs_review": 10,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_21_tl_1",
+          "at": "2026-10-11T08:20:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_21_tl_2",
+          "at": "2026-10-11T08:20:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_28",
+      "job_id": "job_hist_28",
+      "file_name": "complaint-handling.csv",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-10T15:09:00.000Z",
+      "total_records": 3,
+      "created": 0,
+      "needs_review": 3,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_28_tl_1",
+          "at": "2026-10-10T15:09:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_28_tl_2",
+          "at": "2026-10-10T15:09:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_27",
+      "job_id": "job_hist_27",
+      "file_name": "audit-findings-2026.xlsx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-10T14:02:00.000Z",
+      "total_records": 1140,
+      "created": 0,
+      "needs_review": 1140,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_27_tl_1",
+          "at": "2026-10-10T14:02:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_27_tl_2",
+          "at": "2026-10-10T14:02:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_26",
+      "job_id": "job_hist_26",
+      "file_name": "stakeholder-engagement.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-10T13:55:00.000Z",
+      "total_records": 67,
+      "created": 3,
+      "needs_review": 64,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_26_tl_1",
+          "at": "2026-10-10T13:55:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_26_tl_2",
+          "at": "2026-10-10T13:55:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_25",
+      "job_id": "job_hist_25",
+      "file_name": "digital-health-regulation.docx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-10T12:48:00.000Z",
+      "total_records": 48,
+      "created": 0,
+      "needs_review": 48,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_25_tl_1",
+          "at": "2026-10-10T12:48:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_25_tl_2",
+          "at": "2026-10-10T12:48:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_30",
+      "job_id": "job_hist_30",
+      "file_name": "variation-assessment.docx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-09T17:23:00.000Z",
+      "total_records": 12,
+      "created": 0,
+      "needs_review": 12,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_30_tl_1",
+          "at": "2026-10-09T17:23:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_30_tl_2",
+          "at": "2026-10-09T17:23:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_29",
+      "job_id": "job_hist_29",
+      "file_name": "import-export-controls.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-09T16:16:00.000Z",
+      "total_records": 8,
+      "created": 1,
+      "needs_review": 7,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_29_tl_1",
+          "at": "2026-10-09T16:16:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_29_tl_2",
+          "at": "2026-10-09T16:16:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_32",
+      "job_id": "job_hist_32",
+      "file_name": "quality-control-labs.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-09T09:37:00.000Z",
+      "total_records": 24,
+      "created": 0,
+      "needs_review": 24,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_32_tl_1",
+          "at": "2026-10-09T09:37:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_32_tl_2",
+          "at": "2026-10-09T09:37:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_31",
+      "job_id": "job_hist_31",
+      "file_name": "stability-studies.xlsx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-09T08:30:00.000Z",
+      "total_records": 18,
+      "created": 4,
+      "needs_review": 14,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_31_tl_1",
+          "at": "2026-10-09T08:30:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_31_tl_2",
+          "at": "2026-10-09T08:30:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_36",
+      "job_id": "job_hist_36",
+      "file_name": "market-authorization.xlsx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-08T13:05:00.000Z",
+      "total_records": 1140,
+      "created": 5,
+      "needs_review": 1135,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_36_tl_1",
+          "at": "2026-10-08T13:05:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_36_tl_2",
+          "at": "2026-10-08T13:05:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_35",
+      "job_id": "job_hist_35",
+      "file_name": "recall-procedures.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-08T12:58:00.000Z",
+      "total_records": 67,
+      "created": 0,
+      "needs_review": 67,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_35_tl_1",
+          "at": "2026-10-08T12:58:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_35_tl_2",
+          "at": "2026-10-08T12:58:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_34",
+      "job_id": "job_hist_34",
+      "file_name": "emergency-use-authorization.docx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-08T11:51:00.000Z",
+      "total_records": 48,
+      "created": 0,
+      "needs_review": 48,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_34_tl_1",
+          "at": "2026-10-08T11:51:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_34_tl_2",
+          "at": "2026-10-08T11:51:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_33",
+      "job_id": "job_hist_33",
+      "file_name": "nra-leadership-programme.csv",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-08T10:44:00.000Z",
+      "total_records": 36,
+      "created": 0,
+      "needs_review": 36,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_33_tl_1",
+          "at": "2026-10-08T10:44:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_33_tl_2",
+          "at": "2026-10-08T10:44:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_40",
+      "job_id": "job_hist_40",
+      "file_name": "searn-annual-catalog.xlsx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-07T17:33:00.000Z",
+      "total_records": 18,
+      "created": 0,
+      "needs_review": 18,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_40_tl_1",
+          "at": "2026-10-07T17:33:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_40_tl_2",
+          "at": "2026-10-07T17:33:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_39",
+      "job_id": "job_hist_39",
+      "file_name": "competency-framework-v2.docx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-07T16:26:00.000Z",
+      "total_records": 12,
+      "created": 0,
+      "needs_review": 12,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_39_tl_1",
+          "at": "2026-10-07T16:26:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_39_tl_2",
+          "at": "2026-10-07T16:26:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_38",
+      "job_id": "job_hist_38",
+      "file_name": "training-needs-assessment.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-07T15:19:00.000Z",
+      "total_records": 8,
+      "created": 0,
+      "needs_review": 8,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_38_tl_1",
+          "at": "2026-10-07T15:19:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_38_tl_2",
+          "at": "2026-10-07T15:19:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_37",
+      "job_id": "job_hist_37",
+      "file_name": "inspection-checklist.csv",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-07T14:12:00.000Z",
+      "total_records": 3,
+      "created": 0,
+      "needs_review": 3,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_37_tl_1",
+          "at": "2026-10-07T14:12:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_37_tl_2",
+          "at": "2026-10-07T14:12:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_44",
+      "job_id": "job_hist_44",
+      "file_name": "who-benchmarking-prep.xlsx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-06T11:01:00.000Z",
+      "total_records": 67,
+      "created": 0,
+      "needs_review": 67,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_44_tl_1",
+          "at": "2026-10-06T11:01:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_44_tl_2",
+          "at": "2026-10-06T11:01:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_43",
+      "job_id": "job_hist_43",
+      "file_name": "regulatory-science-bootcamp.docx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-06T10:54:00.000Z",
+      "total_records": 48,
+      "created": 1,
+      "needs_review": 47,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_43_tl_1",
+          "at": "2026-10-06T10:54:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_43_tl_2",
+          "at": "2026-10-06T10:54:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_42",
+      "job_id": "job_hist_42",
+      "file_name": "lab-proficiency-tests.csv",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-06T09:47:00.000Z",
+      "total_records": 36,
+      "created": 0,
+      "needs_review": 36,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_42_tl_1",
+          "at": "2026-10-06T09:47:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_42_tl_2",
+          "at": "2026-10-06T09:47:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_41",
+      "job_id": "job_hist_41",
+      "file_name": "vigilance-case-studies.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-06T08:40:00.000Z",
+      "total_records": 24,
+      "created": 2,
+      "needs_review": 22,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_41_tl_1",
+          "at": "2026-10-06T08:40:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_41_tl_2",
+          "at": "2026-10-06T08:40:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_47",
+      "job_id": "job_hist_47",
+      "file_name": "horizon-scanning.docx",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-05T14:22:00.000Z",
+      "total_records": 8,
+      "created": 0,
+      "needs_review": 8,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_47_tl_1",
+          "at": "2026-10-05T14:22:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_47_tl_2",
+          "at": "2026-10-05T14:22:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_46",
+      "job_id": "job_hist_46",
+      "file_name": "nra-communications.csv",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-05T13:15:00.000Z",
+      "total_records": 3,
+      "created": 3,
+      "needs_review": 0,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_46_tl_1",
+          "at": "2026-10-05T13:15:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_46_tl_2",
+          "at": "2026-10-05T13:15:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    },
+    {
+      "id": "job_hist_45",
+      "job_id": "job_hist_45",
+      "file_name": "gmp-inspector-pathway.pdf",
+      "uploaded_by": "Admin User",
+      "uploaded_at": "2026-10-05T12:08:00.000Z",
+      "total_records": 1140,
+      "created": 0,
+      "needs_review": 1140,
+      "failed": 0,
+      "status": "completed",
+      "timeline": [
+        {
+          "id": "job_hist_45_tl_1",
+          "at": "2026-10-05T12:08:00.000Z",
+          "label": "Document uploaded"
+        },
+        {
+          "id": "job_hist_45_tl_2",
+          "at": "2026-10-05T12:08:40.000Z",
+          "label": "AI extraction completed"
+        }
+      ]
+    }
+  ],
+  "count": 50,
+  "page": 1,
+  "page_size": 15,
+  "total_pages": 4
+}

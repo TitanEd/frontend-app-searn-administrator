@@ -16,6 +16,8 @@ import aiTrainingMessages from './aiTrainingMessages';
 
 export { STEP_ORDER } from './aiTrainingUtils';
 
+const PROCESSING_STEP_ROWS = PROCESSING_STEPS.results ?? PROCESSING_STEPS;
+
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const store = {
@@ -188,9 +190,9 @@ export const uploadTrainingDocument = async ({ formatMessage, file, fileName, on
 };
 
 function runProcessingSimulation(jobId) {
-  const steps = PROCESSING_STEPS.map((step, index) => ({
+  const steps = PROCESSING_STEP_ROWS.map((step, index) => ({
     step: step.id,
-    progress: Math.round(((index + 1) / (PROCESSING_STEPS.length + 1)) * 100),
+    progress: Math.round(((index + 1) / (PROCESSING_STEP_ROWS.length + 1)) * 100),
     message: `${step.label}...`,
     wait: 800,
   }));

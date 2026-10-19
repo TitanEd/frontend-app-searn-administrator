@@ -1,69 +1,271 @@
 {
-  "confidence": [
-    { "id": "all", "value": "all", "label": "Any Match" },
-    { "id": "high", "value": "high", "label": "Strong (75%+)" },
-    { "id": "medium", "value": "medium", "label": "Fair (50–74%)" },
-    { "id": "low", "value": "low", "label": "Weak (<50%)" }
-  ],
-  "created": [
-    { "id": "all", "value": "all", "label": "All Statuses" },
-    { "id": "created", "value": "created", "label": "Created" },
-    { "id": "not_created", "value": "not_created", "label": "Not Created" }
-  ],
-  "languages": [
-    { "id": "en", "value": "English", "label": "English" },
-    { "id": "fr", "value": "French", "label": "French" },
-    { "id": "es", "value": "Spanish", "label": "Spanish" }
-  ],
-  "modes": [
-    { "id": "virtual", "value": "Virtual", "label": "Virtual" },
-    { "id": "in-person", "value": "In-person", "label": "In-person" },
-    { "id": "hybrid", "value": "Hybrid", "label": "Hybrid" }
-  ],
-  "approaches": [
-    { "id": "course", "value": "Course", "label": "Course" },
-    { "id": "workshop", "value": "Workshop", "label": "Workshop" },
-    { "id": "webinar", "value": "Webinar", "label": "Webinar" }
-  ],
-  "evaluations": [
-    { "id": "prepost", "value": "Pre and post evaluation", "label": "Pre and post evaluation" },
-    { "id": "quiz", "value": "Quiz", "label": "Quiz" },
-    { "id": "exam", "value": "Exam", "label": "Exam" }
-  ],
-  "outcomes": [
-    { "id": "completion", "value": "Certificate of completion", "label": "Certificate of completion" },
-    { "id": "expiration", "value": "Certification with expiration", "label": "Certification with expiration" }
-  ],
-  "productTypes": [
-    { "id": "medicines", "value": "Medicines", "label": "Medicines" },
-    { "id": "vaccines", "value": "Vaccines", "label": "Vaccines" },
-    { "id": "devices", "value": "Medical Devices", "label": "Medical Devices" },
-    { "id": "biological", "value": "Biological Products", "label": "Biological Products" },
-    { "id": "other", "value": "Other Health Products", "label": "Other Health Products" }
-  ],
-  "nraObjectives": [
-    { "id": "ml3", "value": "ML3", "label": "ML3" },
-    { "id": "ml4", "value": "ML4", "label": "ML4" },
-    { "id": "wla", "value": "WLA", "label": "WLA" },
-    { "id": "ml3r", "value": "ML3 Reliance only", "label": "ML3 Reliance only" },
-    { "id": "ml4wla", "value": "ML4/WLA", "label": "ML4/WLA" }
-  ],
-  "competencies": [
-    { "id": "c1", "value": "Competency 1: Pharmacovigilance Systems", "label": "Competency 1: Pharmacovigilance Systems" },
-    { "id": "c2", "value": "Competency 2: Signal Detection & Evaluation", "label": "Competency 2: Signal Detection & Evaluation" },
-    { "id": "c3", "value": "Competency 3: Quality Systems", "label": "Competency 3: Quality Systems" },
-    { "id": "c4", "value": "Competency 4: Inspection Readiness", "label": "Competency 4: Inspection Readiness" },
-    { "id": "c5", "value": "Competency 5: Dossier Assessment", "label": "Competency 5: Dossier Assessment" },
-    { "id": "c6", "value": "Competency 6: GCP Compliance", "label": "Competency 6: GCP Compliance" },
-    { "id": "c7", "value": "Competency 7: Other / Not specified", "label": "Competency 7: Other / Not specified" }
-  ],
-  "activities": [
-    { "id": "a1", "value": "Activity 1: Adverse Event Reporting", "label": "Activity 1: Adverse Event Reporting" },
-    { "id": "a2", "value": "Activity 2: Capacity Building", "label": "Activity 2: Capacity Building" },
-    { "id": "a3", "value": "Activity 3: Signal Detection", "label": "Activity 3: Signal Detection" },
-    { "id": "a4", "value": "Activity 4: Conduct GMP Audit", "label": "Activity 4: Conduct GMP Audit" },
-    { "id": "a5", "value": "Activity 5: Assess Quality Module", "label": "Activity 5: Assess Quality Module" },
-    { "id": "a6", "value": "Activity 6: Inspect Trial Site", "label": "Activity 6: Inspect Trial Site" },
-    { "id": "a7", "value": "Activity 7: Review Technical File", "label": "Activity 7: Review Technical File" }
-  ]
+  "confidence": {
+    "results": [
+      {
+        "id": "all",
+        "value": "all",
+        "label": "Any Match"
+      },
+      {
+        "id": "high",
+        "value": "high",
+        "label": "Strong (75%+)"
+      },
+      {
+        "id": "medium",
+        "value": "medium",
+        "label": "Fair (50–74%)"
+      },
+      {
+        "id": "low",
+        "value": "low",
+        "label": "Weak (<50%)"
+      }
+    ]
+  },
+  "created": {
+    "results": [
+      {
+        "id": "all",
+        "value": "all",
+        "label": "All Statuses"
+      },
+      {
+        "id": "created",
+        "value": "created",
+        "label": "Created"
+      },
+      {
+        "id": "not_created",
+        "value": "not_created",
+        "label": "Not Created"
+      }
+    ]
+  },
+  "languages": {
+    "results": [
+      {
+        "id": "en",
+        "value": "English",
+        "label": "English"
+      },
+      {
+        "id": "fr",
+        "value": "French",
+        "label": "French"
+      },
+      {
+        "id": "es",
+        "value": "Spanish",
+        "label": "Spanish"
+      }
+    ]
+  },
+  "modes": {
+    "results": [
+      {
+        "id": "virtual",
+        "value": "Virtual",
+        "label": "Virtual"
+      },
+      {
+        "id": "in-person",
+        "value": "In-person",
+        "label": "In-person"
+      },
+      {
+        "id": "hybrid",
+        "value": "Hybrid",
+        "label": "Hybrid"
+      }
+    ]
+  },
+  "approaches": {
+    "results": [
+      {
+        "id": "course",
+        "value": "Course",
+        "label": "Course"
+      },
+      {
+        "id": "workshop",
+        "value": "Workshop",
+        "label": "Workshop"
+      },
+      {
+        "id": "webinar",
+        "value": "Webinar",
+        "label": "Webinar"
+      }
+    ]
+  },
+  "evaluations": {
+    "results": [
+      {
+        "id": "prepost",
+        "value": "Pre and post evaluation",
+        "label": "Pre and post evaluation"
+      },
+      {
+        "id": "quiz",
+        "value": "Quiz",
+        "label": "Quiz"
+      },
+      {
+        "id": "exam",
+        "value": "Exam",
+        "label": "Exam"
+      }
+    ]
+  },
+  "outcomes": {
+    "results": [
+      {
+        "id": "completion",
+        "value": "Certificate of completion",
+        "label": "Certificate of completion"
+      },
+      {
+        "id": "expiration",
+        "value": "Certification with expiration",
+        "label": "Certification with expiration"
+      }
+    ]
+  },
+  "productTypes": {
+    "results": [
+      {
+        "id": "medicines",
+        "value": "Medicines",
+        "label": "Medicines"
+      },
+      {
+        "id": "vaccines",
+        "value": "Vaccines",
+        "label": "Vaccines"
+      },
+      {
+        "id": "devices",
+        "value": "Medical Devices",
+        "label": "Medical Devices"
+      },
+      {
+        "id": "biological",
+        "value": "Biological Products",
+        "label": "Biological Products"
+      },
+      {
+        "id": "other",
+        "value": "Other Health Products",
+        "label": "Other Health Products"
+      }
+    ]
+  },
+  "nraObjectives": {
+    "results": [
+      {
+        "id": "ml3",
+        "value": "ML3",
+        "label": "ML3"
+      },
+      {
+        "id": "ml4",
+        "value": "ML4",
+        "label": "ML4"
+      },
+      {
+        "id": "wla",
+        "value": "WLA",
+        "label": "WLA"
+      },
+      {
+        "id": "ml3r",
+        "value": "ML3 Reliance only",
+        "label": "ML3 Reliance only"
+      },
+      {
+        "id": "ml4wla",
+        "value": "ML4/WLA",
+        "label": "ML4/WLA"
+      }
+    ]
+  },
+  "competencies": {
+    "results": [
+      {
+        "id": "c1",
+        "value": "Competency 1: Pharmacovigilance Systems",
+        "label": "Competency 1: Pharmacovigilance Systems"
+      },
+      {
+        "id": "c2",
+        "value": "Competency 2: Signal Detection & Evaluation",
+        "label": "Competency 2: Signal Detection & Evaluation"
+      },
+      {
+        "id": "c3",
+        "value": "Competency 3: Quality Systems",
+        "label": "Competency 3: Quality Systems"
+      },
+      {
+        "id": "c4",
+        "value": "Competency 4: Inspection Readiness",
+        "label": "Competency 4: Inspection Readiness"
+      },
+      {
+        "id": "c5",
+        "value": "Competency 5: Dossier Assessment",
+        "label": "Competency 5: Dossier Assessment"
+      },
+      {
+        "id": "c6",
+        "value": "Competency 6: GCP Compliance",
+        "label": "Competency 6: GCP Compliance"
+      },
+      {
+        "id": "c7",
+        "value": "Competency 7: Other / Not specified",
+        "label": "Competency 7: Other / Not specified"
+      }
+    ]
+  },
+  "activities": {
+    "results": [
+      {
+        "id": "a1",
+        "value": "Activity 1: Adverse Event Reporting",
+        "label": "Activity 1: Adverse Event Reporting"
+      },
+      {
+        "id": "a2",
+        "value": "Activity 2: Capacity Building",
+        "label": "Activity 2: Capacity Building"
+      },
+      {
+        "id": "a3",
+        "value": "Activity 3: Signal Detection",
+        "label": "Activity 3: Signal Detection"
+      },
+      {
+        "id": "a4",
+        "value": "Activity 4: Conduct GMP Audit",
+        "label": "Activity 4: Conduct GMP Audit"
+      },
+      {
+        "id": "a5",
+        "value": "Activity 5: Assess Quality Module",
+        "label": "Activity 5: Assess Quality Module"
+      },
+      {
+        "id": "a6",
+        "value": "Activity 6: Inspect Trial Site",
+        "label": "Activity 6: Inspect Trial Site"
+      },
+      {
+        "id": "a7",
+        "value": "Activity 7: Review Technical File",
+        "label": "Activity 7: Review Technical File"
+      }
+    ]
+  }
 }

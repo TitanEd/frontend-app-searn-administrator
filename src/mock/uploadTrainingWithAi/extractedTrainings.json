@@ -1,1651 +1,1766 @@
 {
-  "job_mvbu3hso": [
-    {
-      "training_name": "Introduction to Pharmacovigilance",
-      "description": "Foundational course covering the principles of pharmacovigilance and adverse event reporting.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Fundamentals",
-      "language": "English",
-      "duration": "4 hours",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Lecture + case studies",
-      "evaluation": "Quiz",
-      "outcome": "Understand core PV concepts and reporting pathways.",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.org/pv-intro",
-      "nra_objectives": [
-        "Strengthen national PV systems",
-        "Improve ADR reporting quality"
-      ],
-      "competencies": [
-        "Competency 1: Pharmacovigilance Systems"
-      ],
-      "activities": [
-        "Activity 1: Adverse Event Reporting"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 92
-        },
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 40
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 1: Adverse Event Reporting",
-          "score": 88
-        },
-        {
-          "name": "Activity 3: Signal Detection",
-          "score": 55
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.91,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Regulatory professionals\nLaboratory scientists",
-      "source_id": "PV-001",
-      "id": "job_mvbu3hso_t1",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Signal Detection in Pharmacovigilance",
-      "description": "Methods for detecting and evaluating safety signals from spontaneous reports and other data sources.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Signal Management",
-      "language": "English",
-      "duration": "6 hours",
-      "cost": "",
-      "training_mode": "Hybrid",
-      "approach": "Workshop",
-      "evaluation": "Assignment",
-      "outcome": "Apply signal detection methods to real datasets.",
-      "product_type": "Workshop",
-      "registration_by": "URL",
-      "registration_value": "",
-      "nra_objectives": [
-        "Improve signal detection capacity"
-      ],
-      "competencies": [],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 2: Signal Detection & Evaluation",
-          "score": 95
-        },
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 70
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 3: Signal Detection",
-          "score": 90
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.88,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "PV officers\nAssessors",
-      "source_id": "PV-002",
-      "id": "job_mvbu3hso_t2",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Good Manufacturing Practices for Regulatory Staff",
-      "description": "Comprehensive GMP training covering documentation, quality systems and inspection readiness for NRA staff.",
-      "domain": "Quality Assurance",
-      "sub_domain": "GMP",
-      "language": "English",
-      "duration": "3 days",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Interactive workshop",
-      "evaluation": "Quiz + Case study",
-      "outcome": "Certificate of completion",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/gmp-register",
-      "nra_objectives": [
-        "Ensure GMP compliance",
-        "Prepare for inspections"
-      ],
-      "competencies": [
-        "Competency 3: Quality Systems",
-        "Competency 4: Inspection Readiness"
-      ],
-      "activities": [
-        "Activity 4: Conduct GMP Audit"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 3: Quality Systems",
-          "score": 92
-        },
-        {
-          "name": "Competency 4: Inspection Readiness",
-          "score": 81
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 4: Conduct GMP Audit",
-          "score": 88
-        }
-      ],
-      "status": "edited",
-      "confidence": 0.92,
-      "created": false,
-      "provider": "WHO",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "Inspectors\nQA officers",
-      "source_id": "GMP-101",
-      "id": "job_mvbu3hso_t3",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Dossier Assessment for Marketing Authorization",
-      "description": "Review of CTD format, quality, safety and efficacy assessment.",
-      "domain": "Regulatory Affairs",
-      "sub_domain": "Registration",
-      "language": "French",
-      "duration": "5 days",
-      "cost": "Free",
-      "training_mode": "In-person",
-      "approach": "Case studies",
-      "evaluation": "Exam",
-      "outcome": "Certificate",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/dossier",
-      "nra_objectives": [
-        "Strengthen MA assessment"
-      ],
-      "competencies": [
-        "Competency 5: Dossier Assessment"
-      ],
-      "activities": [
-        "Activity 5: Assess Quality Module"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 5: Dossier Assessment",
-          "score": 65
-        },
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 32
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 5: Assess Quality Module",
-          "score": 62
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.58,
-      "created": false,
-      "provider": "SEARN",
-      "maturity_level": "Level 3 - Advanced",
-      "target_audience": "Assessors",
-      "source_id": "MA-210",
-      "id": "job_mvbu3hso_t4",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Clinical Trials Oversight",
-      "description": "GCP principles, protocol review and inspection of clinical trial sites.",
-      "domain": "Regulatory Affairs",
-      "sub_domain": "Clinical Trials",
-      "language": "English",
-      "duration": "2 days",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Interactive",
-      "evaluation": "Quiz",
-      "outcome": "Certificate",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/ct",
-      "nra_objectives": [
-        "Protect trial participants"
-      ],
-      "competencies": [
-        "Competency 6: GCP Compliance"
-      ],
-      "activities": [
-        "Activity 6: Inspect Trial Site"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 6: GCP Compliance",
-          "score": 90
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 6: Inspect Trial Site",
-          "score": 84
-        }
-      ],
-      "status": "created",
-      "confidence": 0.81,
-      "created": true,
-      "provider": "WHO",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "GCP inspectors",
-      "source_id": "CT-044",
-      "id": "job_mvbu3hso_t5",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Medical Device Regulation",
-      "description": "Classification, conformity assessment and post-market surveillance of medical devices.",
-      "domain": "Medical Devices",
-      "sub_domain": "Regulation",
-      "language": "English",
-      "duration": "1 day",
-      "cost": "$100",
-      "training_mode": "Virtual",
-      "approach": "Webinar",
-      "evaluation": "Attendance",
-      "outcome": "Participation certificate",
-      "product_type": "Webinar",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/md",
-      "nra_objectives": [],
-      "competencies": [],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 76
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 7: Review Technical File",
-          "score": 71
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.74,
-      "created": false,
-      "provider": "IMDRF",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Device reviewers",
-      "source_id": "MD-012",
-      "id": "job_mvbu3hso_t6",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Laboratory Quality Management",
-      "description": "ISO 17025 requirements, method validation and QC.",
-      "domain": "Quality Assurance",
-      "sub_domain": "Laboratory",
-      "language": "English",
-      "duration": "3 days",
-      "cost": "Free",
-      "training_mode": "In-person",
-      "approach": "Hands-on lab",
-      "evaluation": "Practical exam",
-      "outcome": "Certificate",
-      "product_type": "Course",
-      "registration_by": "Email",
-      "registration_value": "lab@example.com",
-      "nra_objectives": [
-        "Improve lab quality systems"
-      ],
-      "competencies": [
-        "Competency 3: Quality Systems"
-      ],
-      "activities": [
-        "Activity 4: Conduct GMP Audit"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 3: Quality Systems",
-          "score": 88
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 4: Conduct GMP Audit",
-          "score": 82
-        }
-      ],
-      "status": "created",
-      "confidence": 0.9,
-      "created": true,
-      "provider": "USP",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "Laboratory Scientists\nQA/QC Staff",
-      "source_id": "LAB-17025",
-      "id": "job_mvbu3hso_t7",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "USP Reference Standards Overview",
-      "description": "Identify the importance of USP Reference Standards in regulatory directives and proper uses.",
-      "domain": "General Notices and Introductory Courses",
-      "sub_domain": "",
-      "language": "English, Chinese",
-      "duration": "1 hour",
-      "cost": "",
-      "training_mode": "Live Webcast On-demand",
-      "approach": "",
-      "evaluation": "",
-      "outcome": "Identify the importance of USP Reference Standards (RS) in regulatory directives.",
-      "product_type": "",
-      "registration_by": "URL",
-      "registration_value": "https://www.usp.org/course/EURS-07",
-      "nra_objectives": [],
-      "competencies": [
-        "Competency 7: Other / Not specified"
-      ],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 100
-        }
-      ],
-      "activity_suggestions": [],
-      "status": "needs_review",
-      "confidence": 1,
-      "created": false,
-      "provider": "USP",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Laboratory Scientists\nQA/QC Staff",
-      "source_id": "EURS-07",
-      "id": "job_mvbu3hso_t8",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Introduction to Pharmacovigilance \u2014 Cohort A",
-      "description": "Foundational course covering the principles of pharmacovigilance and adverse event reporting.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Fundamentals",
-      "language": "English",
-      "duration": "4 hours",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Lecture + case studies",
-      "evaluation": "Quiz",
-      "outcome": "Understand core PV concepts and reporting pathways.",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.org/pv-intro",
-      "nra_objectives": [
-        "Strengthen national PV systems",
-        "Improve ADR reporting quality"
-      ],
-      "competencies": [
-        "Competency 1: Pharmacovigilance Systems"
-      ],
-      "activities": [
-        "Activity 1: Adverse Event Reporting"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 92
-        },
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 40
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 1: Adverse Event Reporting",
-          "score": 88
-        },
-        {
-          "name": "Activity 3: Signal Detection",
-          "score": 55
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.91,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Regulatory professionals\nLaboratory scientists",
-      "source_id": "PV-001-9",
-      "id": "job_mvbu3hso_t9",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Signal Detection in Pharmacovigilance \u2014 Cohort A",
-      "description": "Methods for detecting and evaluating safety signals from spontaneous reports and other data sources.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Signal Management",
-      "language": "English",
-      "duration": "6 hours",
-      "cost": "",
-      "training_mode": "Hybrid",
-      "approach": "Workshop",
-      "evaluation": "Assignment",
-      "outcome": "Apply signal detection methods to real datasets.",
-      "product_type": "Workshop",
-      "registration_by": "URL",
-      "registration_value": "",
-      "nra_objectives": [
-        "Improve signal detection capacity"
-      ],
-      "competencies": [],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 2: Signal Detection & Evaluation",
-          "score": 95
-        },
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 70
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 3: Signal Detection",
-          "score": 90
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.88,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "PV officers\nAssessors",
-      "source_id": "PV-002-10",
-      "id": "job_mvbu3hso_t10",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Good Manufacturing Practices for Regulatory Staff \u2014 Cohort A",
-      "description": "Comprehensive GMP training covering documentation, quality systems and inspection readiness for NRA staff.",
-      "domain": "Quality Assurance",
-      "sub_domain": "GMP",
-      "language": "English",
-      "duration": "3 days",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Interactive workshop",
-      "evaluation": "Quiz + Case study",
-      "outcome": "Certificate of completion",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/gmp-register",
-      "nra_objectives": [
-        "Ensure GMP compliance",
-        "Prepare for inspections"
-      ],
-      "competencies": [
-        "Competency 3: Quality Systems",
-        "Competency 4: Inspection Readiness"
-      ],
-      "activities": [
-        "Activity 4: Conduct GMP Audit"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 3: Quality Systems",
-          "score": 92
-        },
-        {
-          "name": "Competency 4: Inspection Readiness",
-          "score": 81
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 4: Conduct GMP Audit",
-          "score": 88
-        }
-      ],
-      "status": "edited",
-      "confidence": 0.92,
-      "created": false,
-      "provider": "WHO",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "Inspectors\nQA officers",
-      "source_id": "GMP-101-11",
-      "id": "job_mvbu3hso_t11",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Dossier Assessment for Marketing Authorization \u2014 Cohort A",
-      "description": "Review of CTD format, quality, safety and efficacy assessment.",
-      "domain": "Regulatory Affairs",
-      "sub_domain": "Registration",
-      "language": "French",
-      "duration": "5 days",
-      "cost": "Free",
-      "training_mode": "In-person",
-      "approach": "Case studies",
-      "evaluation": "Exam",
-      "outcome": "Certificate",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/dossier",
-      "nra_objectives": [
-        "Strengthen MA assessment"
-      ],
-      "competencies": [
-        "Competency 5: Dossier Assessment"
-      ],
-      "activities": [
-        "Activity 5: Assess Quality Module"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 5: Dossier Assessment",
-          "score": 65
-        },
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 32
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 5: Assess Quality Module",
-          "score": 62
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.58,
-      "created": false,
-      "provider": "SEARN",
-      "maturity_level": "Level 3 - Advanced",
-      "target_audience": "Assessors",
-      "source_id": "MA-210-12",
-      "id": "job_mvbu3hso_t12",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Clinical Trials Oversight \u2014 Cohort A",
-      "description": "GCP principles, protocol review and inspection of clinical trial sites.",
-      "domain": "Regulatory Affairs",
-      "sub_domain": "Clinical Trials",
-      "language": "English",
-      "duration": "2 days",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Interactive",
-      "evaluation": "Quiz",
-      "outcome": "Certificate",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/ct",
-      "nra_objectives": [
-        "Protect trial participants"
-      ],
-      "competencies": [
-        "Competency 6: GCP Compliance"
-      ],
-      "activities": [
-        "Activity 6: Inspect Trial Site"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 6: GCP Compliance",
-          "score": 90
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 6: Inspect Trial Site",
-          "score": 84
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.81,
-      "created": false,
-      "provider": "WHO",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "GCP inspectors",
-      "source_id": "CT-044-13",
-      "id": "job_mvbu3hso_t13",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Medical Device Regulation \u2014 Cohort A",
-      "description": "Classification, conformity assessment and post-market surveillance of medical devices.",
-      "domain": "Medical Devices",
-      "sub_domain": "Regulation",
-      "language": "English",
-      "duration": "1 day",
-      "cost": "$100",
-      "training_mode": "Virtual",
-      "approach": "Webinar",
-      "evaluation": "Attendance",
-      "outcome": "Participation certificate",
-      "product_type": "Webinar",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/md",
-      "nra_objectives": [],
-      "competencies": [],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 76
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 7: Review Technical File",
-          "score": 71
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.74,
-      "created": false,
-      "provider": "IMDRF",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Device reviewers",
-      "source_id": "MD-012-14",
-      "id": "job_mvbu3hso_t14",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Laboratory Quality Management \u2014 Cohort A",
-      "description": "ISO 17025 requirements, method validation and QC.",
-      "domain": "Quality Assurance",
-      "sub_domain": "Laboratory",
-      "language": "English",
-      "duration": "3 days",
-      "cost": "Free",
-      "training_mode": "In-person",
-      "approach": "Hands-on lab",
-      "evaluation": "Practical exam",
-      "outcome": "Certificate",
-      "product_type": "Course",
-      "registration_by": "Email",
-      "registration_value": "lab@example.com",
-      "nra_objectives": [
-        "Improve lab quality systems"
-      ],
-      "competencies": [
-        "Competency 3: Quality Systems"
-      ],
-      "activities": [
-        "Activity 4: Conduct GMP Audit"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 3: Quality Systems",
-          "score": 88
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 4: Conduct GMP Audit",
-          "score": 82
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.9,
-      "created": false,
-      "provider": "USP",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "Laboratory Scientists\nQA/QC Staff",
-      "source_id": "LAB-17025-15",
-      "id": "job_mvbu3hso_t15",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "USP Reference Standards Overview \u2014 Cohort A",
-      "description": "Identify the importance of USP Reference Standards in regulatory directives and proper uses.",
-      "domain": "General Notices and Introductory Courses",
-      "sub_domain": "",
-      "language": "English, Chinese",
-      "duration": "1 hour",
-      "cost": "",
-      "training_mode": "Live Webcast On-demand",
-      "approach": "",
-      "evaluation": "",
-      "outcome": "Identify the importance of USP Reference Standards (RS) in regulatory directives.",
-      "product_type": "",
-      "registration_by": "URL",
-      "registration_value": "https://www.usp.org/course/EURS-07",
-      "nra_objectives": [],
-      "competencies": [
-        "Competency 7: Other / Not specified"
-      ],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 100
-        }
-      ],
-      "activity_suggestions": [],
-      "status": "needs_review",
-      "confidence": 1,
-      "created": false,
-      "provider": "USP",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Laboratory Scientists\nQA/QC Staff",
-      "source_id": "EURS-07-16",
-      "id": "job_mvbu3hso_t16",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Introduction to Pharmacovigilance \u2014 Cohort B",
-      "description": "Foundational course covering the principles of pharmacovigilance and adverse event reporting.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Fundamentals",
-      "language": "English",
-      "duration": "4 hours",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Lecture + case studies",
-      "evaluation": "Quiz",
-      "outcome": "Understand core PV concepts and reporting pathways.",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.org/pv-intro",
-      "nra_objectives": [
-        "Strengthen national PV systems",
-        "Improve ADR reporting quality"
-      ],
-      "competencies": [
-        "Competency 1: Pharmacovigilance Systems"
-      ],
-      "activities": [
-        "Activity 1: Adverse Event Reporting"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 92
-        },
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 40
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 1: Adverse Event Reporting",
-          "score": 88
-        },
-        {
-          "name": "Activity 3: Signal Detection",
-          "score": 55
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.91,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Regulatory professionals\nLaboratory scientists",
-      "source_id": "PV-001-17",
-      "id": "job_mvbu3hso_t17",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Signal Detection in Pharmacovigilance \u2014 Cohort B",
-      "description": "Methods for detecting and evaluating safety signals from spontaneous reports and other data sources.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Signal Management",
-      "language": "English",
-      "duration": "6 hours",
-      "cost": "",
-      "training_mode": "Hybrid",
-      "approach": "Workshop",
-      "evaluation": "Assignment",
-      "outcome": "Apply signal detection methods to real datasets.",
-      "product_type": "Workshop",
-      "registration_by": "URL",
-      "registration_value": "",
-      "nra_objectives": [
-        "Improve signal detection capacity"
-      ],
-      "competencies": [],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 2: Signal Detection & Evaluation",
-          "score": 95
-        },
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 70
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 3: Signal Detection",
-          "score": 90
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.88,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "PV officers\nAssessors",
-      "source_id": "PV-002-18",
-      "id": "job_mvbu3hso_t18",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Good Manufacturing Practices for Regulatory Staff \u2014 Cohort B",
-      "description": "Comprehensive GMP training covering documentation, quality systems and inspection readiness for NRA staff.",
-      "domain": "Quality Assurance",
-      "sub_domain": "GMP",
-      "language": "English",
-      "duration": "3 days",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Interactive workshop",
-      "evaluation": "Quiz + Case study",
-      "outcome": "Certificate of completion",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/gmp-register",
-      "nra_objectives": [
-        "Ensure GMP compliance",
-        "Prepare for inspections"
-      ],
-      "competencies": [
-        "Competency 3: Quality Systems",
-        "Competency 4: Inspection Readiness"
-      ],
-      "activities": [
-        "Activity 4: Conduct GMP Audit"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 3: Quality Systems",
-          "score": 92
-        },
-        {
-          "name": "Competency 4: Inspection Readiness",
-          "score": 81
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 4: Conduct GMP Audit",
-          "score": 88
-        }
-      ],
-      "status": "edited",
-      "confidence": 0.92,
-      "created": false,
-      "provider": "WHO",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "Inspectors\nQA officers",
-      "source_id": "GMP-101-19",
-      "id": "job_mvbu3hso_t19",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Dossier Assessment for Marketing Authorization \u2014 Cohort B",
-      "description": "Review of CTD format, quality, safety and efficacy assessment.",
-      "domain": "Regulatory Affairs",
-      "sub_domain": "Registration",
-      "language": "French",
-      "duration": "5 days",
-      "cost": "Free",
-      "training_mode": "In-person",
-      "approach": "Case studies",
-      "evaluation": "Exam",
-      "outcome": "Certificate",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/dossier",
-      "nra_objectives": [
-        "Strengthen MA assessment"
-      ],
-      "competencies": [
-        "Competency 5: Dossier Assessment"
-      ],
-      "activities": [
-        "Activity 5: Assess Quality Module"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 5: Dossier Assessment",
-          "score": 65
-        },
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 32
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 5: Assess Quality Module",
-          "score": 62
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.58,
-      "created": false,
-      "provider": "SEARN",
-      "maturity_level": "Level 3 - Advanced",
-      "target_audience": "Assessors",
-      "source_id": "MA-210-20",
-      "id": "job_mvbu3hso_t20",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Clinical Trials Oversight \u2014 Cohort B",
-      "description": "GCP principles, protocol review and inspection of clinical trial sites.",
-      "domain": "Regulatory Affairs",
-      "sub_domain": "Clinical Trials",
-      "language": "English",
-      "duration": "2 days",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Interactive",
-      "evaluation": "Quiz",
-      "outcome": "Certificate",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/ct",
-      "nra_objectives": [
-        "Protect trial participants"
-      ],
-      "competencies": [
-        "Competency 6: GCP Compliance"
-      ],
-      "activities": [
-        "Activity 6: Inspect Trial Site"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 6: GCP Compliance",
-          "score": 90
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 6: Inspect Trial Site",
-          "score": 84
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.81,
-      "created": false,
-      "provider": "WHO",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "GCP inspectors",
-      "source_id": "CT-044-21",
-      "id": "job_mvbu3hso_t21",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Medical Device Regulation \u2014 Cohort B",
-      "description": "Classification, conformity assessment and post-market surveillance of medical devices.",
-      "domain": "Medical Devices",
-      "sub_domain": "Regulation",
-      "language": "English",
-      "duration": "1 day",
-      "cost": "$100",
-      "training_mode": "Virtual",
-      "approach": "Webinar",
-      "evaluation": "Attendance",
-      "outcome": "Participation certificate",
-      "product_type": "Webinar",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/md",
-      "nra_objectives": [],
-      "competencies": [],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 76
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 7: Review Technical File",
-          "score": 71
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.74,
-      "created": false,
-      "provider": "IMDRF",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Device reviewers",
-      "source_id": "MD-012-22",
-      "id": "job_mvbu3hso_t22",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Laboratory Quality Management \u2014 Cohort B",
-      "description": "ISO 17025 requirements, method validation and QC.",
-      "domain": "Quality Assurance",
-      "sub_domain": "Laboratory",
-      "language": "English",
-      "duration": "3 days",
-      "cost": "Free",
-      "training_mode": "In-person",
-      "approach": "Hands-on lab",
-      "evaluation": "Practical exam",
-      "outcome": "Certificate",
-      "product_type": "Course",
-      "registration_by": "Email",
-      "registration_value": "lab@example.com",
-      "nra_objectives": [
-        "Improve lab quality systems"
-      ],
-      "competencies": [
-        "Competency 3: Quality Systems"
-      ],
-      "activities": [
-        "Activity 4: Conduct GMP Audit"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 3: Quality Systems",
-          "score": 88
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 4: Conduct GMP Audit",
-          "score": 82
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.9,
-      "created": false,
-      "provider": "USP",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "Laboratory Scientists\nQA/QC Staff",
-      "source_id": "LAB-17025-23",
-      "id": "job_mvbu3hso_t23",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "USP Reference Standards Overview \u2014 Cohort B",
-      "description": "Identify the importance of USP Reference Standards in regulatory directives and proper uses.",
-      "domain": "General Notices and Introductory Courses",
-      "sub_domain": "",
-      "language": "English, Chinese",
-      "duration": "1 hour",
-      "cost": "",
-      "training_mode": "Live Webcast On-demand",
-      "approach": "",
-      "evaluation": "",
-      "outcome": "Identify the importance of USP Reference Standards (RS) in regulatory directives.",
-      "product_type": "",
-      "registration_by": "URL",
-      "registration_value": "https://www.usp.org/course/EURS-07",
-      "nra_objectives": [],
-      "competencies": [
-        "Competency 7: Other / Not specified"
-      ],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 100
-        }
-      ],
-      "activity_suggestions": [],
-      "status": "needs_review",
-      "confidence": 1,
-      "created": false,
-      "provider": "USP",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Laboratory Scientists\nQA/QC Staff",
-      "source_id": "EURS-07-24",
-      "id": "job_mvbu3hso_t24",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Introduction to Pharmacovigilance (French delivery)",
-      "description": "Foundational course covering the principles of pharmacovigilance and adverse event reporting.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Fundamentals",
-      "language": "English",
-      "duration": "4 hours",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Lecture + case studies",
-      "evaluation": "Quiz",
-      "outcome": "Understand core PV concepts and reporting pathways.",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.org/pv-intro",
-      "nra_objectives": [
-        "Strengthen national PV systems",
-        "Improve ADR reporting quality"
-      ],
-      "competencies": [
-        "Competency 1: Pharmacovigilance Systems"
-      ],
-      "activities": [
-        "Activity 1: Adverse Event Reporting"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 92
-        },
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 40
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 1: Adverse Event Reporting",
-          "score": 88
-        },
-        {
-          "name": "Activity 3: Signal Detection",
-          "score": 55
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.91,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Regulatory professionals\nLaboratory scientists",
-      "source_id": "PV-001-25",
-      "id": "job_mvbu3hso_t25",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Signal Detection in Pharmacovigilance (French delivery)",
-      "description": "Methods for detecting and evaluating safety signals from spontaneous reports and other data sources.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Signal Management",
-      "language": "English",
-      "duration": "6 hours",
-      "cost": "",
-      "training_mode": "Hybrid",
-      "approach": "Workshop",
-      "evaluation": "Assignment",
-      "outcome": "Apply signal detection methods to real datasets.",
-      "product_type": "Workshop",
-      "registration_by": "URL",
-      "registration_value": "",
-      "nra_objectives": [
-        "Improve signal detection capacity"
-      ],
-      "competencies": [],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 2: Signal Detection & Evaluation",
-          "score": 95
-        },
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 70
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 3: Signal Detection",
-          "score": 90
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.88,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "PV officers\nAssessors",
-      "source_id": "PV-002-26",
-      "id": "job_mvbu3hso_t26",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Good Manufacturing Practices for Regulatory Staff (French delivery)",
-      "description": "Comprehensive GMP training covering documentation, quality systems and inspection readiness for NRA staff.",
-      "domain": "Quality Assurance",
-      "sub_domain": "GMP",
-      "language": "English",
-      "duration": "3 days",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Interactive workshop",
-      "evaluation": "Quiz + Case study",
-      "outcome": "Certificate of completion",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/gmp-register",
-      "nra_objectives": [
-        "Ensure GMP compliance",
-        "Prepare for inspections"
-      ],
-      "competencies": [
-        "Competency 3: Quality Systems",
-        "Competency 4: Inspection Readiness"
-      ],
-      "activities": [
-        "Activity 4: Conduct GMP Audit"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 3: Quality Systems",
-          "score": 92
-        },
-        {
-          "name": "Competency 4: Inspection Readiness",
-          "score": 81
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 4: Conduct GMP Audit",
-          "score": 88
-        }
-      ],
-      "status": "edited",
-      "confidence": 0.92,
-      "created": false,
-      "provider": "WHO",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "Inspectors\nQA officers",
-      "source_id": "GMP-101-27",
-      "id": "job_mvbu3hso_t27",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    },
-    {
-      "training_name": "Dossier Assessment for Marketing Authorization (French delivery)",
-      "description": "Review of CTD format, quality, safety and efficacy assessment.",
-      "domain": "Regulatory Affairs",
-      "sub_domain": "Registration",
-      "language": "French",
-      "duration": "5 days",
-      "cost": "Free",
-      "training_mode": "In-person",
-      "approach": "Case studies",
-      "evaluation": "Exam",
-      "outcome": "Certificate",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.com/dossier",
-      "nra_objectives": [
-        "Strengthen MA assessment"
-      ],
-      "competencies": [
-        "Competency 5: Dossier Assessment"
-      ],
-      "activities": [
-        "Activity 5: Assess Quality Module"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 5: Dossier Assessment",
-          "score": 65
-        },
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 32
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 5: Assess Quality Module",
-          "score": 62
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.58,
-      "created": false,
-      "provider": "SEARN",
-      "maturity_level": "Level 3 - Advanced",
-      "target_audience": "Assessors",
-      "source_id": "MA-210-28",
-      "id": "job_mvbu3hso_t28",
-      "source_file": "SEARN_Capacity_building_catalogue.pdf"
-    }
-  ],
-  "job_seed_2026": [
-    {
-      "training_name": "Introduction to Pharmacovigilance",
-      "description": "Foundational course covering the principles of pharmacovigilance and adverse event reporting.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Fundamentals",
-      "language": "English",
-      "duration": "4 hours",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Lecture + case studies",
-      "evaluation": "Quiz",
-      "outcome": "Understand core PV concepts and reporting pathways.",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.org/pv-intro",
-      "nra_objectives": [
-        "Strengthen national PV systems",
-        "Improve ADR reporting quality"
-      ],
-      "competencies": [
-        "Competency 1: Pharmacovigilance Systems"
-      ],
-      "activities": [
-        "Activity 1: Adverse Event Reporting"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 92
-        },
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 40
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 1: Adverse Event Reporting",
-          "score": 88
-        },
-        {
-          "name": "Activity 3: Signal Detection",
-          "score": 55
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.91,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Regulatory professionals\nLaboratory scientists",
-      "source_id": "PV-001",
-      "id": "job_seed_2026_t1",
-      "source_file": "bhola.pdf"
-    },
-    {
-      "training_name": "Signal Detection in Pharmacovigilance",
-      "description": "Methods for detecting and evaluating safety signals from spontaneous reports and other data sources.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Signal Management",
-      "language": "English",
-      "duration": "6 hours",
-      "cost": "",
-      "training_mode": "Hybrid",
-      "approach": "Workshop",
-      "evaluation": "Assignment",
-      "outcome": "Apply signal detection methods to real datasets.",
-      "product_type": "Workshop",
-      "registration_by": "URL",
-      "registration_value": "",
-      "nra_objectives": [
-        "Improve signal detection capacity"
-      ],
-      "competencies": [],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 2: Signal Detection & Evaluation",
-          "score": 95
-        },
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 70
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 3: Signal Detection",
-          "score": 90
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.88,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "PV officers\nAssessors",
-      "source_id": "PV-002",
-      "id": "job_seed_2026_t2",
-      "source_file": "bhola.pdf"
-    },
-    {
-      "training_name": "USP Reference Standards Overview",
-      "description": "Identify the importance of USP Reference Standards in regulatory directives and proper uses.",
-      "domain": "General Notices and Introductory Courses",
-      "sub_domain": "",
-      "language": "English, Chinese",
-      "duration": "1 hour",
-      "cost": "",
-      "training_mode": "Live Webcast On-demand",
-      "approach": "",
-      "evaluation": "",
-      "outcome": "Identify the importance of USP Reference Standards (RS) in regulatory directives.",
-      "product_type": "",
-      "registration_by": "URL",
-      "registration_value": "https://www.usp.org/course/EURS-07",
-      "nra_objectives": [],
-      "competencies": [
-        "Competency 7: Other / Not specified"
-      ],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 100
-        }
-      ],
-      "activity_suggestions": [],
-      "status": "needs_review",
-      "confidence": 1,
-      "created": false,
-      "provider": "USP",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Laboratory Scientists\nQA/QC Staff",
-      "source_id": "EURS-07",
-      "id": "job_seed_2026_t3",
-      "source_file": "bhola.pdf"
-    }
-  ],
-  "job_seed_xlsx_1": [
-    {
-      "training_name": "Capacity Building in Vigilance (UMC)",
-      "description": "Regional capacity building programme for national pharmacovigilance centres.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Capacity Building",
-      "language": "English",
-      "duration": "3 days",
-      "cost": "Free",
-      "training_mode": "In-person",
-      "approach": "Blended",
-      "evaluation": "Certificate of attendance",
-      "outcome": "Strengthen national PV centre capabilities.",
-      "product_type": "Programme",
-      "registration_by": "Email",
-      "registration_value": "training@example.org",
-      "nra_objectives": [
-        "Strengthen national PV centre capabilities"
-      ],
-      "competencies": [
-        "Competency 1: Pharmacovigilance Systems"
-      ],
-      "activities": [
-        "Activity 2: Capacity Building"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 85
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 2: Capacity Building",
-          "score": 80
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.84,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "NRA staff\nPV centre managers",
-      "source_id": "UMC-CB-01",
-      "id": "job_seed_xlsx_1_t1",
-      "source_file": "All_Courses_with_Maturity_Level_1.xlsx"
-    }
-  ],
-  "job_seed_template": [
-    {
-      "training_name": "Introduction to Pharmacovigilance",
-      "description": "Foundational course covering the principles of pharmacovigilance and adverse event reporting.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Fundamentals",
-      "language": "English",
-      "duration": "4 hours",
-      "cost": "Free",
-      "training_mode": "Virtual",
-      "approach": "Lecture + case studies",
-      "evaluation": "Quiz",
-      "outcome": "Understand core PV concepts and reporting pathways.",
-      "product_type": "Course",
-      "registration_by": "URL",
-      "registration_value": "https://example.org/pv-intro",
-      "nra_objectives": [
-        "Strengthen national PV systems",
-        "Improve ADR reporting quality"
-      ],
-      "competencies": [
-        "Competency 1: Pharmacovigilance Systems"
-      ],
-      "activities": [
-        "Activity 1: Adverse Event Reporting"
-      ],
-      "competency_suggestions": [
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 92
-        },
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 40
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 1: Adverse Event Reporting",
-          "score": 88
-        },
-        {
-          "name": "Activity 3: Signal Detection",
-          "score": 55
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.91,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Regulatory professionals\nLaboratory scientists",
-      "source_id": "PV-001",
-      "id": "job_seed_2026_t1",
-      "source_file": "bhola.pdf"
-    },
-    {
-      "training_name": "Signal Detection in Pharmacovigilance",
-      "description": "Methods for detecting and evaluating safety signals from spontaneous reports and other data sources.",
-      "domain": "Pharmacovigilance",
-      "sub_domain": "Signal Management",
-      "language": "English",
-      "duration": "6 hours",
-      "cost": "",
-      "training_mode": "Hybrid",
-      "approach": "Workshop",
-      "evaluation": "Assignment",
-      "outcome": "Apply signal detection methods to real datasets.",
-      "product_type": "Workshop",
-      "registration_by": "URL",
-      "registration_value": "",
-      "nra_objectives": [
-        "Improve signal detection capacity"
-      ],
-      "competencies": [],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 2: Signal Detection & Evaluation",
-          "score": 95
-        },
-        {
-          "name": "Competency 1: Pharmacovigilance Systems",
-          "score": 70
-        }
-      ],
-      "activity_suggestions": [
-        {
-          "name": "Activity 3: Signal Detection",
-          "score": 90
-        }
-      ],
-      "status": "needs_review",
-      "confidence": 0.88,
-      "created": false,
-      "provider": "UMC",
-      "maturity_level": "Level 2 - Intermediate",
-      "target_audience": "PV officers\nAssessors",
-      "source_id": "PV-002",
-      "id": "job_seed_2026_t2",
-      "source_file": "bhola.pdf"
-    },
-    {
-      "training_name": "USP Reference Standards Overview",
-      "description": "Identify the importance of USP Reference Standards in regulatory directives and proper uses.",
-      "domain": "General Notices and Introductory Courses",
-      "sub_domain": "",
-      "language": "English, Chinese",
-      "duration": "1 hour",
-      "cost": "",
-      "training_mode": "Live Webcast On-demand",
-      "approach": "",
-      "evaluation": "",
-      "outcome": "Identify the importance of USP Reference Standards (RS) in regulatory directives.",
-      "product_type": "",
-      "registration_by": "URL",
-      "registration_value": "https://www.usp.org/course/EURS-07",
-      "nra_objectives": [],
-      "competencies": [
-        "Competency 7: Other / Not specified"
-      ],
-      "activities": [],
-      "competency_suggestions": [
-        {
-          "name": "Competency 7: Other / Not specified",
-          "score": 100
-        }
-      ],
-      "activity_suggestions": [],
-      "status": "needs_review",
-      "confidence": 1,
-      "created": false,
-      "provider": "USP",
-      "maturity_level": "Level 1 - Foundational",
-      "target_audience": "Laboratory Scientists\nQA/QC Staff",
-      "source_id": "EURS-07",
-      "id": "job_seed_2026_t3",
-      "source_file": "bhola.pdf"
-    }
-  ]
+  "job_mvbu3hso": {
+    "results": [
+      {
+        "training_name": "Introduction to Pharmacovigilance",
+        "description": "Foundational course covering the principles of pharmacovigilance and adverse event reporting.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Fundamentals",
+        "language": "English",
+        "duration": "4 hours",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Lecture + case studies",
+        "evaluation": "Quiz",
+        "outcome": "Understand core PV concepts and reporting pathways.",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.org/pv-intro",
+        "nra_objectives": [
+          "Strengthen national PV systems",
+          "Improve ADR reporting quality"
+        ],
+        "competencies": [
+          "Competency 1: Pharmacovigilance Systems"
+        ],
+        "activities": [
+          "Activity 1: Adverse Event Reporting"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t1_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 92
+          },
+          {
+            "id": "job_mvbu3hso_t1_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 40
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t1_as-activity-1-adverse-event-reporting",
+            "name": "Activity 1: Adverse Event Reporting",
+            "score": 88
+          },
+          {
+            "id": "job_mvbu3hso_t1_as-activity-3-signal-detection",
+            "name": "Activity 3: Signal Detection",
+            "score": 55
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.91,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Regulatory professionals\nLaboratory scientists",
+        "source_id": "PV-001",
+        "id": "job_mvbu3hso_t1",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Signal Detection in Pharmacovigilance",
+        "description": "Methods for detecting and evaluating safety signals from spontaneous reports and other data sources.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Signal Management",
+        "language": "English",
+        "duration": "6 hours",
+        "cost": "",
+        "training_mode": "Hybrid",
+        "approach": "Workshop",
+        "evaluation": "Assignment",
+        "outcome": "Apply signal detection methods to real datasets.",
+        "product_type": "Workshop",
+        "registration_by": "URL",
+        "registration_value": "",
+        "nra_objectives": [
+          "Improve signal detection capacity"
+        ],
+        "competencies": [],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t2_cs-competency-2-signal-detection-evaluation",
+            "name": "Competency 2: Signal Detection & Evaluation",
+            "score": 95
+          },
+          {
+            "id": "job_mvbu3hso_t2_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 70
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t2_as-activity-3-signal-detection",
+            "name": "Activity 3: Signal Detection",
+            "score": 90
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.88,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "PV officers\nAssessors",
+        "source_id": "PV-002",
+        "id": "job_mvbu3hso_t2",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Good Manufacturing Practices for Regulatory Staff",
+        "description": "Comprehensive GMP training covering documentation, quality systems and inspection readiness for NRA staff.",
+        "domain": "Quality Assurance",
+        "sub_domain": "GMP",
+        "language": "English",
+        "duration": "3 days",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Interactive workshop",
+        "evaluation": "Quiz + Case study",
+        "outcome": "Certificate of completion",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/gmp-register",
+        "nra_objectives": [
+          "Ensure GMP compliance",
+          "Prepare for inspections"
+        ],
+        "competencies": [
+          "Competency 3: Quality Systems",
+          "Competency 4: Inspection Readiness"
+        ],
+        "activities": [
+          "Activity 4: Conduct GMP Audit"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t3_cs-competency-3-quality-systems",
+            "name": "Competency 3: Quality Systems",
+            "score": 92
+          },
+          {
+            "id": "job_mvbu3hso_t3_cs-competency-4-inspection-readiness",
+            "name": "Competency 4: Inspection Readiness",
+            "score": 81
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t3_as-activity-4-conduct-gmp-audit",
+            "name": "Activity 4: Conduct GMP Audit",
+            "score": 88
+          }
+        ],
+        "status": "edited",
+        "confidence": 0.92,
+        "created": false,
+        "provider": "WHO",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "Inspectors\nQA officers",
+        "source_id": "GMP-101",
+        "id": "job_mvbu3hso_t3",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Dossier Assessment for Marketing Authorization",
+        "description": "Review of CTD format, quality, safety and efficacy assessment.",
+        "domain": "Regulatory Affairs",
+        "sub_domain": "Registration",
+        "language": "French",
+        "duration": "5 days",
+        "cost": "Free",
+        "training_mode": "In-person",
+        "approach": "Case studies",
+        "evaluation": "Exam",
+        "outcome": "Certificate",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/dossier",
+        "nra_objectives": [
+          "Strengthen MA assessment"
+        ],
+        "competencies": [
+          "Competency 5: Dossier Assessment"
+        ],
+        "activities": [
+          "Activity 5: Assess Quality Module"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t4_cs-competency-5-dossier-assessment",
+            "name": "Competency 5: Dossier Assessment",
+            "score": 65
+          },
+          {
+            "id": "job_mvbu3hso_t4_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 32
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t4_as-activity-5-assess-quality-module",
+            "name": "Activity 5: Assess Quality Module",
+            "score": 62
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.58,
+        "created": false,
+        "provider": "SEARN",
+        "maturity_level": "Level 3 - Advanced",
+        "target_audience": "Assessors",
+        "source_id": "MA-210",
+        "id": "job_mvbu3hso_t4",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Clinical Trials Oversight",
+        "description": "GCP principles, protocol review and inspection of clinical trial sites.",
+        "domain": "Regulatory Affairs",
+        "sub_domain": "Clinical Trials",
+        "language": "English",
+        "duration": "2 days",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Interactive",
+        "evaluation": "Quiz",
+        "outcome": "Certificate",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/ct",
+        "nra_objectives": [
+          "Protect trial participants"
+        ],
+        "competencies": [
+          "Competency 6: GCP Compliance"
+        ],
+        "activities": [
+          "Activity 6: Inspect Trial Site"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t5_cs-competency-6-gcp-compliance",
+            "name": "Competency 6: GCP Compliance",
+            "score": 90
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t5_as-activity-6-inspect-trial-site",
+            "name": "Activity 6: Inspect Trial Site",
+            "score": 84
+          }
+        ],
+        "status": "created",
+        "confidence": 0.81,
+        "created": true,
+        "provider": "WHO",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "GCP inspectors",
+        "source_id": "CT-044",
+        "id": "job_mvbu3hso_t5",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Medical Device Regulation",
+        "description": "Classification, conformity assessment and post-market surveillance of medical devices.",
+        "domain": "Medical Devices",
+        "sub_domain": "Regulation",
+        "language": "English",
+        "duration": "1 day",
+        "cost": "$100",
+        "training_mode": "Virtual",
+        "approach": "Webinar",
+        "evaluation": "Attendance",
+        "outcome": "Participation certificate",
+        "product_type": "Webinar",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/md",
+        "nra_objectives": [],
+        "competencies": [],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t6_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 76
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t6_as-activity-7-review-technical-file",
+            "name": "Activity 7: Review Technical File",
+            "score": 71
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.74,
+        "created": false,
+        "provider": "IMDRF",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Device reviewers",
+        "source_id": "MD-012",
+        "id": "job_mvbu3hso_t6",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Laboratory Quality Management",
+        "description": "ISO 17025 requirements, method validation and QC.",
+        "domain": "Quality Assurance",
+        "sub_domain": "Laboratory",
+        "language": "English",
+        "duration": "3 days",
+        "cost": "Free",
+        "training_mode": "In-person",
+        "approach": "Hands-on lab",
+        "evaluation": "Practical exam",
+        "outcome": "Certificate",
+        "product_type": "Course",
+        "registration_by": "Email",
+        "registration_value": "lab@example.com",
+        "nra_objectives": [
+          "Improve lab quality systems"
+        ],
+        "competencies": [
+          "Competency 3: Quality Systems"
+        ],
+        "activities": [
+          "Activity 4: Conduct GMP Audit"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t7_cs-competency-3-quality-systems",
+            "name": "Competency 3: Quality Systems",
+            "score": 88
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t7_as-activity-4-conduct-gmp-audit",
+            "name": "Activity 4: Conduct GMP Audit",
+            "score": 82
+          }
+        ],
+        "status": "created",
+        "confidence": 0.9,
+        "created": true,
+        "provider": "USP",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "Laboratory Scientists\nQA/QC Staff",
+        "source_id": "LAB-17025",
+        "id": "job_mvbu3hso_t7",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "USP Reference Standards Overview",
+        "description": "Identify the importance of USP Reference Standards in regulatory directives and proper uses.",
+        "domain": "General Notices and Introductory Courses",
+        "sub_domain": "",
+        "language": "English, Chinese",
+        "duration": "1 hour",
+        "cost": "",
+        "training_mode": "Live Webcast On-demand",
+        "approach": "",
+        "evaluation": "",
+        "outcome": "Identify the importance of USP Reference Standards (RS) in regulatory directives.",
+        "product_type": "",
+        "registration_by": "URL",
+        "registration_value": "https://www.usp.org/course/EURS-07",
+        "nra_objectives": [],
+        "competencies": [
+          "Competency 7: Other / Not specified"
+        ],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t8_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 100
+          }
+        ],
+        "activity_suggestions": [],
+        "status": "needs_review",
+        "confidence": 1,
+        "created": false,
+        "provider": "USP",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Laboratory Scientists\nQA/QC Staff",
+        "source_id": "EURS-07",
+        "id": "job_mvbu3hso_t8",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Introduction to Pharmacovigilance — Cohort A",
+        "description": "Foundational course covering the principles of pharmacovigilance and adverse event reporting.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Fundamentals",
+        "language": "English",
+        "duration": "4 hours",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Lecture + case studies",
+        "evaluation": "Quiz",
+        "outcome": "Understand core PV concepts and reporting pathways.",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.org/pv-intro",
+        "nra_objectives": [
+          "Strengthen national PV systems",
+          "Improve ADR reporting quality"
+        ],
+        "competencies": [
+          "Competency 1: Pharmacovigilance Systems"
+        ],
+        "activities": [
+          "Activity 1: Adverse Event Reporting"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t9_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 92
+          },
+          {
+            "id": "job_mvbu3hso_t9_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 40
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t9_as-activity-1-adverse-event-reporting",
+            "name": "Activity 1: Adverse Event Reporting",
+            "score": 88
+          },
+          {
+            "id": "job_mvbu3hso_t9_as-activity-3-signal-detection",
+            "name": "Activity 3: Signal Detection",
+            "score": 55
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.91,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Regulatory professionals\nLaboratory scientists",
+        "source_id": "PV-001-9",
+        "id": "job_mvbu3hso_t9",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Signal Detection in Pharmacovigilance — Cohort A",
+        "description": "Methods for detecting and evaluating safety signals from spontaneous reports and other data sources.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Signal Management",
+        "language": "English",
+        "duration": "6 hours",
+        "cost": "",
+        "training_mode": "Hybrid",
+        "approach": "Workshop",
+        "evaluation": "Assignment",
+        "outcome": "Apply signal detection methods to real datasets.",
+        "product_type": "Workshop",
+        "registration_by": "URL",
+        "registration_value": "",
+        "nra_objectives": [
+          "Improve signal detection capacity"
+        ],
+        "competencies": [],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t10_cs-competency-2-signal-detection-evaluation",
+            "name": "Competency 2: Signal Detection & Evaluation",
+            "score": 95
+          },
+          {
+            "id": "job_mvbu3hso_t10_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 70
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t10_as-activity-3-signal-detection",
+            "name": "Activity 3: Signal Detection",
+            "score": 90
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.88,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "PV officers\nAssessors",
+        "source_id": "PV-002-10",
+        "id": "job_mvbu3hso_t10",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Good Manufacturing Practices for Regulatory Staff — Cohort A",
+        "description": "Comprehensive GMP training covering documentation, quality systems and inspection readiness for NRA staff.",
+        "domain": "Quality Assurance",
+        "sub_domain": "GMP",
+        "language": "English",
+        "duration": "3 days",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Interactive workshop",
+        "evaluation": "Quiz + Case study",
+        "outcome": "Certificate of completion",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/gmp-register",
+        "nra_objectives": [
+          "Ensure GMP compliance",
+          "Prepare for inspections"
+        ],
+        "competencies": [
+          "Competency 3: Quality Systems",
+          "Competency 4: Inspection Readiness"
+        ],
+        "activities": [
+          "Activity 4: Conduct GMP Audit"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t11_cs-competency-3-quality-systems",
+            "name": "Competency 3: Quality Systems",
+            "score": 92
+          },
+          {
+            "id": "job_mvbu3hso_t11_cs-competency-4-inspection-readiness",
+            "name": "Competency 4: Inspection Readiness",
+            "score": 81
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t11_as-activity-4-conduct-gmp-audit",
+            "name": "Activity 4: Conduct GMP Audit",
+            "score": 88
+          }
+        ],
+        "status": "edited",
+        "confidence": 0.92,
+        "created": false,
+        "provider": "WHO",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "Inspectors\nQA officers",
+        "source_id": "GMP-101-11",
+        "id": "job_mvbu3hso_t11",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Dossier Assessment for Marketing Authorization — Cohort A",
+        "description": "Review of CTD format, quality, safety and efficacy assessment.",
+        "domain": "Regulatory Affairs",
+        "sub_domain": "Registration",
+        "language": "French",
+        "duration": "5 days",
+        "cost": "Free",
+        "training_mode": "In-person",
+        "approach": "Case studies",
+        "evaluation": "Exam",
+        "outcome": "Certificate",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/dossier",
+        "nra_objectives": [
+          "Strengthen MA assessment"
+        ],
+        "competencies": [
+          "Competency 5: Dossier Assessment"
+        ],
+        "activities": [
+          "Activity 5: Assess Quality Module"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t12_cs-competency-5-dossier-assessment",
+            "name": "Competency 5: Dossier Assessment",
+            "score": 65
+          },
+          {
+            "id": "job_mvbu3hso_t12_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 32
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t12_as-activity-5-assess-quality-module",
+            "name": "Activity 5: Assess Quality Module",
+            "score": 62
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.58,
+        "created": false,
+        "provider": "SEARN",
+        "maturity_level": "Level 3 - Advanced",
+        "target_audience": "Assessors",
+        "source_id": "MA-210-12",
+        "id": "job_mvbu3hso_t12",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Clinical Trials Oversight — Cohort A",
+        "description": "GCP principles, protocol review and inspection of clinical trial sites.",
+        "domain": "Regulatory Affairs",
+        "sub_domain": "Clinical Trials",
+        "language": "English",
+        "duration": "2 days",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Interactive",
+        "evaluation": "Quiz",
+        "outcome": "Certificate",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/ct",
+        "nra_objectives": [
+          "Protect trial participants"
+        ],
+        "competencies": [
+          "Competency 6: GCP Compliance"
+        ],
+        "activities": [
+          "Activity 6: Inspect Trial Site"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t13_cs-competency-6-gcp-compliance",
+            "name": "Competency 6: GCP Compliance",
+            "score": 90
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t13_as-activity-6-inspect-trial-site",
+            "name": "Activity 6: Inspect Trial Site",
+            "score": 84
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.81,
+        "created": false,
+        "provider": "WHO",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "GCP inspectors",
+        "source_id": "CT-044-13",
+        "id": "job_mvbu3hso_t13",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Medical Device Regulation — Cohort A",
+        "description": "Classification, conformity assessment and post-market surveillance of medical devices.",
+        "domain": "Medical Devices",
+        "sub_domain": "Regulation",
+        "language": "English",
+        "duration": "1 day",
+        "cost": "$100",
+        "training_mode": "Virtual",
+        "approach": "Webinar",
+        "evaluation": "Attendance",
+        "outcome": "Participation certificate",
+        "product_type": "Webinar",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/md",
+        "nra_objectives": [],
+        "competencies": [],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t14_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 76
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t14_as-activity-7-review-technical-file",
+            "name": "Activity 7: Review Technical File",
+            "score": 71
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.74,
+        "created": false,
+        "provider": "IMDRF",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Device reviewers",
+        "source_id": "MD-012-14",
+        "id": "job_mvbu3hso_t14",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Laboratory Quality Management — Cohort A",
+        "description": "ISO 17025 requirements, method validation and QC.",
+        "domain": "Quality Assurance",
+        "sub_domain": "Laboratory",
+        "language": "English",
+        "duration": "3 days",
+        "cost": "Free",
+        "training_mode": "In-person",
+        "approach": "Hands-on lab",
+        "evaluation": "Practical exam",
+        "outcome": "Certificate",
+        "product_type": "Course",
+        "registration_by": "Email",
+        "registration_value": "lab@example.com",
+        "nra_objectives": [
+          "Improve lab quality systems"
+        ],
+        "competencies": [
+          "Competency 3: Quality Systems"
+        ],
+        "activities": [
+          "Activity 4: Conduct GMP Audit"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t15_cs-competency-3-quality-systems",
+            "name": "Competency 3: Quality Systems",
+            "score": 88
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t15_as-activity-4-conduct-gmp-audit",
+            "name": "Activity 4: Conduct GMP Audit",
+            "score": 82
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.9,
+        "created": false,
+        "provider": "USP",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "Laboratory Scientists\nQA/QC Staff",
+        "source_id": "LAB-17025-15",
+        "id": "job_mvbu3hso_t15",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "USP Reference Standards Overview — Cohort A",
+        "description": "Identify the importance of USP Reference Standards in regulatory directives and proper uses.",
+        "domain": "General Notices and Introductory Courses",
+        "sub_domain": "",
+        "language": "English, Chinese",
+        "duration": "1 hour",
+        "cost": "",
+        "training_mode": "Live Webcast On-demand",
+        "approach": "",
+        "evaluation": "",
+        "outcome": "Identify the importance of USP Reference Standards (RS) in regulatory directives.",
+        "product_type": "",
+        "registration_by": "URL",
+        "registration_value": "https://www.usp.org/course/EURS-07",
+        "nra_objectives": [],
+        "competencies": [
+          "Competency 7: Other / Not specified"
+        ],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t16_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 100
+          }
+        ],
+        "activity_suggestions": [],
+        "status": "needs_review",
+        "confidence": 1,
+        "created": false,
+        "provider": "USP",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Laboratory Scientists\nQA/QC Staff",
+        "source_id": "EURS-07-16",
+        "id": "job_mvbu3hso_t16",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Introduction to Pharmacovigilance — Cohort B",
+        "description": "Foundational course covering the principles of pharmacovigilance and adverse event reporting.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Fundamentals",
+        "language": "English",
+        "duration": "4 hours",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Lecture + case studies",
+        "evaluation": "Quiz",
+        "outcome": "Understand core PV concepts and reporting pathways.",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.org/pv-intro",
+        "nra_objectives": [
+          "Strengthen national PV systems",
+          "Improve ADR reporting quality"
+        ],
+        "competencies": [
+          "Competency 1: Pharmacovigilance Systems"
+        ],
+        "activities": [
+          "Activity 1: Adverse Event Reporting"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t17_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 92
+          },
+          {
+            "id": "job_mvbu3hso_t17_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 40
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t17_as-activity-1-adverse-event-reporting",
+            "name": "Activity 1: Adverse Event Reporting",
+            "score": 88
+          },
+          {
+            "id": "job_mvbu3hso_t17_as-activity-3-signal-detection",
+            "name": "Activity 3: Signal Detection",
+            "score": 55
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.91,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Regulatory professionals\nLaboratory scientists",
+        "source_id": "PV-001-17",
+        "id": "job_mvbu3hso_t17",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Signal Detection in Pharmacovigilance — Cohort B",
+        "description": "Methods for detecting and evaluating safety signals from spontaneous reports and other data sources.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Signal Management",
+        "language": "English",
+        "duration": "6 hours",
+        "cost": "",
+        "training_mode": "Hybrid",
+        "approach": "Workshop",
+        "evaluation": "Assignment",
+        "outcome": "Apply signal detection methods to real datasets.",
+        "product_type": "Workshop",
+        "registration_by": "URL",
+        "registration_value": "",
+        "nra_objectives": [
+          "Improve signal detection capacity"
+        ],
+        "competencies": [],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t18_cs-competency-2-signal-detection-evaluation",
+            "name": "Competency 2: Signal Detection & Evaluation",
+            "score": 95
+          },
+          {
+            "id": "job_mvbu3hso_t18_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 70
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t18_as-activity-3-signal-detection",
+            "name": "Activity 3: Signal Detection",
+            "score": 90
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.88,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "PV officers\nAssessors",
+        "source_id": "PV-002-18",
+        "id": "job_mvbu3hso_t18",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Good Manufacturing Practices for Regulatory Staff — Cohort B",
+        "description": "Comprehensive GMP training covering documentation, quality systems and inspection readiness for NRA staff.",
+        "domain": "Quality Assurance",
+        "sub_domain": "GMP",
+        "language": "English",
+        "duration": "3 days",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Interactive workshop",
+        "evaluation": "Quiz + Case study",
+        "outcome": "Certificate of completion",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/gmp-register",
+        "nra_objectives": [
+          "Ensure GMP compliance",
+          "Prepare for inspections"
+        ],
+        "competencies": [
+          "Competency 3: Quality Systems",
+          "Competency 4: Inspection Readiness"
+        ],
+        "activities": [
+          "Activity 4: Conduct GMP Audit"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t19_cs-competency-3-quality-systems",
+            "name": "Competency 3: Quality Systems",
+            "score": 92
+          },
+          {
+            "id": "job_mvbu3hso_t19_cs-competency-4-inspection-readiness",
+            "name": "Competency 4: Inspection Readiness",
+            "score": 81
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t19_as-activity-4-conduct-gmp-audit",
+            "name": "Activity 4: Conduct GMP Audit",
+            "score": 88
+          }
+        ],
+        "status": "edited",
+        "confidence": 0.92,
+        "created": false,
+        "provider": "WHO",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "Inspectors\nQA officers",
+        "source_id": "GMP-101-19",
+        "id": "job_mvbu3hso_t19",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Dossier Assessment for Marketing Authorization — Cohort B",
+        "description": "Review of CTD format, quality, safety and efficacy assessment.",
+        "domain": "Regulatory Affairs",
+        "sub_domain": "Registration",
+        "language": "French",
+        "duration": "5 days",
+        "cost": "Free",
+        "training_mode": "In-person",
+        "approach": "Case studies",
+        "evaluation": "Exam",
+        "outcome": "Certificate",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/dossier",
+        "nra_objectives": [
+          "Strengthen MA assessment"
+        ],
+        "competencies": [
+          "Competency 5: Dossier Assessment"
+        ],
+        "activities": [
+          "Activity 5: Assess Quality Module"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t20_cs-competency-5-dossier-assessment",
+            "name": "Competency 5: Dossier Assessment",
+            "score": 65
+          },
+          {
+            "id": "job_mvbu3hso_t20_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 32
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t20_as-activity-5-assess-quality-module",
+            "name": "Activity 5: Assess Quality Module",
+            "score": 62
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.58,
+        "created": false,
+        "provider": "SEARN",
+        "maturity_level": "Level 3 - Advanced",
+        "target_audience": "Assessors",
+        "source_id": "MA-210-20",
+        "id": "job_mvbu3hso_t20",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Clinical Trials Oversight — Cohort B",
+        "description": "GCP principles, protocol review and inspection of clinical trial sites.",
+        "domain": "Regulatory Affairs",
+        "sub_domain": "Clinical Trials",
+        "language": "English",
+        "duration": "2 days",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Interactive",
+        "evaluation": "Quiz",
+        "outcome": "Certificate",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/ct",
+        "nra_objectives": [
+          "Protect trial participants"
+        ],
+        "competencies": [
+          "Competency 6: GCP Compliance"
+        ],
+        "activities": [
+          "Activity 6: Inspect Trial Site"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t21_cs-competency-6-gcp-compliance",
+            "name": "Competency 6: GCP Compliance",
+            "score": 90
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t21_as-activity-6-inspect-trial-site",
+            "name": "Activity 6: Inspect Trial Site",
+            "score": 84
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.81,
+        "created": false,
+        "provider": "WHO",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "GCP inspectors",
+        "source_id": "CT-044-21",
+        "id": "job_mvbu3hso_t21",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Medical Device Regulation — Cohort B",
+        "description": "Classification, conformity assessment and post-market surveillance of medical devices.",
+        "domain": "Medical Devices",
+        "sub_domain": "Regulation",
+        "language": "English",
+        "duration": "1 day",
+        "cost": "$100",
+        "training_mode": "Virtual",
+        "approach": "Webinar",
+        "evaluation": "Attendance",
+        "outcome": "Participation certificate",
+        "product_type": "Webinar",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/md",
+        "nra_objectives": [],
+        "competencies": [],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t22_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 76
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t22_as-activity-7-review-technical-file",
+            "name": "Activity 7: Review Technical File",
+            "score": 71
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.74,
+        "created": false,
+        "provider": "IMDRF",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Device reviewers",
+        "source_id": "MD-012-22",
+        "id": "job_mvbu3hso_t22",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Laboratory Quality Management — Cohort B",
+        "description": "ISO 17025 requirements, method validation and QC.",
+        "domain": "Quality Assurance",
+        "sub_domain": "Laboratory",
+        "language": "English",
+        "duration": "3 days",
+        "cost": "Free",
+        "training_mode": "In-person",
+        "approach": "Hands-on lab",
+        "evaluation": "Practical exam",
+        "outcome": "Certificate",
+        "product_type": "Course",
+        "registration_by": "Email",
+        "registration_value": "lab@example.com",
+        "nra_objectives": [
+          "Improve lab quality systems"
+        ],
+        "competencies": [
+          "Competency 3: Quality Systems"
+        ],
+        "activities": [
+          "Activity 4: Conduct GMP Audit"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t23_cs-competency-3-quality-systems",
+            "name": "Competency 3: Quality Systems",
+            "score": 88
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t23_as-activity-4-conduct-gmp-audit",
+            "name": "Activity 4: Conduct GMP Audit",
+            "score": 82
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.9,
+        "created": false,
+        "provider": "USP",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "Laboratory Scientists\nQA/QC Staff",
+        "source_id": "LAB-17025-23",
+        "id": "job_mvbu3hso_t23",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "USP Reference Standards Overview — Cohort B",
+        "description": "Identify the importance of USP Reference Standards in regulatory directives and proper uses.",
+        "domain": "General Notices and Introductory Courses",
+        "sub_domain": "",
+        "language": "English, Chinese",
+        "duration": "1 hour",
+        "cost": "",
+        "training_mode": "Live Webcast On-demand",
+        "approach": "",
+        "evaluation": "",
+        "outcome": "Identify the importance of USP Reference Standards (RS) in regulatory directives.",
+        "product_type": "",
+        "registration_by": "URL",
+        "registration_value": "https://www.usp.org/course/EURS-07",
+        "nra_objectives": [],
+        "competencies": [
+          "Competency 7: Other / Not specified"
+        ],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t24_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 100
+          }
+        ],
+        "activity_suggestions": [],
+        "status": "needs_review",
+        "confidence": 1,
+        "created": false,
+        "provider": "USP",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Laboratory Scientists\nQA/QC Staff",
+        "source_id": "EURS-07-24",
+        "id": "job_mvbu3hso_t24",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Introduction to Pharmacovigilance (French delivery)",
+        "description": "Foundational course covering the principles of pharmacovigilance and adverse event reporting.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Fundamentals",
+        "language": "English",
+        "duration": "4 hours",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Lecture + case studies",
+        "evaluation": "Quiz",
+        "outcome": "Understand core PV concepts and reporting pathways.",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.org/pv-intro",
+        "nra_objectives": [
+          "Strengthen national PV systems",
+          "Improve ADR reporting quality"
+        ],
+        "competencies": [
+          "Competency 1: Pharmacovigilance Systems"
+        ],
+        "activities": [
+          "Activity 1: Adverse Event Reporting"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t25_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 92
+          },
+          {
+            "id": "job_mvbu3hso_t25_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 40
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t25_as-activity-1-adverse-event-reporting",
+            "name": "Activity 1: Adverse Event Reporting",
+            "score": 88
+          },
+          {
+            "id": "job_mvbu3hso_t25_as-activity-3-signal-detection",
+            "name": "Activity 3: Signal Detection",
+            "score": 55
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.91,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Regulatory professionals\nLaboratory scientists",
+        "source_id": "PV-001-25",
+        "id": "job_mvbu3hso_t25",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Signal Detection in Pharmacovigilance (French delivery)",
+        "description": "Methods for detecting and evaluating safety signals from spontaneous reports and other data sources.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Signal Management",
+        "language": "English",
+        "duration": "6 hours",
+        "cost": "",
+        "training_mode": "Hybrid",
+        "approach": "Workshop",
+        "evaluation": "Assignment",
+        "outcome": "Apply signal detection methods to real datasets.",
+        "product_type": "Workshop",
+        "registration_by": "URL",
+        "registration_value": "",
+        "nra_objectives": [
+          "Improve signal detection capacity"
+        ],
+        "competencies": [],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t26_cs-competency-2-signal-detection-evaluation",
+            "name": "Competency 2: Signal Detection & Evaluation",
+            "score": 95
+          },
+          {
+            "id": "job_mvbu3hso_t26_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 70
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t26_as-activity-3-signal-detection",
+            "name": "Activity 3: Signal Detection",
+            "score": 90
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.88,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "PV officers\nAssessors",
+        "source_id": "PV-002-26",
+        "id": "job_mvbu3hso_t26",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Good Manufacturing Practices for Regulatory Staff (French delivery)",
+        "description": "Comprehensive GMP training covering documentation, quality systems and inspection readiness for NRA staff.",
+        "domain": "Quality Assurance",
+        "sub_domain": "GMP",
+        "language": "English",
+        "duration": "3 days",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Interactive workshop",
+        "evaluation": "Quiz + Case study",
+        "outcome": "Certificate of completion",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/gmp-register",
+        "nra_objectives": [
+          "Ensure GMP compliance",
+          "Prepare for inspections"
+        ],
+        "competencies": [
+          "Competency 3: Quality Systems",
+          "Competency 4: Inspection Readiness"
+        ],
+        "activities": [
+          "Activity 4: Conduct GMP Audit"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t27_cs-competency-3-quality-systems",
+            "name": "Competency 3: Quality Systems",
+            "score": 92
+          },
+          {
+            "id": "job_mvbu3hso_t27_cs-competency-4-inspection-readiness",
+            "name": "Competency 4: Inspection Readiness",
+            "score": 81
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t27_as-activity-4-conduct-gmp-audit",
+            "name": "Activity 4: Conduct GMP Audit",
+            "score": 88
+          }
+        ],
+        "status": "edited",
+        "confidence": 0.92,
+        "created": false,
+        "provider": "WHO",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "Inspectors\nQA officers",
+        "source_id": "GMP-101-27",
+        "id": "job_mvbu3hso_t27",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      },
+      {
+        "training_name": "Dossier Assessment for Marketing Authorization (French delivery)",
+        "description": "Review of CTD format, quality, safety and efficacy assessment.",
+        "domain": "Regulatory Affairs",
+        "sub_domain": "Registration",
+        "language": "French",
+        "duration": "5 days",
+        "cost": "Free",
+        "training_mode": "In-person",
+        "approach": "Case studies",
+        "evaluation": "Exam",
+        "outcome": "Certificate",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.com/dossier",
+        "nra_objectives": [
+          "Strengthen MA assessment"
+        ],
+        "competencies": [
+          "Competency 5: Dossier Assessment"
+        ],
+        "activities": [
+          "Activity 5: Assess Quality Module"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_mvbu3hso_t28_cs-competency-5-dossier-assessment",
+            "name": "Competency 5: Dossier Assessment",
+            "score": 65
+          },
+          {
+            "id": "job_mvbu3hso_t28_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 32
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_mvbu3hso_t28_as-activity-5-assess-quality-module",
+            "name": "Activity 5: Assess Quality Module",
+            "score": 62
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.58,
+        "created": false,
+        "provider": "SEARN",
+        "maturity_level": "Level 3 - Advanced",
+        "target_audience": "Assessors",
+        "source_id": "MA-210-28",
+        "id": "job_mvbu3hso_t28",
+        "source_file": "SEARN_Capacity_building_catalogue.pdf"
+      }
+    ],
+    "count": 28,
+    "page": 1,
+    "page_size": 15,
+    "total_pages": 2
+  },
+  "job_seed_2026": {
+    "results": [
+      {
+        "training_name": "Introduction to Pharmacovigilance",
+        "description": "Foundational course covering the principles of pharmacovigilance and adverse event reporting.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Fundamentals",
+        "language": "English",
+        "duration": "4 hours",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Lecture + case studies",
+        "evaluation": "Quiz",
+        "outcome": "Understand core PV concepts and reporting pathways.",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.org/pv-intro",
+        "nra_objectives": [
+          "Strengthen national PV systems",
+          "Improve ADR reporting quality"
+        ],
+        "competencies": [
+          "Competency 1: Pharmacovigilance Systems"
+        ],
+        "activities": [
+          "Activity 1: Adverse Event Reporting"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_seed_2026_t1_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 92
+          },
+          {
+            "id": "job_seed_2026_t1_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 40
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_seed_2026_t1_as-activity-1-adverse-event-reporting",
+            "name": "Activity 1: Adverse Event Reporting",
+            "score": 88
+          },
+          {
+            "id": "job_seed_2026_t1_as-activity-3-signal-detection",
+            "name": "Activity 3: Signal Detection",
+            "score": 55
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.91,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Regulatory professionals\nLaboratory scientists",
+        "source_id": "PV-001",
+        "id": "job_seed_2026_t1",
+        "source_file": "bhola.pdf"
+      },
+      {
+        "training_name": "Signal Detection in Pharmacovigilance",
+        "description": "Methods for detecting and evaluating safety signals from spontaneous reports and other data sources.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Signal Management",
+        "language": "English",
+        "duration": "6 hours",
+        "cost": "",
+        "training_mode": "Hybrid",
+        "approach": "Workshop",
+        "evaluation": "Assignment",
+        "outcome": "Apply signal detection methods to real datasets.",
+        "product_type": "Workshop",
+        "registration_by": "URL",
+        "registration_value": "",
+        "nra_objectives": [
+          "Improve signal detection capacity"
+        ],
+        "competencies": [],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_seed_2026_t2_cs-competency-2-signal-detection-evaluation",
+            "name": "Competency 2: Signal Detection & Evaluation",
+            "score": 95
+          },
+          {
+            "id": "job_seed_2026_t2_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 70
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_seed_2026_t2_as-activity-3-signal-detection",
+            "name": "Activity 3: Signal Detection",
+            "score": 90
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.88,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "PV officers\nAssessors",
+        "source_id": "PV-002",
+        "id": "job_seed_2026_t2",
+        "source_file": "bhola.pdf"
+      },
+      {
+        "training_name": "USP Reference Standards Overview",
+        "description": "Identify the importance of USP Reference Standards in regulatory directives and proper uses.",
+        "domain": "General Notices and Introductory Courses",
+        "sub_domain": "",
+        "language": "English, Chinese",
+        "duration": "1 hour",
+        "cost": "",
+        "training_mode": "Live Webcast On-demand",
+        "approach": "",
+        "evaluation": "",
+        "outcome": "Identify the importance of USP Reference Standards (RS) in regulatory directives.",
+        "product_type": "",
+        "registration_by": "URL",
+        "registration_value": "https://www.usp.org/course/EURS-07",
+        "nra_objectives": [],
+        "competencies": [
+          "Competency 7: Other / Not specified"
+        ],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_seed_2026_t3_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 100
+          }
+        ],
+        "activity_suggestions": [],
+        "status": "needs_review",
+        "confidence": 1,
+        "created": false,
+        "provider": "USP",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Laboratory Scientists\nQA/QC Staff",
+        "source_id": "EURS-07",
+        "id": "job_seed_2026_t3",
+        "source_file": "bhola.pdf"
+      }
+    ],
+    "count": 3,
+    "page": 1,
+    "page_size": 15,
+    "total_pages": 1
+  },
+  "job_seed_xlsx_1": {
+    "results": [
+      {
+        "training_name": "Capacity Building in Vigilance (UMC)",
+        "description": "Regional capacity building programme for national pharmacovigilance centres.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Capacity Building",
+        "language": "English",
+        "duration": "3 days",
+        "cost": "Free",
+        "training_mode": "In-person",
+        "approach": "Blended",
+        "evaluation": "Certificate of attendance",
+        "outcome": "Strengthen national PV centre capabilities.",
+        "product_type": "Programme",
+        "registration_by": "Email",
+        "registration_value": "training@example.org",
+        "nra_objectives": [
+          "Strengthen national PV centre capabilities"
+        ],
+        "competencies": [
+          "Competency 1: Pharmacovigilance Systems"
+        ],
+        "activities": [
+          "Activity 2: Capacity Building"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_seed_xlsx_1_t1_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 85
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_seed_xlsx_1_t1_as-activity-2-capacity-building",
+            "name": "Activity 2: Capacity Building",
+            "score": 80
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.84,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "NRA staff\nPV centre managers",
+        "source_id": "UMC-CB-01",
+        "id": "job_seed_xlsx_1_t1",
+        "source_file": "All_Courses_with_Maturity_Level_1.xlsx"
+      }
+    ],
+    "count": 1,
+    "page": 1,
+    "page_size": 15,
+    "total_pages": 1
+  },
+  "job_seed_template": {
+    "results": [
+      {
+        "training_name": "Introduction to Pharmacovigilance",
+        "description": "Foundational course covering the principles of pharmacovigilance and adverse event reporting.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Fundamentals",
+        "language": "English",
+        "duration": "4 hours",
+        "cost": "Free",
+        "training_mode": "Virtual",
+        "approach": "Lecture + case studies",
+        "evaluation": "Quiz",
+        "outcome": "Understand core PV concepts and reporting pathways.",
+        "product_type": "Course",
+        "registration_by": "URL",
+        "registration_value": "https://example.org/pv-intro",
+        "nra_objectives": [
+          "Strengthen national PV systems",
+          "Improve ADR reporting quality"
+        ],
+        "competencies": [
+          "Competency 1: Pharmacovigilance Systems"
+        ],
+        "activities": [
+          "Activity 1: Adverse Event Reporting"
+        ],
+        "competency_suggestions": [
+          {
+            "id": "job_seed_2026_t1_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 92
+          },
+          {
+            "id": "job_seed_2026_t1_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 40
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_seed_2026_t1_as-activity-1-adverse-event-reporting",
+            "name": "Activity 1: Adverse Event Reporting",
+            "score": 88
+          },
+          {
+            "id": "job_seed_2026_t1_as-activity-3-signal-detection",
+            "name": "Activity 3: Signal Detection",
+            "score": 55
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.91,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Regulatory professionals\nLaboratory scientists",
+        "source_id": "PV-001",
+        "id": "job_seed_2026_t1",
+        "source_file": "bhola.pdf"
+      },
+      {
+        "training_name": "Signal Detection in Pharmacovigilance",
+        "description": "Methods for detecting and evaluating safety signals from spontaneous reports and other data sources.",
+        "domain": "Pharmacovigilance",
+        "sub_domain": "Signal Management",
+        "language": "English",
+        "duration": "6 hours",
+        "cost": "",
+        "training_mode": "Hybrid",
+        "approach": "Workshop",
+        "evaluation": "Assignment",
+        "outcome": "Apply signal detection methods to real datasets.",
+        "product_type": "Workshop",
+        "registration_by": "URL",
+        "registration_value": "",
+        "nra_objectives": [
+          "Improve signal detection capacity"
+        ],
+        "competencies": [],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_seed_2026_t2_cs-competency-2-signal-detection-evaluation",
+            "name": "Competency 2: Signal Detection & Evaluation",
+            "score": 95
+          },
+          {
+            "id": "job_seed_2026_t2_cs-competency-1-pharmacovigilance-systems",
+            "name": "Competency 1: Pharmacovigilance Systems",
+            "score": 70
+          }
+        ],
+        "activity_suggestions": [
+          {
+            "id": "job_seed_2026_t2_as-activity-3-signal-detection",
+            "name": "Activity 3: Signal Detection",
+            "score": 90
+          }
+        ],
+        "status": "needs_review",
+        "confidence": 0.88,
+        "created": false,
+        "provider": "UMC",
+        "maturity_level": "Level 2 - Intermediate",
+        "target_audience": "PV officers\nAssessors",
+        "source_id": "PV-002",
+        "id": "job_seed_2026_t2",
+        "source_file": "bhola.pdf"
+      },
+      {
+        "training_name": "USP Reference Standards Overview",
+        "description": "Identify the importance of USP Reference Standards in regulatory directives and proper uses.",
+        "domain": "General Notices and Introductory Courses",
+        "sub_domain": "",
+        "language": "English, Chinese",
+        "duration": "1 hour",
+        "cost": "",
+        "training_mode": "Live Webcast On-demand",
+        "approach": "",
+        "evaluation": "",
+        "outcome": "Identify the importance of USP Reference Standards (RS) in regulatory directives.",
+        "product_type": "",
+        "registration_by": "URL",
+        "registration_value": "https://www.usp.org/course/EURS-07",
+        "nra_objectives": [],
+        "competencies": [
+          "Competency 7: Other / Not specified"
+        ],
+        "activities": [],
+        "competency_suggestions": [
+          {
+            "id": "job_seed_2026_t3_cs-competency-7-other-not-specified",
+            "name": "Competency 7: Other / Not specified",
+            "score": 100
+          }
+        ],
+        "activity_suggestions": [],
+        "status": "needs_review",
+        "confidence": 1,
+        "created": false,
+        "provider": "USP",
+        "maturity_level": "Level 1 - Foundational",
+        "target_audience": "Laboratory Scientists\nQA/QC Staff",
+        "source_id": "EURS-07",
+        "id": "job_seed_2026_t3",
+        "source_file": "bhola.pdf"
+      }
+    ],
+    "count": 3,
+    "page": 1,
+    "page_size": 15,
+    "total_pages": 1
+  }
 }

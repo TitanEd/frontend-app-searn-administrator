@@ -1,11 +1,49 @@
-[
-  { "id": "validating_document", "label": "Validating your document" },
-  { "id": "reading_document", "label": "Reading your document" },
-  { "id": "extracting_data", "label": "Understanding training information" },
-  { "id": "identifying_trainings", "label": "Identifying training records" },
-  { "id": "mapping_fields", "label": "Extracting training records" },
-  { "id": "mapping_competencies", "label": "Mapping competencies" },
-  { "id": "mapping_activities", "label": "Mapping activities" },
-  { "id": "validating_records", "label": "Validating extracted information" },
-  { "id": "preparing_results", "label": "Preparing your training catalog" }
-]
+{
+  "results": [
+    {
+      "id": "validating_document",
+      "value": "validating_document",
+      "label": "Validating your document"
+    },
+    {
+      "id": "reading_document",
+      "value": "reading_document",
+      "label": "Reading your document"
+    },
+    {
+      "id": "extracting_data",
+      "value": "extracting_data",
+      "label": "Understanding training information"
+    },
+    {
+      "id": "identifying_trainings",
+      "value": "identifying_trainings",
+      "label": "Identifying training records"
+    },
+    {
+      "id": "mapping_fields",
+      "value": "mapping_fields",
+      "label": "Extracting training records"
+    },
+    {
+      "id": "mapping_competencies",
+      "value": "mapping_competencies",
+      "label": "Mapping competencies"
+    },
+    {
+      "id": "mapping_activities",
+      "value": "mapping_activities",
+      "label": "Mapping activities"
+    },
+    {
+      "id": "validating_records",
+      "value": "validating_records",
+      "label": "Validating extracted information"
+    },
+    {
+      "id": "preparing_results",
+      "value": "preparing_results",
+      "label": "Preparing your training catalog"
+    }
+  ]
+}

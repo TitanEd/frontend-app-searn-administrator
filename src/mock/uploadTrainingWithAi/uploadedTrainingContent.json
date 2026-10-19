@@ -1,221 +1,227 @@
-[
-  {
-    "id": "tr_1",
-    "training_name": "Good Manufacturing Practices for Regulatory Staff",
-    "description": "Comprehensive GMP training covering documentation, quality systems and inspection readiness for NRA staff.",
-    "domain": "Quality Assurance",
-    "sub_domain": "GMP",
-    "language": "English",
-    "duration": "3 days",
-    "cost": "Free",
-    "training_mode": "Virtual",
-    "approach": "Interactive workshop",
-    "evaluation": "Quiz + Case study",
-    "outcome": "Certificate of completion",
-    "product_type": "Course",
-    "registration_by": "URL",
-    "registration_value": "https://example.com/gmp-register",
-    "nra_objectives": [
-      "Ensure GMP compliance",
-      "Prepare for inspections"
-    ],
-    "competencies": [],
-    "activities": [],
-    "competency_suggestions": [
-      {
-        "id": "c1",
-        "name": "Quality Systems",
-        "confidence": 0.92
-      },
-      {
-        "id": "c2",
-        "name": "Inspection Readiness",
-        "confidence": 0.81
-      }
-    ],
-    "activity_suggestions": [
-      {
-        "id": "a1",
-        "name": "Conduct GMP Audit",
-        "confidence": 0.88
-      }
-    ],
-    "status": "ready",
-    "confidence": 0.92
-  },
-  {
-    "id": "tr_2",
-    "training_name": "Pharmacovigilance Signal Detection",
-    "description": "Training on ADR reporting, signal detection methods and risk management plans.",
-    "domain": "Pharmacovigilance",
-    "sub_domain": "Safety Monitoring",
-    "language": "English",
-    "duration": "2 days",
-    "cost": "$150",
-    "training_mode": "Blended",
-    "approach": "Lecture + Hands-on",
-    "evaluation": "Assessment",
-    "outcome": "Competency badge",
-    "product_type": "Course",
-    "registration_by": "Email",
-    "registration_value": "training@example.com",
-    "competencies": [],
-    "activities": [],
-    "competency_suggestions": [
-      {
-        "id": "c3",
-        "name": "Signal Detection",
-        "confidence": 0.89
-      }
-    ],
-    "activity_suggestions": [
-      {
-        "id": "a2",
-        "name": "Evaluate ADR Report",
-        "confidence": 0.79
-      }
-    ],
-    "status": "ready",
-    "confidence": 0.87
-  },
-  {
-    "id": "tr_3",
-    "training_name": "Dossier Assessment for Marketing Authorization",
-    "description": "Review of CTD format, quality, safety and efficacy assessment.",
-    "domain": "Regulatory Affairs",
-    "sub_domain": "Registration",
-    "language": "French",
-    "duration": "5 days",
-    "cost": "Free",
-    "training_mode": "In-person",
-    "approach": "Case studies",
-    "evaluation": "Exam",
-    "outcome": "Certificate",
-    "product_type": "Course",
-    "registration_by": "URL",
-    "registration_value": "https://example.com/dossier",
-    "competencies": [],
-    "activities": [],
-    "competency_suggestions": [
-      {
-        "id": "c4",
-        "name": "Dossier Review",
-        "confidence": 0.65
-      }
-    ],
-    "activity_suggestions": [
-      {
-        "id": "a3",
-        "name": "Assess Quality Module",
-        "confidence": 0.62
-      }
-    ],
-    "status": "needs_review",
-    "confidence": 0.58
-  },
-  {
-    "id": "tr_4",
-    "training_name": "Clinical Trials Oversight",
-    "description": "GCP principles, protocol review and inspection of clinical trial sites.",
-    "domain": "Regulatory Affairs",
-    "sub_domain": "Clinical Trials",
-    "language": "English",
-    "duration": "2 days",
-    "cost": "Free",
-    "training_mode": "Virtual",
-    "approach": "Interactive",
-    "evaluation": "Quiz",
-    "outcome": "Certificate",
-    "product_type": "Course",
-    "registration_by": "URL",
-    "registration_value": "https://example.com/ct",
-    "competencies": [],
-    "activities": [],
-    "competency_suggestions": [
-      {
-        "id": "c5",
-        "name": "GCP Compliance",
-        "confidence": 0.9
-      }
-    ],
-    "activity_suggestions": [
-      {
-        "id": "a4",
-        "name": "Inspect Trial Site",
-        "confidence": 0.84
-      }
-    ],
-    "status": "ready",
-    "confidence": 0.81
-  },
-  {
-    "id": "tr_5",
-    "training_name": "Medical Device Regulation",
-    "description": "Classification, conformity assessment and post-market surveillance of medical devices.",
-    "domain": "Medical Devices",
-    "sub_domain": "Regulation",
-    "language": "English",
-    "duration": "1 day",
-    "cost": "$100",
-    "training_mode": "Virtual",
-    "approach": "Webinar",
-    "evaluation": "Attendance",
-    "outcome": "Participation certificate",
-    "product_type": "Webinar",
-    "registration_by": "URL",
-    "registration_value": "https://example.com/md",
-    "competencies": [],
-    "activities": [],
-    "competency_suggestions": [
-      {
-        "id": "c6",
-        "name": "Device Classification",
-        "confidence": 0.76
-      }
-    ],
-    "activity_suggestions": [
-      {
-        "id": "a5",
-        "name": "Review Technical File",
-        "confidence": 0.71
-      }
-    ],
-    "status": "ready",
-    "confidence": 0.74
-  },
-  {
-    "id": "tr_6",
-    "training_name": "Laboratory Quality Management",
-    "description": "ISO 17025 requirements, method validation and QC.",
-    "domain": "Quality Assurance",
-    "sub_domain": "Laboratory",
-    "language": "English",
-    "duration": "3 days",
-    "cost": "Free",
-    "training_mode": "In-person",
-    "approach": "Hands-on lab",
-    "evaluation": "Practical exam",
-    "outcome": "Certificate",
-    "product_type": "Course",
-    "registration_by": "Email",
-    "registration_value": "lab@example.com",
-    "competencies": [],
-    "activities": [],
-    "competency_suggestions": [
-      {
-        "id": "c7",
-        "name": "Lab Quality",
-        "confidence": 0.88
-      }
-    ],
-    "activity_suggestions": [
-      {
-        "id": "a6",
-        "name": "Validate Method",
-        "confidence": 0.82
-      }
-    ],
-    "status": "ready",
-    "confidence": 0.9
-  }
-]
+{
+  "results": [
+    {
+      "id": "tr_1",
+      "training_name": "Good Manufacturing Practices for Regulatory Staff",
+      "description": "Comprehensive GMP training covering documentation, quality systems and inspection readiness for NRA staff.",
+      "domain": "Quality Assurance",
+      "sub_domain": "GMP",
+      "language": "English",
+      "duration": "3 days",
+      "cost": "Free",
+      "training_mode": "Virtual",
+      "approach": "Interactive workshop",
+      "evaluation": "Quiz + Case study",
+      "outcome": "Certificate of completion",
+      "product_type": "Course",
+      "registration_by": "URL",
+      "registration_value": "https://example.com/gmp-register",
+      "nra_objectives": [
+        "Ensure GMP compliance",
+        "Prepare for inspections"
+      ],
+      "competencies": [],
+      "activities": [],
+      "competency_suggestions": [
+        {
+          "id": "c1",
+          "name": "Quality Systems",
+          "confidence": 0.92
+        },
+        {
+          "id": "c2",
+          "name": "Inspection Readiness",
+          "confidence": 0.81
+        }
+      ],
+      "activity_suggestions": [
+        {
+          "id": "a1",
+          "name": "Conduct GMP Audit",
+          "confidence": 0.88
+        }
+      ],
+      "status": "ready",
+      "confidence": 0.92
+    },
+    {
+      "id": "tr_2",
+      "training_name": "Pharmacovigilance Signal Detection",
+      "description": "Training on ADR reporting, signal detection methods and risk management plans.",
+      "domain": "Pharmacovigilance",
+      "sub_domain": "Safety Monitoring",
+      "language": "English",
+      "duration": "2 days",
+      "cost": "$150",
+      "training_mode": "Blended",
+      "approach": "Lecture + Hands-on",
+      "evaluation": "Assessment",
+      "outcome": "Competency badge",
+      "product_type": "Course",
+      "registration_by": "Email",
+      "registration_value": "training@example.com",
+      "competencies": [],
+      "activities": [],
+      "competency_suggestions": [
+        {
+          "id": "c3",
+          "name": "Signal Detection",
+          "confidence": 0.89
+        }
+      ],
+      "activity_suggestions": [
+        {
+          "id": "a2",
+          "name": "Evaluate ADR Report",
+          "confidence": 0.79
+        }
+      ],
+      "status": "ready",
+      "confidence": 0.87
+    },
+    {
+      "id": "tr_3",
+      "training_name": "Dossier Assessment for Marketing Authorization",
+      "description": "Review of CTD format, quality, safety and efficacy assessment.",
+      "domain": "Regulatory Affairs",
+      "sub_domain": "Registration",
+      "language": "French",
+      "duration": "5 days",
+      "cost": "Free",
+      "training_mode": "In-person",
+      "approach": "Case studies",
+      "evaluation": "Exam",
+      "outcome": "Certificate",
+      "product_type": "Course",
+      "registration_by": "URL",
+      "registration_value": "https://example.com/dossier",
+      "competencies": [],
+      "activities": [],
+      "competency_suggestions": [
+        {
+          "id": "c4",
+          "name": "Dossier Review",
+          "confidence": 0.65
+        }
+      ],
+      "activity_suggestions": [
+        {
+          "id": "a3",
+          "name": "Assess Quality Module",
+          "confidence": 0.62
+        }
+      ],
+      "status": "needs_review",
+      "confidence": 0.58
+    },
+    {
+      "id": "tr_4",
+      "training_name": "Clinical Trials Oversight",
+      "description": "GCP principles, protocol review and inspection of clinical trial sites.",
+      "domain": "Regulatory Affairs",
+      "sub_domain": "Clinical Trials",
+      "language": "English",
+      "duration": "2 days",
+      "cost": "Free",
+      "training_mode": "Virtual",
+      "approach": "Interactive",
+      "evaluation": "Quiz",
+      "outcome": "Certificate",
+      "product_type": "Course",
+      "registration_by": "URL",
+      "registration_value": "https://example.com/ct",
+      "competencies": [],
+      "activities": [],
+      "competency_suggestions": [
+        {
+          "id": "c5",
+          "name": "GCP Compliance",
+          "confidence": 0.9
+        }
+      ],
+      "activity_suggestions": [
+        {
+          "id": "a4",
+          "name": "Inspect Trial Site",
+          "confidence": 0.84
+        }
+      ],
+      "status": "ready",
+      "confidence": 0.81
+    },
+    {
+      "id": "tr_5",
+      "training_name": "Medical Device Regulation",
+      "description": "Classification, conformity assessment and post-market surveillance of medical devices.",
+      "domain": "Medical Devices",
+      "sub_domain": "Regulation",
+      "language": "English",
+      "duration": "1 day",
+      "cost": "$100",
+      "training_mode": "Virtual",
+      "approach": "Webinar",
+      "evaluation": "Attendance",
+      "outcome": "Participation certificate",
+      "product_type": "Webinar",
+      "registration_by": "URL",
+      "registration_value": "https://example.com/md",
+      "competencies": [],
+      "activities": [],
+      "competency_suggestions": [
+        {
+          "id": "c6",
+          "name": "Device Classification",
+          "confidence": 0.76
+        }
+      ],
+      "activity_suggestions": [
+        {
+          "id": "a5",
+          "name": "Review Technical File",
+          "confidence": 0.71
+        }
+      ],
+      "status": "ready",
+      "confidence": 0.74
+    },
+    {
+      "id": "tr_6",
+      "training_name": "Laboratory Quality Management",
+      "description": "ISO 17025 requirements, method validation and QC.",
+      "domain": "Quality Assurance",
+      "sub_domain": "Laboratory",
+      "language": "English",
+      "duration": "3 days",
+      "cost": "Free",
+      "training_mode": "In-person",
+      "approach": "Hands-on lab",
+      "evaluation": "Practical exam",
+      "outcome": "Certificate",
+      "product_type": "Course",
+      "registration_by": "Email",
+      "registration_value": "lab@example.com",
+      "competencies": [],
+      "activities": [],
+      "competency_suggestions": [
+        {
+          "id": "c7",
+          "name": "Lab Quality",
+          "confidence": 0.88
+        }
+      ],
+      "activity_suggestions": [
+        {
+          "id": "a6",
+          "name": "Validate Method",
+          "confidence": 0.82
+        }
+      ],
+      "status": "ready",
+      "confidence": 0.9
+    }
+  ],
+  "count": 6,
+  "page": 1,
+  "page_size": 15,
+  "total_pages": 1
+}
