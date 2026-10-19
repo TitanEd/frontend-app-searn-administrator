@@ -10,8 +10,14 @@ const useUploadTrainingDocument = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: async ({ file, fileName, onProgress }) => {
-      const result = await uploadTrainingDocument({ formatMessage, file, fileName, onProgress });
+    mutationFn: async ({ file, fileName, sourceUrl, onProgress }) => {
+      const result = await uploadTrainingDocument({
+        formatMessage,
+        file,
+        fileName,
+        sourceUrl,
+        onProgress,
+      });
       if (!result.ok) {
         throw new Error(result.message);
       }

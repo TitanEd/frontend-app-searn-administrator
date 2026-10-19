@@ -49,6 +49,64 @@
     text-align: center;
   }
 
+  &__source-choice {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    border: 0;
+  }
+
+  &__source-option {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .875rem;
+    font-weight: 600;
+    color: #1F2937;
+    cursor: pointer;
+  }
+
+  &__url-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 2.5rem 1.5rem;
+    border: 2px dashed #E5E7EB;
+    border-radius: .75rem;
+    background: #FFFFFF;
+    text-align: left;
+
+    .ai-training-create__drop-icon {
+      align-self: center;
+    }
+  }
+
+  &__url-label {
+    margin: .75rem 0 .5rem;
+    font-size: .875rem;
+    font-weight: 600;
+    color: #1F2937;
+  }
+
+  &__url-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 .75rem;
+    border: 1px solid #D1D5DB;
+    border-radius: .5rem;
+    font-size: .875rem;
+    color: #111827;
+
+    &:focus {
+      outline: none;
+      border-color: #2A3B8F;
+      box-shadow: 0 0 0 2px rgb(42 59 143 / .15);
+    }
+  }
+
   &__dropzone {
     display: flex;
     flex-direction: column;

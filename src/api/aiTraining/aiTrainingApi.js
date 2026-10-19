@@ -13,6 +13,7 @@ import { buildReviewExtracted } from '../../mock/uploadTrainingWithAi/buildRevie
 import PROCESSING_STEPS from '../../mock/uploadTrainingWithAi/processingSteps.json';
 import { STEP_ORDER, buildExtractedSummary } from './aiTrainingUtils';
 import aiTrainingMessages from './aiTrainingMessages';
+import { hasDisplayValue } from '../../utils/hasDisplayValue';
 
 export { STEP_ORDER } from './aiTrainingUtils';
 
@@ -122,19 +123,44 @@ export const fetchChangeHistory = async ({ jobId }) => {
   return ok(JSON.parse(JSON.stringify(store.history[jobId] || [])));
 };
 
+const isHttpUrl = (value) => {
+  try {
+    const parsed = new URL(String(value).trim());
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+  } catch {
+    return false;
+  }
+};
+
 /**
- * Upload a training document and start AI processing.
- * @param {{ formatMessage: Function, file: File, onProgress?: (pct: number) => void }} params
+ * Upload a training document (file or URL) and start AI processing.
+ * @param {{ formatMessage: Function, file?: File, fileName?: string, sourceUrl?: string, onProgress?: (pct: number) => void }} params
  */
-export const uploadTrainingDocument = async ({ formatMessage, file, fileName, onProgress }) => {
-  if (!file) {
+export const uploadTrainingDocument = async ({
+  formatMessage,
+  file,
+  fileName,
+  sourceUrl,
+  onProgress,
+}) => {
+  const url = hasDisplayValue(sourceUrl) ? String(sourceUrl).trim() : '';
+  const usingUrl = Boolean(url);
+  if (!file && !usingUrl) {
     return fail(formatMessage(aiTrainingMessages.uploadError));
   }
-  const name = fileName || file.name || 'document.pdf';
-  const ext = name.split('.').pop()?.toLowerCase();
-  const allowed = ['pdf', 'docx', 'doc', 'xlsx', 'xls', 'csv', 'txt'];
-  if (ext && !allowed.includes(ext)) {
-    return fail(formatMessage(aiTrainingMessages.unsupportedFile));
+  if (usingUrl && !isHttpUrl(url)) {
+    return fail(formatMessage(aiTrainingMessages.invalidSourceUrl));
+  }
+
+  const name = usingUrl
+    ? url
+    : (fileName || file.name || 'document.pdf');
+  if (!usingUrl) {
+    const ext = name.split('.').pop()?.toLowerCase();
+    const allowed = ['pdf', 'docx', 'doc', 'xlsx', 'xls', 'csv', 'txt'];
+    if (ext && !allowed.includes(ext)) {
+      return fail(formatMessage(aiTrainingMessages.unsupportedFile));
+    }
   }
 
   try {
@@ -161,6 +187,7 @@ export const uploadTrainingDocument = async ({ formatMessage, file, fileName, on
     };
 
     store.imports.unshift({
+      id: jobId,
       job_id: jobId,
       file_name: name,
       uploaded_by: 'You',
@@ -170,7 +197,11 @@ export const uploadTrainingDocument = async ({ formatMessage, file, fileName, on
       needs_review: 0,
       failed: 0,
       status: 'processing',
-      timeline: [{ at: now, label: 'Document uploaded' }],
+      timeline: [{
+        id: `${jobId}_tl_1`,
+        at: now,
+        label: usingUrl ? 'URL submitted' : 'Document uploaded',
+      }],
     });
 
     const template = store.extracted.job_seed_template || store.extracted.job_seed_2026 || [];

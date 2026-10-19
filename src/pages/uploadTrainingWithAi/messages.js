@@ -213,8 +213,38 @@ const messages = defineMessages({
   },
   uploadHint: {
     id: 'app.uploadTrainingWithAi.upload.hint',
-    defaultMessage: 'Upload your training documents and let AI extract structured training information automatically.',
+    defaultMessage: 'Upload your training documents or share a URL and let AI extract structured training information automatically.',
     description: 'Upload phase description',
+  },
+  sourceChoiceLabel: {
+    id: 'app.uploadTrainingWithAi.upload.sourceChoice',
+    defaultMessage: 'Choose how to add the document',
+    description: 'Accessible label for upload vs URL source options',
+  },
+  sourceUploadDocument: {
+    id: 'app.uploadTrainingWithAi.upload.source.uploadDocument',
+    defaultMessage: 'Upload document',
+    description: 'Option to upload a file',
+  },
+  sourceShareUrl: {
+    id: 'app.uploadTrainingWithAi.upload.source.shareUrl',
+    defaultMessage: 'Share URL',
+    description: 'Option to provide a document URL',
+  },
+  sourceUrlLabel: {
+    id: 'app.uploadTrainingWithAi.upload.sourceUrl.label',
+    defaultMessage: 'Document URL',
+    description: 'Label for the document URL field',
+  },
+  sourceUrlPlaceholder: {
+    id: 'app.uploadTrainingWithAi.upload.sourceUrl.placeholder',
+    defaultMessage: 'https://example.com',
+    description: 'Placeholder for the document URL field',
+  },
+  startAiProcessing: {
+    id: 'app.uploadTrainingWithAi.upload.startFromUrl',
+    defaultMessage: 'Start AI Processing',
+    description: 'Start processing from a shared URL',
   },
   dragDrop: {
     id: 'app.uploadTrainingWithAi.upload.dragDrop',

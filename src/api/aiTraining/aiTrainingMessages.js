@@ -36,6 +36,11 @@ const aiTrainingMessages = defineMessages({
     defaultMessage: 'Unsupported file type. Use PDF, DOCX, XLSX, CSV or TXT.',
     description: 'Validation when file type is not allowed',
   },
+  invalidSourceUrl: {
+    id: 'app.aiTraining.api.invalidSourceUrl',
+    defaultMessage: 'Enter a valid http or https URL.',
+    description: 'Validation when the shared document URL is invalid',
+  },
   jobNotFound: {
     id: 'app.aiTraining.api.jobNotFound',
     defaultMessage: 'Import job not found.',

@@ -7,6 +7,7 @@ import {
   faCircle,
   faCloudUploadAlt,
   faFileAlt,
+  faLink,
   faPencilAlt,
   faSpinner,
   faTimes,
@@ -37,6 +38,17 @@ import messages from './messages';
 import './AITrainingCreate.scss';
 
 const PAGE_SIZE = AI_TRAINING_REVIEW_PAGE_SIZE;
+const SOURCE_FILE = 'file';
+const SOURCE_URL = 'url';
+
+const isHttpUrl = (value) => {
+  try {
+    const parsed = new URL(String(value).trim());
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+  } catch {
+    return false;
+  }
+};
 
 const PROCESS_STEP_MESSAGES = {
   validating_document: messages.processStepValidating,
@@ -76,6 +88,8 @@ const AITrainingCreate = () => {
     return isNewUploadFlow ? 'processing' : 'review';
   });
   const [files, setFiles] = useState([]);
+  const [sourceMode, setSourceMode] = useState(SOURCE_FILE);
+  const [sourceUrl, setSourceUrl] = useState('');
   const [dragging, setDragging] = useState(false);
   const [uploadPct, setUploadPct] = useState(0);
   const [jobId, setJobId] = useState(() => (hasDisplayValue(resumeJob) ? resumeJob : null));
@@ -188,11 +202,16 @@ const AITrainingCreate = () => {
   };
 
   const startUpload = async () => {
-    if (files.length === 0) return;
+    const usingUrl = sourceMode === SOURCE_URL;
+    const trimmedUrl = sourceUrl.trim();
+    if (usingUrl) {
+      if (!isHttpUrl(trimmedUrl)) return;
+    } else if (files.length === 0) return;
     try {
       const data = await upload({
-        file: files[0],
-        fileName: files.map((item) => item.name).join(' + '),
+        file: usingUrl ? undefined : files[0],
+        fileName: usingUrl ? trimmedUrl : files.map((item) => item.name).join(' + '),
+        sourceUrl: usingUrl ? trimmedUrl : undefined,
         onProgress: setUploadPct,
       });
       setJobId(data.job_id);
@@ -356,6 +375,8 @@ const AITrainingCreate = () => {
   const resetToUpload = () => {
     setPhase('upload');
     setFiles([]);
+    setSourceMode(SOURCE_FILE);
+    setSourceUrl('');
     setUploadPct(0);
     setJobId(null);
     setSelected(new Set());
@@ -381,6 +402,33 @@ const AITrainingCreate = () => {
         <div className="ai-training-create__upload">
           <h2 className="ai-training-create__heading">{formatMessage(messages.uploadHeading)}</h2>
           <p className="ai-training-create__hint">{formatMessage(messages.uploadHint)}</p>
+          <fieldset className="ai-training-create__source-choice" aria-label={formatMessage(messages.sourceChoiceLabel)}>
+            <label className="ai-training-create__source-option" htmlFor="ai-source-file">
+              <input
+                id="ai-source-file"
+                type="checkbox"
+                checked={sourceMode === SOURCE_FILE}
+                onChange={() => {
+                  setSourceMode(SOURCE_FILE);
+                  setSourceUrl('');
+                }}
+              />
+              {formatMessage(messages.sourceUploadDocument)}
+            </label>
+            <label className="ai-training-create__source-option" htmlFor="ai-source-url">
+              <input
+                id="ai-source-url"
+                type="checkbox"
+                checked={sourceMode === SOURCE_URL}
+                onChange={() => {
+                  setSourceMode(SOURCE_URL);
+                  setFiles([]);
+                }}
+              />
+              {formatMessage(messages.sourceShareUrl)}
+            </label>
+          </fieldset>
+          {sourceMode === SOURCE_FILE ? (
           <div
             className={`ai-training-create__dropzone ${dragging ? 'is-dragging' : ''}`}
             role="group"
@@ -399,7 +447,24 @@ const AITrainingCreate = () => {
             <input ref={fileRef} type="file" hidden multiple accept=".pdf,.docx,.doc,.xlsx,.xls,.csv,.txt" onChange={(event) => addFiles(event.target.files)} aria-label={formatMessage(messages.browseFiles)} />
             <p className="ai-training-create__drop-formats">{formatMessage(messages.supportedFormats)}</p>
           </div>
-          {files.length > 0 && (
+          ) : (
+          <div className="ai-training-create__url-panel">
+            <FontAwesomeIcon icon={faLink} className="ai-training-create__drop-icon" aria-hidden />
+            <label className="ai-training-create__url-label" htmlFor="ai-source-url-input">
+              {formatMessage(messages.sourceUrlLabel)}
+            </label>
+            <input
+              id="ai-source-url-input"
+              className="ai-training-create__url-input"
+              type="url"
+              value={sourceUrl}
+              placeholder={formatMessage(messages.sourceUrlPlaceholder)}
+              onChange={(event) => setSourceUrl(event.target.value)}
+              autoComplete="url"
+            />
+          </div>
+          )}
+          {sourceMode === SOURCE_FILE && files.length > 0 && (
             <div className="ai-training-create__file-list">
               {files.map((file, index) => (
                 <div key={`${file.name}-${index}`} className="ai-training-create__file-row">
@@ -435,9 +500,19 @@ const AITrainingCreate = () => {
           )}
           <div className="ai-training-create__actions">
             <button type="button" className="ai-training-create__outline-button" onClick={() => navigate(ADMIN_PATHS.uploadTrainingWithAi)}>{formatMessage(messages.cancel)}</button>
-            <button type="button" className="ai-training-create__primary-button" disabled={files.length === 0 || isUploading} onClick={startUpload}>
+            <button
+              type="button"
+              className="ai-training-create__primary-button"
+              disabled={
+                isUploading
+                || (sourceMode === SOURCE_FILE ? files.length === 0 : !isHttpUrl(sourceUrl))
+              }
+              onClick={startUpload}
+            >
               {isUploading && <FontAwesomeIcon icon={faSpinner} spin aria-hidden />}
-              <span>{formatMessage(messages.uploadAndStart)}</span>
+              <span>
+                {formatMessage(sourceMode === SOURCE_URL ? messages.startAiProcessing : messages.uploadAndStart)}
+              </span>
             </button>
           </div>
         </div>
