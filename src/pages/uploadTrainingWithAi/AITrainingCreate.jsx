@@ -16,7 +16,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { formatFileSize, normalizeAiJobId } from '../../api/aiTraining/aiTrainingUtils';
+import { formatFileSize, normalizeAiJobId, optionSubmitValue } from '../../api/aiTraining/aiTrainingUtils';
 import AIReviewList from '../../components/aiTraining/AIReviewList';
 import AIStepIndicator from '../../components/aiTraining/AIStepIndicator';
 import ExtractedTrainingDrawer from '../../components/aiTraining/ExtractedTrainingDrawer';
@@ -27,6 +27,7 @@ import SearchableDropdown from '../../components/searchableDropdown/SearchableDr
 import { SkeletonCardList, SkeletonScreen, SkeletonStatsGrid, SkeletonToolbar, SKELETON_VARIANTS } from '../../components/skeleton';
 import { useToast } from '../../components/toast/ToastProvider';
 import useCreateTrainings from '../../hooks/aiTraining/useCreateTrainings';
+import useAiTrainingFilterOptions from '../../hooks/aiTraining/useAiTrainingFilterOptions';
 import useExtractedTrainings from '../../hooks/aiTraining/useExtractedTrainings';
 import useProcessingStatus from '../../hooks/aiTraining/useProcessingStatus';
 import useUpdateExtractedTraining from '../../hooks/aiTraining/useUpdateExtractedTraining';
@@ -40,6 +41,19 @@ import './AITrainingCreate.scss';
 const PAGE_SIZE = AI_TRAINING_REVIEW_PAGE_SIZE;
 const SOURCE_FILE = 'file';
 const SOURCE_URL = 'url';
+
+const PROCESS_STEP_MESSAGES = {
+  validating_document: messages.processStepValidating,
+  reading_document: messages.processStepReading,
+  extracting_data: messages.processStepExtracting,
+  identifying_trainings: messages.processStepIdentifying,
+  mapping_fields: messages.processStepMappingFields,
+  mapping_competencies: messages.processStepMappingCompetencies,
+  mapping_activities: messages.processStepMappingActivities,
+  validating_records: messages.processStepValidatingRecords,
+  preparing_results: messages.processStepPreparing,
+  completed: messages.processStepCompleted,
+};
 
 const isHttpUrl = (value) => {
   try {
@@ -152,6 +166,28 @@ const AITrainingCreate = () => {
   }, [isNewUploadFlow, navigate, searchParams]);
 
   useEffect(() => {
+    if (statusError) {
+      showToast({
+        title: formatMessage(messages.toastProcessFailed),
+        description: hasDisplayValue(statusErrorMessage)
+          ? statusErrorMessage
+          : formatMessage(messages.toastProcessFailed),
+      });
+    }
+  }, [statusError, statusErrorMessage, formatMessage, showToast]);
+
+  useEffect(() => {
+    if (resultsError) {
+      showToast({
+        title: formatMessage(messages.toastLoadFailed),
+        description: hasDisplayValue(resultsErrorMessage)
+          ? resultsErrorMessage
+          : formatMessage(messages.toastLoadFailed),
+      });
+    }
+  }, [resultsError, resultsErrorMessage, formatMessage, showToast]);
+
+  useEffect(() => {
     if (phase !== 'processing' || !status) return;
     if (status.status === 'completed') setPhase('review');
     else if (status.status === 'failed') {
@@ -170,18 +206,9 @@ const AITrainingCreate = () => {
     }
   }, [phase, status, formatMessage, showToast]);
 
-  const confidenceOptions = useMemo(() => [
-    { value: 'all', label: formatMessage(messages.confidenceAny) },
-    { value: 'high', label: formatMessage(messages.confidenceHigh) },
-    { value: 'medium', label: formatMessage(messages.confidenceMedium) },
-    { value: 'low', label: formatMessage(messages.confidenceLow) },
-  ], [formatMessage]);
-
-  const createdOptions = useMemo(() => [
-    { value: 'all', label: formatMessage(messages.statusAll) },
-    { value: 'created', label: formatMessage(messages.statusCreated) },
-    { value: 'not_created', label: formatMessage(messages.statusNotCreated) },
-  ], [formatMessage]);
+  const { confidenceOptions, statusOptions } = useAiTrainingFilterOptions({
+    enabled: phase === 'review',
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -247,18 +274,12 @@ const AITrainingCreate = () => {
   };
 
   const handleToggleMapping = async (training, kind, name) => {
-    const current = training[kind] || [];
-    const needle = String(name || '').trim().toLowerCase();
-    const alreadyOn = current.some((item) => {
-      const hay = String(item || '').trim().toLowerCase();
-      return hay === needle || hay.includes(needle) || needle.includes(hay);
-    });
+    const toggleValue = optionSubmitValue(name);
+    const current = (training[kind] || []).map(optionSubmitValue).filter(Boolean);
+    const alreadyOn = current.includes(toggleValue);
     const next = alreadyOn
-      ? current.filter((item) => {
-        const hay = String(item || '').trim().toLowerCase();
-        return !(hay === needle || hay.includes(needle) || needle.includes(hay));
-      })
-      : [...current, name];
+      ? current.filter((item) => item !== toggleValue)
+      : [...current, toggleValue];
     try {
       await updateMappings({ trainingId: training.id, payload: { [kind]: next } });
       await refetchResults();
@@ -339,6 +360,7 @@ const AITrainingCreate = () => {
         payload: { ...form, sync_catalog: Boolean(syncCatalog) },
       });
       setEditing(null);
+      await refetchResults();
       if (!skipSuccessToast) {
         const synced = Boolean(result?.data?.catalog_synced || syncCatalog);
         showToast({
@@ -383,10 +405,12 @@ const AITrainingCreate = () => {
 
   const handleRevert = async (event) => {
     try {
-      await revertHistory({ eventId: event.id });
+      const result = await revertHistory({ eventId: event.id });
       showToast({
         title: formatMessage(messages.toastRevertOk),
-        description: formatMessage(messages.toastRevertDescription),
+        description: hasDisplayValue(result?.message)
+          ? result.message
+          : formatMessage(messages.toastRevertDescription),
       });
       await refetchResults();
     } catch (err) {
@@ -590,7 +614,10 @@ const AITrainingCreate = () => {
                   const done = idx < activeStepIndex || status?.status === 'completed';
                   const active = status?.status !== 'completed' && idx === activeStepIndex;
                   const isLast = idx === visibleSteps.length - 1;
-                  const label = step.label || step.key;
+                  const stepMessage = PROCESS_STEP_MESSAGES[step.key];
+                  const label = stepMessage
+                    ? formatMessage(stepMessage)
+                    : (hasDisplayValue(step.label) ? step.label : step.key);
                   return (
                     <li key={step.key} className={`ai-training-create__timeline-row ${done ? 'is-done' : ''} ${active ? 'is-active' : ''}`}>
                       {!isLast && <span className={`ai-training-create__connector ${done ? 'is-done' : ''}`} aria-hidden />}
@@ -696,7 +723,7 @@ const AITrainingCreate = () => {
             <SearchableDropdown
               className="ai-training-create__filter is-status"
               value={filters.created}
-              options={createdOptions}
+              options={statusOptions}
               onChange={(value) => setFilters((prev) => ({ ...prev, created: value }))}
               triggerLabel={formatMessage(messages.trainingStatusFilter)}
               searchPlaceholder={formatMessage(messages.dropdownSearchPlaceholder)}

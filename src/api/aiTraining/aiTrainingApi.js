@@ -5,19 +5,34 @@
  */
 import { executeApiRequest } from '../apiRequest';
 import {
+  AI_TRAINING_CONFIDENCE_OPTIONS,
   AI_TRAINING_IMPORT_HISTORY_PAGE_SIZE,
   AI_TRAINING_IMPORTS,
   AI_TRAINING_REVIEW_PAGE_SIZE,
+  AI_TRAINING_STATUS_OPTIONS,
   AI_TRAINING_UPLOAD,
+  aiTrainingChangeHistory,
+  aiTrainingCreate,
+  aiTrainingCreateJobStatus,
+  aiTrainingExtracted,
+  aiTrainingExtractedDetail,
+  aiTrainingExtractedMappings,
+  aiTrainingExtractedReanalyze,
+  aiTrainingHistoryRevert,
+  aiTrainingImportDetail,
+  aiTrainingJobStatus,
 } from '../endpoints';
 import { getApiBaseUrl, getHttpClient } from '../httpClient';
 import aiTrainingMessages from './aiTrainingMessages';
-import { normalizeAiJobId, normalizeProcessingSteps } from './aiTrainingUtils';
+import {
+  mapAiTrainingOptionsToDropdown,
+  normalizeAiJobId,
+  normalizeProcessingSteps,
+  optionSubmitValue,
+} from './aiTrainingUtils';
 import { hasDisplayValue } from '../../utils/hasDisplayValue';
 
 export { normalizeAiJobId, normalizeProcessingSteps } from './aiTrainingUtils';
-
-const enc = (value) => encodeURIComponent(String(value ?? ''));
 
 const asArray = (value) => (Array.isArray(value) ? value : []);
 const asObject = (value) => (value && typeof value === 'object' && !Array.isArray(value) ? value : {});
@@ -79,8 +94,14 @@ const normalizeStatus = (data, jobId) => {
   };
 };
 
+const normalizeOptionField = (value, fallback = '') => {
+  const submitValue = optionSubmitValue(value);
+  return hasDisplayValue(submitValue) ? submitValue : fallback;
+};
+
 const normalizeExtractedItem = (row) => {
   const item = asObject(row);
+  const statusValue = normalizeOptionField(item.status, 'needs_review');
   return {
     ...item,
     id: asString(item.id),
@@ -88,25 +109,25 @@ const normalizeExtractedItem = (row) => {
     description: asString(item.description),
     domain: asString(item.domain),
     sub_domain: asString(item.sub_domain),
-    language: asString(item.language),
+    language: item.language,
     duration: asString(item.duration),
     cost: asString(item.cost),
-    training_mode: asString(item.training_mode),
-    approach: asString(item.approach),
-    evaluation: asString(item.evaluation),
-    outcome: asString(item.outcome),
-    product_type: asString(item.product_type),
-    registration_by: asString(item.registration_by, 'URL'),
+    training_mode: item.training_mode,
+    approach: item.approach,
+    evaluation: item.evaluation,
+    outcome: item.outcome,
+    product_type: item.product_type,
+    registration_by: normalizeOptionField(item.registration_by, 'url'),
     registration_value: asString(item.registration_value),
     nra_objectives: asArray(item.nra_objectives),
     competencies: asArray(item.competencies),
     activities: asArray(item.activities),
     competency_suggestions: asArray(item.competency_suggestions),
     activity_suggestions: asArray(item.activity_suggestions),
-    status: asString(item.status, 'needs_review'),
+    status: statusValue,
     confidence: asNumber(item.confidence),
     created: Boolean(item.created),
-    edited: Boolean(item.edited || item.status === 'edited'),
+    edited: Boolean(item.edited || statusValue === 'edited'),
     provider: asString(item.provider),
     maturity_level: asString(item.maturity_level),
     target_audience: asString(item.target_audience),
@@ -117,7 +138,7 @@ const normalizeExtractedItem = (row) => {
 
 const normalizeExtracted = (data) => {
   const body = asObject(data);
-  const items = asArray(body.items).map(normalizeExtractedItem);
+  const items = asArray(Array.isArray(body.items) ? body.items : body.results).map(normalizeExtractedItem);
   const summary = asObject(body.summary);
   return {
     items,
@@ -149,20 +170,24 @@ const normalizeCreateJob = (data) => {
   };
 };
 
-const normalizeHistory = (data) => asArray(data).map((row) => {
-  const item = asObject(row);
-  return {
-    id: asString(item.id),
-    // Backend returns plain integer draft pk (legacy job_*_t* normalized server-side).
-    training_id: asString(item.training_id),
-    actor: asString(item.actor),
-    training_name: asString(item.training_name),
-    field: asString(item.field),
-    before: item.before == null ? '' : item.before,
-    after: item.after == null ? '' : item.after,
-    timestamp: item.timestamp || null,
-  };
-});
+const normalizeHistory = (data) => {
+  const body = asObject(data);
+  const rows = Array.isArray(data) ? data : asArray(body.results);
+  return rows.map((row) => {
+    const item = asObject(row);
+    return {
+      id: asString(item.id),
+      // Backend returns plain integer draft pk (legacy job_*_t* normalized server-side).
+      training_id: asString(item.training_id),
+      actor: asString(item.actor),
+      training_name: asString(item.training_name),
+      field: asString(item.field),
+      before: item.before == null ? '' : item.before,
+      after: item.after == null ? '' : item.after,
+      timestamp: item.timestamp || null,
+    };
+  });
+};
 
 const withNormalized = async (result, normalize) => {
   if (!result?.ok) {
@@ -174,35 +199,6 @@ const withNormalized = async (result, normalize) => {
     return { ...result, data: normalize(null) };
   }
 };
-
-/** @param {string} jobId */
-const importsUrl = (jobId) => `/api/v1/ai-training/imports/${enc(jobId)}/`;
-/** @param {string} jobId */
-const historyUrl = (jobId) => `/api/v1/ai-training/imports/${enc(jobId)}/history/`;
-/** @param {string} jobId @param {string} eventId */
-const historyRevertUrl = (jobId, eventId) => (
-  `/api/v1/ai-training/imports/${enc(jobId)}/history/${enc(eventId)}/revert/`
-);
-/** @param {string} jobId */
-const statusUrl = (jobId) => `/api/v1/ai-training/jobs/${enc(jobId)}/status/`;
-/** @param {string} jobId */
-const extractedUrl = (jobId) => `/api/v1/ai-training/jobs/${enc(jobId)}/extracted/`;
-/** @param {string} jobId @param {string} trainingId */
-const extractedDetailUrl = (jobId, trainingId) => (
-  `/api/v1/ai-training/jobs/${enc(jobId)}/extracted/${enc(trainingId)}/`
-);
-/** @param {string} jobId @param {string} trainingId */
-const mappingsUrl = (jobId, trainingId) => (
-  `/api/v1/ai-training/jobs/${enc(jobId)}/extracted/${enc(trainingId)}/mappings/`
-);
-/** @param {string} jobId @param {string} trainingId */
-const reanalyzeUrl = (jobId, trainingId) => (
-  `/api/v1/ai-training/jobs/${enc(jobId)}/extracted/${enc(trainingId)}/reanalyze/`
-);
-/** @param {string} jobId */
-const createUrl = (jobId) => `/api/v1/ai-training/jobs/${enc(jobId)}/create/`;
-/** @param {string} createJobId */
-const createJobStatusUrl = (createJobId) => `/api/v1/ai-training/create-jobs/${enc(createJobId)}/`;
 
 /**
  * List AI document import history.
@@ -227,9 +223,9 @@ export const fetchImportHistory = async ({
  */
 export const fetchImportDetails = async ({ formatMessage, jobId }) => withNormalized(
   await executeApiRequest({
-    request: () => getHttpClient().get(`${getApiBaseUrl()}${importsUrl(jobId)}`),
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${aiTrainingImportDetail(jobId)}`),
     formatMessage,
-    fallbackMessage: aiTrainingMessages.jobNotFound,
+    fallbackMessage: aiTrainingMessages.importDetailLoadError,
   }),
   (data) => normalizeImportRow(data),
 );
@@ -239,9 +235,9 @@ export const fetchImportDetails = async ({ formatMessage, jobId }) => withNormal
  */
 export const fetchChangeHistory = async ({ formatMessage, jobId }) => withNormalized(
   await executeApiRequest({
-    request: () => getHttpClient().get(`${getApiBaseUrl()}${historyUrl(jobId)}`),
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${aiTrainingChangeHistory(jobId)}`),
     formatMessage,
-    fallbackMessage: aiTrainingMessages.historyLoadError,
+    fallbackMessage: aiTrainingMessages.changeHistoryLoadError,
   }),
   normalizeHistory,
 );
@@ -355,11 +351,35 @@ export const uploadTrainingDocument = async ({
  */
 export const fetchProcessingStatus = async ({ formatMessage, jobId }) => withNormalized(
   await executeApiRequest({
-    request: () => getHttpClient().get(`${getApiBaseUrl()}${statusUrl(jobId)}`),
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${aiTrainingJobStatus(jobId)}`),
     formatMessage,
-    fallbackMessage: aiTrainingMessages.jobNotFound,
+    fallbackMessage: aiTrainingMessages.statusLoadError,
   }),
   (data) => normalizeStatus(data, jobId),
+);
+
+/**
+ * Confidence filter options for review.
+ */
+export const fetchAiTrainingConfidenceOptions = async ({ formatMessage }) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${AI_TRAINING_CONFIDENCE_OPTIONS}`),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.confidenceOptionsLoadError,
+  }),
+  (data) => mapAiTrainingOptionsToDropdown(asObject(data).results),
+);
+
+/**
+ * Status filter options for review.
+ */
+export const fetchAiTrainingStatusOptions = async ({ formatMessage }) => withNormalized(
+  await executeApiRequest({
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${AI_TRAINING_STATUS_OPTIONS}`),
+    formatMessage,
+    fallbackMessage: aiTrainingMessages.statusOptionsLoadError,
+  }),
+  (data) => mapAiTrainingOptionsToDropdown(asObject(data).results),
 );
 
 /**
@@ -374,7 +394,7 @@ export const fetchExtractedTrainings = async ({
   filters = { confidence: 'all', created: 'all' },
 }) => withNormalized(
   await executeApiRequest({
-    request: () => getHttpClient().get(`${getApiBaseUrl()}${extractedUrl(jobId)}`, {
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${aiTrainingExtracted(jobId)}`, {
       params: {
         page,
         page_size: pageSize,
@@ -395,11 +415,11 @@ export const fetchExtractedTrainings = async ({
 export const updateMappings = async ({ formatMessage, jobId, trainingId, payload }) => withNormalized(
   await executeApiRequest({
     request: () => getHttpClient().patch(
-      `${getApiBaseUrl()}${mappingsUrl(jobId, trainingId)}`,
+      `${getApiBaseUrl()}${aiTrainingExtractedMappings(jobId, trainingId)}`,
       payload || {},
     ),
     formatMessage,
-    fallbackMessage: aiTrainingMessages.updateError,
+    fallbackMessage: aiTrainingMessages.mappingsUpdateError,
   }),
   normalizeExtractedItem,
 );
@@ -410,7 +430,7 @@ export const updateMappings = async ({ formatMessage, jobId, trainingId, payload
 export const updateExtractedTraining = async ({ formatMessage, jobId, trainingId, payload }) => withNormalized(
   await executeApiRequest({
     request: () => getHttpClient().patch(
-      `${getApiBaseUrl()}${extractedDetailUrl(jobId, trainingId)}`,
+      `${getApiBaseUrl()}${aiTrainingExtractedDetail(jobId, trainingId)}`,
       payload || {},
     ),
     formatMessage,
@@ -425,11 +445,11 @@ export const updateExtractedTraining = async ({ formatMessage, jobId, trainingId
 export const reanalyzeExtractedTraining = async ({ formatMessage, jobId, trainingId }) => withNormalized(
   await executeApiRequest({
     request: () => getHttpClient().post(
-      `${getApiBaseUrl()}${reanalyzeUrl(jobId, trainingId)}`,
+      `${getApiBaseUrl()}${aiTrainingExtractedReanalyze(jobId, trainingId)}`,
       {},
     ),
     formatMessage,
-    fallbackMessage: aiTrainingMessages.updateError,
+    fallbackMessage: aiTrainingMessages.reanalyzeError,
   }),
   normalizeExtractedItem,
 );
@@ -440,7 +460,7 @@ export const reanalyzeExtractedTraining = async ({ formatMessage, jobId, trainin
 export const createTrainings = async ({ formatMessage, jobId, trainingIds }) => withNormalized(
   await executeApiRequest({
     request: () => getHttpClient().post(
-      `${getApiBaseUrl()}${createUrl(jobId)}`,
+      `${getApiBaseUrl()}${aiTrainingCreate(jobId)}`,
       { training_ids: asArray(trainingIds) },
     ),
     formatMessage,
@@ -454,9 +474,9 @@ export const createTrainings = async ({ formatMessage, jobId, trainingIds }) => 
  */
 export const fetchCreateJobStatus = async ({ formatMessage, createJobId }) => withNormalized(
   await executeApiRequest({
-    request: () => getHttpClient().get(`${getApiBaseUrl()}${createJobStatusUrl(createJobId)}`),
+    request: () => getHttpClient().get(`${getApiBaseUrl()}${aiTrainingCreateJobStatus(createJobId)}`),
     formatMessage,
-    fallbackMessage: aiTrainingMessages.createError,
+    fallbackMessage: aiTrainingMessages.createStatusLoadError,
   }),
   normalizeCreateJob,
 );
@@ -467,11 +487,11 @@ export const fetchCreateJobStatus = async ({ formatMessage, createJobId }) => wi
 export const revertHistoryEvent = async ({ formatMessage, jobId, eventId }) => withNormalized(
   await executeApiRequest({
     request: () => getHttpClient().post(
-      `${getApiBaseUrl()}${historyRevertUrl(jobId, eventId)}`,
+      `${getApiBaseUrl()}${aiTrainingHistoryRevert(jobId, eventId)}`,
       {},
     ),
     formatMessage,
-    fallbackMessage: aiTrainingMessages.updateError,
+    fallbackMessage: aiTrainingMessages.revertError,
   }),
   normalizeExtractedItem,
 );

@@ -60,22 +60,21 @@ const MATURITY = ['Level 1 - Foundational', 'Level 2 - Intermediate', 'Level 3 -
 
 const pick = (list, index) => list[index % list.length];
 
-const suggestionId = (prefix, name, index) => {
-  const slug = String(name || '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
-  return `${prefix}-${slug || index + 1}`;
-};
+const slugify = (text) => String(text || '')
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-|-$/g, '');
 
-const scored = (id, name, score) => ({ id, name, score });
+const option = (id, label, value = slugify(label)) => (
+  label ? { id, value, label } : ''
+);
 
-const suggestionsFor = (pool, index, count, prefix) => {
+const suggestionsFor = (pool, index, count, idStart) => {
   const items = [];
   for (let i = 0; i < count; i += 1) {
     const name = pick(pool, index + i);
-    if (!items.some((row) => row.name === name)) {
-      items.push(scored(suggestionId(prefix, name, i), name, 98 - ((index + i) % 28)));
+    if (!items.some((row) => row.label === name)) {
+      items.push(option(idStart + items.length, name));
     }
   }
   return items;
@@ -91,15 +90,14 @@ export const buildReviewExtracted = (jobId, count = 50) => (
     const n = i + 1;
     const skipActivities = n % 9 === 0;
     const skipCompetencies = n % 11 === 0;
-    const rowId = `${jobId}_t${n}`;
     const competencySuggestions = skipCompetencies
-      ? suggestionsFor(COMPETENCY_POOL, i, 2, `${rowId}_cs`)
-      : suggestionsFor(COMPETENCY_POOL, i, 3 + (i % 2), `${rowId}_cs`);
+      ? suggestionsFor(COMPETENCY_POOL, i, 2, n * 10)
+      : suggestionsFor(COMPETENCY_POOL, i, 3 + (i % 2), n * 10);
     const activitySuggestions = skipActivities
-      ? suggestionsFor(ACTIVITY_POOL, i, 2, `${rowId}_as`)
-      : suggestionsFor(ACTIVITY_POOL, i + 2, 2 + (i % 2), `${rowId}_as`);
-    const competencies = skipCompetencies ? [] : competencySuggestions.filter((_, idx) => idx === 0 || n % 5 !== 0).map((row) => row.name);
-    const activities = skipActivities ? [] : activitySuggestions.filter((_, idx) => idx === 0 || n % 6 !== 0).map((row) => row.name);
+      ? suggestionsFor(ACTIVITY_POOL, i, 2, n * 10)
+      : suggestionsFor(ACTIVITY_POOL, i + 2, 2 + (i % 2), n * 10);
+    const competencies = skipCompetencies ? [] : competencySuggestions.filter((_, idx) => idx === 0 || n % 5 !== 0);
+    const activities = skipActivities ? [] : activitySuggestions.filter((_, idx) => idx === 0 || n % 6 !== 0);
     const emptyDescription = n % 13 === 0;
     const duration = n % 7 === 0 ? '' : `${(n % 10) + 1} days`;
     const confidenceBucket = n % 5;
@@ -110,31 +108,41 @@ export const buildReviewExtracted = (jobId, count = 50) => (
         : 0.78 + ((i % 16) / 100);
     const created = n % 8 === 0;
 
+    const edited = !created && n % 6 === 0;
+    const languageLabel = pick(LANGUAGES, i);
+    const modeLabel = pick(MODES, i);
+    const approachLabel = pick(APPROACHES, i);
+    const productLabel = pick(PRODUCT_TYPES, i);
+
     return {
-      id: rowId,
+      id: n,
       training_name: `${pick(TITLES, i)} ${n}`,
       description: emptyDescription ? '' : pick(DESCRIPTIONS, i),
       domain: pick(DOMAINS, i),
       sub_domain: pick(SUB_DOMAINS, i),
-      language: pick(LANGUAGES, i),
+      language: option(44 + (i % 20), languageLabel, slugify(languageLabel)),
       duration,
       cost: pick(COSTS, i),
-      training_mode: pick(MODES, i),
-      approach: pick(APPROACHES, i),
-      evaluation: n % 8 === 0 ? '' : 'Quiz',
-      outcome: n % 10 === 0 ? '' : 'Apply regulatory concepts in national authority practice.',
-      product_type: pick(PRODUCT_TYPES, i),
-      registration_by: 'URL',
+      training_mode: option(1 + (i % 8), modeLabel, slugify(modeLabel)),
+      approach: option(1 + (i % 6), approachLabel, slugify(approachLabel)),
+      evaluation: n % 8 === 0 ? '' : option(6, 'Quiz', 'quiz'),
+      outcome: n % 10 === 0 ? '' : option(3, 'Apply regulatory concepts in national authority practice.'),
+      product_type: option(1 + (i % 5), productLabel, slugify(productLabel)),
+      registration_by: { id: 1, value: 'url', label: 'URL' },
       registration_value: n % 6 === 0 ? '' : 'https://example.org/training',
-      nra_objectives: n % 8 === 0 ? [] : ['Strengthen national regulatory systems'],
+      nra_objectives: n % 8 === 0 ? [] : [option(1, 'Strengthen national regulatory systems')],
       competencies,
       activities,
       competency_suggestions: competencySuggestions,
       activity_suggestions: activitySuggestions,
-      status: created ? 'created' : 'needs_review',
+      status: created
+        ? { id: 3, value: 'created', label: 'Created' }
+        : edited
+          ? { id: 2, value: 'edited', label: 'Edited' }
+          : { id: 1, value: 'needs_review', label: 'Needs Review' },
       confidence,
       created,
-      edited: !created && n % 6 === 0,
+      edited,
       provider: pick(PROVIDERS, i),
       maturity_level: pick(MATURITY, i),
       target_audience: n % 7 === 0 ? '' : 'National regulatory authority staff',

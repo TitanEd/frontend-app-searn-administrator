@@ -11,6 +11,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useId, useRef, useState } from 'react';
 import { EmptyState } from '../emptyState';
+import { optionDisplayLabel, optionSubmitValue } from '../../api/aiTraining/aiTrainingUtils';
 import { hasDisplayValue } from '../../utils/hasDisplayValue';
 import messages from '../../pages/uploadTrainingWithAi/messages';
 import './AIReviewList.scss';
@@ -88,48 +89,55 @@ const FieldLabel = ({ label, info }) => (
   </span>
 );
 
-const isSelectedName = (selected = [], name) => {
-  const needle = String(name || '').trim().toLowerCase();
-  if (!needle) return false;
-  return selected.some((value) => {
-    const hay = String(value || '').trim().toLowerCase();
-    return hay === needle || hay.includes(needle) || needle.includes(hay);
-  });
+const isSelectedOption = (selected = [], option) => {
+  const needle = optionSubmitValue(option);
+  if (!hasDisplayValue(needle)) {
+    return false;
+  }
+  return selected.some((value) => optionSubmitValue(value) === needle);
 };
 
-const SuggestionChips = ({ label, suggestions = [], selected = [], disabled, onToggle }) => (
-  <div className="ai-review-list__section">
-    <span className="ai-review-list__section-label">{label}</span>
-    <div className="ai-review-list__chips">
-      {suggestions.map((item) => {
-        const name = typeof item === 'string' ? item : item.name;
-        if (!hasDisplayValue(name)) {
-          return null;
-        }
-        const score = typeof item === 'object' ? Number(item.score || 0) : null;
-        const isOn = isSelectedName(selected, name);
-        const scoreClass = score >= 75 ? 'is-high' : score >= 50 ? 'is-mid' : 'is-low';
-        return (
-          <button
-            key={name}
-            type="button"
-            className={`ai-review-list__chip ${isOn ? 'is-on' : ''}`}
-            disabled={disabled}
-            onClick={() => onToggle(name)}
-          >
-            <span className={`ai-review-list__chip-box ${isOn ? 'is-on' : ''}`}>
-              {isOn && <FontAwesomeIcon icon={faCheck} aria-hidden />}
-            </span>
-            <span className="ai-review-list__chip-name">{name}</span>
-            {score != null && (
-              <span className={`ai-review-list__chip-score ${scoreClass}`}>{Math.round(score)}%</span>
-            )}
-          </button>
-        );
-      })}
+const SuggestionChips = ({ label, suggestions = [], selected = [], disabled, onToggle }) => {
+  const { formatMessage } = useIntl();
+
+  return (
+    <div className="ai-review-list__section">
+      <span className="ai-review-list__section-label">{label}</span>
+      <div className="ai-review-list__chips">
+        {suggestions.map((item) => {
+          const value = optionSubmitValue(item);
+          const name = optionDisplayLabel(item);
+          if (!hasDisplayValue(name) && !hasDisplayValue(value)) {
+            return null;
+          }
+          const score = typeof item === 'object' ? Number(item.score) : null;
+          const hasScore = Number.isFinite(score);
+          const isOn = isSelectedOption(selected, item);
+          const scoreClass = score >= 75 ? 'is-high' : score >= 50 ? 'is-mid' : 'is-low';
+          return (
+            <button
+              key={value || name}
+              type="button"
+              className={`ai-review-list__chip ${isOn ? 'is-on' : ''}`}
+              disabled={disabled}
+              onClick={() => onToggle(value || name)}
+            >
+              <span className={`ai-review-list__chip-box ${isOn ? 'is-on' : ''}`}>
+                {isOn && <FontAwesomeIcon icon={faCheck} aria-hidden />}
+              </span>
+              <span className="ai-review-list__chip-name">{name || value}</span>
+              {hasScore && (
+                <span className={`ai-review-list__chip-score ${scoreClass}`}>
+                  {formatMessage(messages.chipScore, { score: Math.round(score) })}
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const AIReviewList = ({
   items = [],
@@ -157,7 +165,6 @@ const AIReviewList = ({
           && (training.activities || []).length > 0;
         const isApproving = approving.has(training.id);
         const isReanalyzing = reanalyzing.has(training.id);
-        const conf = Math.round((training.confidence || 0) * 100);
 
         return (
           <article key={training.id} className={`ai-review-list__card ${selected.has(training.id) ? 'is-selected' : ''} ${training.created ? 'is-created' : ''}`}>
@@ -240,7 +247,7 @@ const AIReviewList = ({
                     label={formatMessage(messages.competenciesLabel)}
                     suggestions={training.competency_suggestions?.length
                       ? training.competency_suggestions
-                      : (training.competencies || []).map((name) => ({ name, score: conf }))}
+                      : (training.competencies || [])}
                     selected={training.competencies || []}
                     disabled={training.created || busy}
                     onToggle={(name) => onToggleMapping(training, 'competencies', name)}
@@ -249,7 +256,7 @@ const AIReviewList = ({
                     label={formatMessage(messages.activitiesLabel)}
                     suggestions={training.activity_suggestions?.length
                       ? training.activity_suggestions
-                      : (training.activities || []).map((name) => ({ name, score: conf }))}
+                      : (training.activities || [])}
                     selected={training.activities || []}
                     disabled={training.created || busy}
                     onToggle={(name) => onToggleMapping(training, 'activities', name)}
@@ -258,10 +265,10 @@ const AIReviewList = ({
               )}
 
               <div className="ai-review-list__fields">
-                {INLINE_FIELDS.filter((field) => hasDisplayValue(training[field.key])).map((field) => (
+                {INLINE_FIELDS.filter((field) => hasDisplayValue(optionDisplayLabel(training[field.key]))).map((field) => (
                   <div key={field.key} className="ai-review-list__field">
                     <FieldLabel label={formatMessage(messages[field.labelKey])} info={formatMessage(messages[field.infoKey])} />
-                    <p>{training[field.key]}</p>
+                    <p>{optionDisplayLabel(training[field.key])}</p>
                   </div>
                 ))}
               </div>

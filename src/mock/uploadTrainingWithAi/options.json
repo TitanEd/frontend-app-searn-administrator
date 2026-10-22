@@ -2,43 +2,24 @@
   "confidence": {
     "results": [
       {
-        "id": "all",
+        "id": 1,
         "value": "all",
         "label": "Any Match"
       },
       {
-        "id": "high",
+        "id": 2,
         "value": "high",
         "label": "Strong (75%+)"
       },
       {
-        "id": "medium",
+        "id": 3,
         "value": "medium",
         "label": "Fair (50–74%)"
       },
       {
-        "id": "low",
+        "id": 4,
         "value": "low",
         "label": "Weak (<50%)"
-      }
-    ]
-  },
-  "created": {
-    "results": [
-      {
-        "id": "all",
-        "value": "all",
-        "label": "All Statuses"
-      },
-      {
-        "id": "created",
-        "value": "created",
-        "label": "Created"
-      },
-      {
-        "id": "not_created",
-        "value": "not_created",
-        "label": "Not Created"
       }
     ]
   },
@@ -265,6 +246,25 @@
         "id": "a7",
         "value": "Activity 7: Review Technical File",
         "label": "Activity 7: Review Technical File"
+      }
+    ]
+  },
+  "status": {
+    "results": [
+      {
+        "id": 1,
+        "value": "all",
+        "label": "All Statuses"
+      },
+      {
+        "id": 2,
+        "value": "created",
+        "label": "Created"
+      },
+      {
+        "id": 3,
+        "value": "not_created",
+        "label": "Not Created"
       }
     ]
   }

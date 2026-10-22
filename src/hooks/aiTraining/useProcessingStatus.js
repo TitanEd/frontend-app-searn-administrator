@@ -1,6 +1,7 @@
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProcessingStatus } from '../../api/aiTraining/aiTrainingApi';
+import aiTrainingMessages from '../../api/aiTraining/aiTrainingMessages';
 
 export const processingStatusQueryKey = (jobId) => ['aiTraining', 'status', jobId];
 
@@ -28,7 +29,7 @@ const useProcessingStatus = ({
     queryFn: async () => {
       const result = await fetchProcessingStatus({ formatMessage, jobId });
       if (!result.ok) {
-        throw new Error(result.message);
+        throw new Error(result.message || formatMessage(aiTrainingMessages.statusLoadError));
       }
       return result.data;
     },
@@ -38,7 +39,7 @@ const useProcessingStatus = ({
     status: query.data ?? null,
     isLoading: query.isLoading,
     isError: query.isError,
-    errorMessage: query.error?.message ?? null,
+    errorMessage: query.error?.message ?? formatMessage(aiTrainingMessages.statusLoadError),
     refetch: query.refetch,
   };
 };

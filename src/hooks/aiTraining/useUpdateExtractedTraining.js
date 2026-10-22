@@ -14,10 +14,10 @@ const useUpdateExtractedTraining = ({ jobId } = {}) => {
   const { formatMessage } = useIntl();
   const queryClient = useQueryClient();
 
-  const invalidate = () => {
-    queryClient.invalidateQueries({ queryKey: ['aiTraining', 'extracted', jobId] });
-    queryClient.invalidateQueries({ queryKey: ['aiTraining', 'history', jobId] });
-  };
+  const invalidate = () => Promise.all([
+    queryClient.invalidateQueries({ queryKey: ['aiTraining', 'extracted', jobId] }),
+    queryClient.invalidateQueries({ queryKey: ['aiTraining', 'history', jobId] }),
+  ]);
 
   const mappingsMutation = useMutation({
     mutationFn: async ({ trainingId, payload }) => {

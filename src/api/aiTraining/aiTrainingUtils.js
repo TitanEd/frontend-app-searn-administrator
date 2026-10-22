@@ -1,6 +1,110 @@
 /**
  * Helpers for AI training import domain.
  */
+import { hasDisplayValue } from '../../utils/hasDisplayValue';
+
+/**
+ * Submit value for a catalog-style option (`{ id, value, label }`) or a plain string.
+ */
+export const optionSubmitValue = (value) => {
+  if (value && typeof value === 'object' && !Array.isArray(value)) {
+    if (hasDisplayValue(value.value)) {
+      return String(value.value);
+    }
+    if (hasDisplayValue(value.name)) {
+      return String(value.name);
+    }
+    if (hasDisplayValue(value.label)) {
+      return String(value.label);
+    }
+    return '';
+  }
+  return value == null ? '' : String(value);
+};
+
+/**
+ * Visible label for a catalog-style option or a plain string.
+ */
+export const optionDisplayLabel = (value) => {
+  if (Array.isArray(value)) {
+    return value.map(optionDisplayLabel).filter(hasDisplayValue).join(', ');
+  }
+  if (value && typeof value === 'object') {
+    if (hasDisplayValue(value.label)) {
+      return String(value.label);
+    }
+    if (hasDisplayValue(value.name)) {
+      return String(value.name);
+    }
+    if (hasDisplayValue(value.value)) {
+      return String(value.value);
+    }
+    return '';
+  }
+  return value == null ? '' : String(value);
+};
+
+/**
+ * Map option-list API `results` to SearchableDropdown `{ value, label }` rows.
+ */
+export const mapAiTrainingOptionsToDropdown = (results) => {
+  if (!Array.isArray(results)) {
+    return [];
+  }
+
+  return results
+    .filter((row) => hasDisplayValue(row?.value) && hasDisplayValue(row?.label))
+    .map((row) => ({
+      value: String(row.value),
+      label: String(row.label),
+    }));
+};
+
+/**
+ * Match a selected API/form value onto a dropdown option `value`, same as catalog forms.
+ */
+export const matchAiTrainingOptionValue = (options = [], rawValue = '') => {
+  const selected = optionSubmitValue(rawValue);
+  if (!hasDisplayValue(selected)) {
+    return '';
+  }
+
+  const match = (Array.isArray(options) ? options : []).find((option) => (
+    option.value === selected || option.label === selected
+  ));
+
+  return match?.value ?? selected;
+};
+
+export const matchAiTrainingOptionValues = (options = [], rawValues = []) => {
+  if (!Array.isArray(rawValues)) {
+    return [];
+  }
+
+  return rawValues
+    .map((value) => matchAiTrainingOptionValue(options, value))
+    .filter((value) => hasDisplayValue(value));
+};
+
+/**
+ * Dropdown/multiselect options from extracted suggestions or selected rows.
+ */
+export const mapAiTrainingChoiceOptions = (rows = []) => (
+  (Array.isArray(rows) ? rows : [])
+    .map((row) => {
+      const value = optionSubmitValue(row);
+      const label = optionDisplayLabel(row);
+      if (!hasDisplayValue(value) && !hasDisplayValue(label)) {
+        return null;
+      }
+      return {
+        value: value || label,
+        label: label || value,
+      };
+    })
+    .filter(Boolean)
+);
+
 
 /**
  * Normalize public job ids to plain document pk strings.
@@ -85,6 +189,6 @@ export const formatFileSize = (bytes) => {
 export const buildExtractedSummary = (all = []) => ({
   total: all.length,
   approved: all.filter((t) => t.created).length,
-  edited_pending: all.filter((t) => !t.created && (t.edited || t.status === 'edited')).length,
-  pending: all.filter((t) => !t.created && !(t.edited || t.status === 'edited')).length,
+  edited_pending: all.filter((t) => !t.created && (t.edited || optionSubmitValue(t.status) === 'edited')).length,
+  pending: all.filter((t) => !t.created && !(t.edited || optionSubmitValue(t.status) === 'edited')).length,
 });

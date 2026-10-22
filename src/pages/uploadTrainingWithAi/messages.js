@@ -767,6 +767,11 @@ const messages = defineMessages({
     defaultMessage: 'Overall progress',
     description: 'Overall progress label',
   },
+  chipScore: {
+    id: 'app.uploadTrainingWithAi.review.chipScore',
+    defaultMessage: '{score}%',
+    description: 'Mapped competency or activity confidence score',
+  },
   approving: {
     id: 'app.uploadTrainingWithAi.review.approving',
     defaultMessage: 'Approving...',

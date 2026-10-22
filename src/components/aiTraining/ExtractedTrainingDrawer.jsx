@@ -3,18 +3,25 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { faSpinner, faUndo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useMemo, useState } from 'react';
-import catalogOptions from '../../mock/uploadTrainingWithAi/options.json';
 import useChangeHistory from '../../hooks/aiTraining/useChangeHistory';
+import useMyTrainingCatalogFormOptions from '../../hooks/myTrainingCatalog/useMyTrainingCatalogFormOptions';
 import MultiSelectInput from '../multiSelectInput/MultiSelectInput';
 import PopupDialog from '../popupDialog/PopupDialog';
 import SearchableDropdown from '../searchableDropdown/SearchableDropdown';
 import { SkeletonScreen, SKELETON_VARIANTS } from '../skeleton';
+import {
+  mapAiTrainingChoiceOptions,
+  matchAiTrainingOptionValue,
+  matchAiTrainingOptionValues,
+  optionDisplayLabel,
+  optionSubmitValue,
+} from '../../api/aiTraining/aiTrainingUtils';
 import { hasDisplayValue } from '../../utils/hasDisplayValue';
 import messages from '../../pages/uploadTrainingWithAi/messages';
 import './ExtractedTrainingDrawer.scss';
 
-const REGISTRATION_URL = 'URL';
-const REGISTRATION_EMAIL = 'Email';
+const REGISTRATION_URL = 'url';
+const REGISTRATION_EMAIL = 'email';
 
 const HISTORY_FIELD_MESSAGES = {
   training_name: messages.drawerTrainingName,
@@ -28,12 +35,16 @@ const HISTORY_FIELD_MESSAGES = {
   approach: messages.drawerApproach,
   evaluation: messages.drawerEvaluation,
   outcome: messages.drawerOutcome,
+  provider: messages.drawerProvider,
+  maturity_level: messages.drawerMaturityLevel,
+  target_audience: messages.drawerTargetAudience,
   competencies: messages.drawerCompetencies,
   activities: messages.drawerActivities,
   nra_objectives: messages.drawerNraObjectives,
   product_type: messages.drawerProductType,
   registration_by: messages.drawerRegistrationBy,
   registration_value: messages.drawerRegistrationValue,
+  status: messages.createdBadge,
 };
 
 const AiIcon = () => (
@@ -46,32 +57,24 @@ const AiIcon = () => (
   </svg>
 );
 
-const formatHistoryValue = (value) => {
-  if (Array.isArray(value)) return value.join(', ');
-  if (value == null) return '';
-  return String(value);
-};
+const formatHistoryValue = (value) => optionDisplayLabel(value);
 
 const mergeSelectOptions = (options = [], selected) => {
-  const catalog = options.filter((item) => hasDisplayValue(item?.value));
-  const selectedList = Array.isArray(selected)
-    ? selected
-    : (hasDisplayValue(selected) ? [selected] : []);
-  const extras = selectedList
-    .filter((value) => hasDisplayValue(value) && !catalog.some((item) => String(item.value) === String(value)))
-    .map((value) => ({ id: String(value), value, label: value }));
+  const catalog = mapAiTrainingChoiceOptions(options).filter((item) => hasDisplayValue(item.value));
+  const selectedList = Array.isArray(selected) ? selected : [selected];
+  const extras = mapAiTrainingChoiceOptions(selectedList)
+    .filter((item) => hasDisplayValue(item.value) && !catalog.some((option) => option.value === item.value));
   return [...extras, ...catalog];
 };
 
 const optionLabel = (options, value, fallback) => {
-  const match = options.find((item) => String(item.value) === String(value));
+  const selected = matchAiTrainingOptionValue(options, value);
+  const match = (Array.isArray(options) ? options : []).find((option) => option.value === selected);
   if (hasDisplayValue(match?.label)) {
     return match.label;
   }
-  if (hasDisplayValue(value)) {
-    return value;
-  }
-  return fallback;
+  const label = optionDisplayLabel(value);
+  return hasDisplayValue(label) ? label : fallback;
 };
 
 const ExtractedTrainingDrawer = ({
@@ -94,16 +97,18 @@ const ExtractedTrainingDrawer = ({
     trainingName: training?.training_name,
     enabled: open && tab === 'history',
   });
+  const catalogFormOptions = useMyTrainingCatalogFormOptions({ enabled: open });
 
   useEffect(() => {
     if (!training) {
       setDraft(null);
       return;
     }
+    const registrationBy = optionSubmitValue(training.registration_by).toLowerCase();
     setDraft({
       ...training,
       product_type: training.product_type || '',
-      registration_by: training.registration_by === REGISTRATION_EMAIL
+      registration_by: registrationBy === REGISTRATION_EMAIL
         ? REGISTRATION_EMAIL
         : REGISTRATION_URL,
       registration_value: training.registration_value || '',
@@ -114,67 +119,51 @@ const ExtractedTrainingDrawer = ({
     setError(null);
   }, [training, tab]);
 
-  const suggestionToOptions = (suggestions = []) => (
-    suggestions
-      .map((item) => {
-        const name = typeof item === 'string' ? item : item?.name;
-        if (!hasDisplayValue(name)) return null;
-        const score = typeof item === 'object' ? Number(item.score || 0) : null;
-        return {
-          id: (typeof item === 'object' && item.id) || name,
-          value: name,
-          label: score != null && Number.isFinite(score) ? `${name} (${Math.round(score)}%)` : name,
-        };
-      })
-      .filter(Boolean)
-  );
-
-  // Prefer AI suggestions from this training (not global mock catalog) so checks match the card.
   const competencyOptions = useMemo(
     () => mergeSelectOptions(
-      suggestionToOptions(training?.competency_suggestions).length
-        ? suggestionToOptions(training?.competency_suggestions)
-        : (catalogOptions.competencies?.results || []),
+      (training?.competency_suggestions || []).length
+        ? training.competency_suggestions
+        : catalogFormOptions.mappedCompetencyOptions,
       draft?.competencies,
     ),
-    [training?.competency_suggestions, draft?.competencies],
+    [training?.competency_suggestions, catalogFormOptions.mappedCompetencyOptions, draft?.competencies],
   );
   const activityOptions = useMemo(
     () => mergeSelectOptions(
-      suggestionToOptions(training?.activity_suggestions).length
-        ? suggestionToOptions(training?.activity_suggestions)
-        : (catalogOptions.activities?.results || []),
+      (training?.activity_suggestions || []).length
+        ? training.activity_suggestions
+        : catalogFormOptions.mappedActivityOptions,
       draft?.activities,
     ),
-    [training?.activity_suggestions, draft?.activities],
+    [training?.activity_suggestions, catalogFormOptions.mappedActivityOptions, draft?.activities],
   );
   const nraObjectiveOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.nraObjectives?.results, draft?.nra_objectives),
-    [draft?.nra_objectives],
+    () => mergeSelectOptions(catalogFormOptions.nraObjectiveOptions, draft?.nra_objectives),
+    [catalogFormOptions.nraObjectiveOptions, draft?.nra_objectives],
   );
   const languageOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.languages?.results, draft?.language),
-    [draft?.language],
+    () => mergeSelectOptions(catalogFormOptions.languageOptions, draft?.language),
+    [catalogFormOptions.languageOptions, draft?.language],
   );
   const modeOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.modes?.results, draft?.training_mode),
-    [draft?.training_mode],
+    () => mergeSelectOptions(catalogFormOptions.modeOptions, draft?.training_mode),
+    [catalogFormOptions.modeOptions, draft?.training_mode],
   );
   const approachOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.approaches?.results, draft?.approach),
-    [draft?.approach],
+    () => mergeSelectOptions(catalogFormOptions.approachOptions, draft?.approach),
+    [catalogFormOptions.approachOptions, draft?.approach],
   );
   const evaluationOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.evaluations?.results, draft?.evaluation),
-    [draft?.evaluation],
+    () => mergeSelectOptions(catalogFormOptions.evaluationOptions, draft?.evaluation),
+    [catalogFormOptions.evaluationOptions, draft?.evaluation],
   );
   const outcomeOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.outcomes?.results, draft?.outcome),
-    [draft?.outcome],
+    () => mergeSelectOptions(catalogFormOptions.outcomeOptions, draft?.outcome),
+    [catalogFormOptions.outcomeOptions, draft?.outcome],
   );
   const productTypeOptions = useMemo(
-    () => mergeSelectOptions(catalogOptions.productTypes?.results, draft?.product_type),
-    [draft?.product_type],
+    () => mergeSelectOptions(catalogFormOptions.productTypeOptions, draft?.product_type),
+    [catalogFormOptions.productTypeOptions, draft?.product_type],
   );
 
   if (!open || !training || !draft) {
@@ -186,6 +175,16 @@ const ExtractedTrainingDrawer = ({
   const dropdownNoOptions = formatMessage(messages.dropdownNoOptions);
   const registrationId = hasDisplayValue(training.id) ? training.id : 'training';
 
+  const selectedLanguage = matchAiTrainingOptionValue(languageOptions, draft.language);
+  const selectedMode = matchAiTrainingOptionValue(modeOptions, draft.training_mode);
+  const selectedApproach = matchAiTrainingOptionValue(approachOptions, draft.approach);
+  const selectedEvaluation = matchAiTrainingOptionValue(evaluationOptions, draft.evaluation);
+  const selectedOutcome = matchAiTrainingOptionValue(outcomeOptions, draft.outcome);
+  const selectedProductType = matchAiTrainingOptionValue(productTypeOptions, draft.product_type);
+  const selectedNraObjectives = matchAiTrainingOptionValues(nraObjectiveOptions, draft.nra_objectives);
+  const selectedCompetencies = matchAiTrainingOptionValues(competencyOptions, draft.competencies);
+  const selectedActivities = matchAiTrainingOptionValues(activityOptions, draft.activities);
+
   const persist = async (options) => {
     try {
       setError(null);
@@ -194,19 +193,19 @@ const ExtractedTrainingDrawer = ({
         description: draft.description,
         domain: draft.domain,
         sub_domain: draft.sub_domain,
-        language: draft.language,
+        language: selectedLanguage,
         duration: draft.duration,
         cost: draft.cost,
-        training_mode: draft.training_mode,
-        approach: draft.approach,
-        evaluation: draft.evaluation,
-        outcome: draft.outcome,
-        product_type: draft.product_type,
+        training_mode: selectedMode,
+        approach: selectedApproach,
+        evaluation: selectedEvaluation,
+        outcome: selectedOutcome,
+        product_type: selectedProductType,
         registration_by: draft.registration_by,
         registration_value: draft.registration_value,
-        nra_objectives: draft.nra_objectives,
-        activities: draft.activities,
-        competencies: draft.competencies,
+        nra_objectives: selectedNraObjectives,
+        activities: selectedActivities,
+        competencies: selectedCompetencies,
       }, options);
       return true;
     } catch (err) {
@@ -248,9 +247,9 @@ const ExtractedTrainingDrawer = ({
               const fieldMessage = HISTORY_FIELD_MESSAGES[event.field];
               const fieldLabel = fieldMessage
                 ? formatMessage(fieldMessage)
-                : (event.field && event.field !== 'created'
-                  ? event.field
-                  : (isSystemEvent ? '' : formatMessage(messages.drawerTrainingUpdated)));
+                : (isSystemEvent || event.field === 'created'
+                  ? ''
+                  : formatMessage(messages.drawerTrainingUpdated));
               return (
                 <article className="ai-drawer__history-item" key={event.id}>
                   <div className="ai-drawer__history-meta">
@@ -320,7 +319,7 @@ const ExtractedTrainingDrawer = ({
             <span className="ai-drawer__label">{formatMessage(messages.drawerCompetencies)}</span>
             <MultiSelectInput
               options={competencyOptions}
-              selectedValues={draft.competencies}
+              selectedValues={selectedCompetencies}
               onChange={(values) => setField('competencies', values)}
               searchPlaceholder={formatMessage(messages.searchCompetencies)}
               noOptionsText={dropdownNoOptions}
@@ -331,7 +330,7 @@ const ExtractedTrainingDrawer = ({
             <span className="ai-drawer__label">{formatMessage(messages.drawerActivities)}</span>
             <MultiSelectInput
               options={activityOptions}
-              selectedValues={draft.activities}
+              selectedValues={selectedActivities}
               onChange={(values) => setField('activities', values)}
               searchPlaceholder={formatMessage(messages.searchActivities)}
               noOptionsText={dropdownNoOptions}
@@ -372,10 +371,10 @@ const ExtractedTrainingDrawer = ({
               <div className="ai-drawer__field">
                 <span className="ai-drawer__label">{formatMessage(messages.drawerLanguage)}</span>
                 <SearchableDropdown
-                  value={draft.language}
+                  value={selectedLanguage}
                   options={languageOptions}
                   onChange={(value) => setField('language', value)}
-                  triggerLabel={optionLabel(languageOptions, draft.language, formatMessage(messages.drawerLanguage))}
+                  triggerLabel={optionLabel(languageOptions, selectedLanguage, formatMessage(messages.drawerLanguage))}
                   searchPlaceholder={dropdownSearchPlaceholder}
                   noOptionsText={dropdownNoOptions}
                   disabled={isSaving}
@@ -412,19 +411,19 @@ const ExtractedTrainingDrawer = ({
           <h3>{formatMessage(messages.detailsSection)}</h3>
           <div className="ai-drawer__fields">
             {[
-              ['training_mode', messages.drawerTrainingMode, modeOptions],
-              ['approach', messages.drawerApproach, approachOptions],
-              ['evaluation', messages.drawerEvaluation, evaluationOptions],
-              ['outcome', messages.drawerOutcome, outcomeOptions],
-              ['product_type', messages.drawerProductType, productTypeOptions],
-            ].map(([key, label, options]) => (
+              ['training_mode', messages.drawerTrainingMode, modeOptions, selectedMode],
+              ['approach', messages.drawerApproach, approachOptions, selectedApproach],
+              ['evaluation', messages.drawerEvaluation, evaluationOptions, selectedEvaluation],
+              ['outcome', messages.drawerOutcome, outcomeOptions, selectedOutcome],
+              ['product_type', messages.drawerProductType, productTypeOptions, selectedProductType],
+            ].map(([key, label, options, selectedValue]) => (
               <div key={key} className="ai-drawer__field">
                 <span className="ai-drawer__label">{formatMessage(label)}</span>
                 <SearchableDropdown
-                  value={draft[key]}
+                  value={selectedValue}
                   options={options}
                   onChange={(value) => setField(key, value)}
-                  triggerLabel={optionLabel(options, draft[key], formatMessage(label))}
+                  triggerLabel={optionLabel(options, selectedValue, formatMessage(label))}
                   searchPlaceholder={dropdownSearchPlaceholder}
                   noOptionsText={dropdownNoOptions}
                   disabled={isSaving}
@@ -436,7 +435,7 @@ const ExtractedTrainingDrawer = ({
               <span className="ai-drawer__label">{formatMessage(messages.drawerNraObjectives)}</span>
               <MultiSelectInput
                 options={nraObjectiveOptions}
-                selectedValues={draft.nra_objectives}
+                selectedValues={selectedNraObjectives}
                 onChange={(values) => setField('nra_objectives', values)}
                 searchPlaceholder={formatMessage(messages.searchObjectives)}
                 noOptionsText={dropdownNoOptions}

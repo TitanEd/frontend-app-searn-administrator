@@ -25,6 +25,7 @@ const useExtractedTrainings = ({
     queryKey: extractedTrainingsQueryKey(jobId, page, pageSize, search, filters),
     enabled: Boolean(jobId) && enabled,
     placeholderData: keepPreviousData,
+    refetchOnMount: 'always',
     queryFn: async () => {
       const result = await fetchExtractedTrainings({
         formatMessage,

@@ -12,6 +12,8 @@ export const AI_TRAINING_REVIEW_PAGE_SIZE = 20;
 /** Upload Training with AI (job-based API). */
 export const AI_TRAINING_IMPORTS = '/api/v1/ai-training/imports/';
 export const AI_TRAINING_UPLOAD = '/api/v1/ai-training/upload/';
+export const AI_TRAINING_CONFIDENCE_OPTIONS = '/api/v1/ai-training/options/confidence/';
+export const AI_TRAINING_STATUS_OPTIONS = '/api/v1/ai-training/options/status/';
 
 const encAi = (value) => encodeURIComponent(String(value ?? ''));
 
