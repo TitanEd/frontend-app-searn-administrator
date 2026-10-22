@@ -73,6 +73,7 @@ const MultiSelectInput = ({
               <button
                 type="button"
                 role="checkbox"
+                aria-label={option.label}
                 aria-checked={isSelected}
                 className={`multi-select-input__checkbox ${isSelected ? 'is-selected' : ''}`}
                 disabled={disabled}

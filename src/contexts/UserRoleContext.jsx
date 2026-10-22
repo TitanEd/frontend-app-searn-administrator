@@ -28,6 +28,7 @@ const DEFAULT_NAVBAR_ACCESS = {
   accessRoles: false,
   accessSettings: false,
   accessReports: false,
+  accessUploadTrainingWithAi: false,
 };
 
 const DEFAULT_COMPONENT_ACCESS = {
@@ -229,13 +230,20 @@ const buildStateFromRoleData = (roleData) => {
     };
   }
 
+  const rawNavbar = roleData.navbarAccess || {};
+  // Backend may still send legacy accessCreateTrainingAi; FE nav uses accessUploadTrainingWithAi.
+  const uploadAiAccess = Boolean(
+    rawNavbar.accessUploadTrainingWithAi ?? rawNavbar.accessCreateTrainingAi,
+  );
+
   return {
     userName: roleData.userInfo?.userName || '',
     userProfileImage: roleData.userInfo?.userProfileImage || '',
     role: roleData.userInfo?.userRole || null,
     navbarAccess: {
       ...DEFAULT_NAVBAR_ACCESS,
-      ...(roleData.navbarAccess || {}),
+      ...rawNavbar,
+      accessUploadTrainingWithAi: uploadAiAccess,
     },
     componentAccess: mergeComponentAccess(roleData),
     hasRolePermissions: true,

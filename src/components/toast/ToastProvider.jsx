@@ -1,14 +1,20 @@
 /* eslint-disable react/prop-types */
 import { useIntl } from '@edx/frontend-platform/i18n';
-import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import {
+  createContext, useCallback, useContext, useMemo, useState,
+} from 'react';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { hasDisplayValue } from '../../utils/hasDisplayValue';
 import commonMessages from '../../messages/commonMessages';
 import './ToastProvider.scss';
 
 const ToastContext = createContext({
   showToast: () => {},
 });
+
+const TOAST_VISIBLE_MS = 4000;
+const TOAST_CLOSE_MS = 260;
 
 const ToastProvider = ({ children }) => {
   const { formatMessage } = useIntl();
@@ -24,10 +30,14 @@ const ToastProvider = ({ children }) => {
     )));
     window.setTimeout(() => {
       removeToast(id);
-    }, 260);
+    }, TOAST_CLOSE_MS);
   }, [removeToast]);
 
   const showToast = useCallback(({ title, description }) => {
+    if (!hasDisplayValue(title) && !hasDisplayValue(description)) {
+      return;
+    }
+
     const id = `${Date.now()}-${Math.random()}`;
     setToasts(prev => [...prev, {
       id,
@@ -37,7 +47,7 @@ const ToastProvider = ({ children }) => {
     }]);
     window.setTimeout(() => {
       closeToast(id);
-    }, 4000);
+    }, TOAST_VISIBLE_MS);
   }, [closeToast]);
 
   const value = useMemo(() => ({ showToast }), [showToast]);
@@ -49,11 +59,20 @@ const ToastProvider = ({ children }) => {
         {toasts.map(toast => (
           <li className={`app-toast ${toast.isClosing ? 'is-closing' : ''}`} key={toast.id} role="status">
             <div>
-              <p className="app-toast__title">{toast.title}</p>
-              <p className="app-toast__description">{toast.description}</p>
+              {hasDisplayValue(toast.title) && (
+                <p className="app-toast__title">{toast.title}</p>
+              )}
+              {hasDisplayValue(toast.description) && (
+                <p className="app-toast__description">{toast.description}</p>
+              )}
             </div>
-            <button type="button" className="app-toast__close" aria-label={formatMessage(commonMessages.close)} onClick={() => closeToast(toast.id)}>
-              <FontAwesomeIcon icon={faTimes} />
+            <button
+              type="button"
+              className="app-toast__close"
+              aria-label={formatMessage(commonMessages.close)}
+              onClick={() => closeToast(toast.id)}
+            >
+              <FontAwesomeIcon icon={faTimes} aria-hidden />
             </button>
           </li>
         ))}

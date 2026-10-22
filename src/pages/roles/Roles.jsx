@@ -286,15 +286,15 @@ const Roles = () => {
               canEditRole={canEditRole}
               canDeleteRole={canDeleteRole}
               onView={(targetRole) => {
-                if (!canViewRole) return;
+                if (!canViewRole) { return; }
                 openView(targetRole);
               }}
               onEdit={(targetRole) => {
-                if (!canEditRole) return;
+                if (!canEditRole) { return; }
                 openEditForm(targetRole);
               }}
               onDelete={(targetRole) => {
-                if (!canDeleteRole) return;
+                if (!canDeleteRole) { return; }
                 setDeleteRole(targetRole);
                 setViewOpen(false);
               }}

@@ -2,7 +2,9 @@
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { faUserShield } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useEffect, useMemo, useRef, useState,
+} from 'react';
 import CommaSeparatedInput from '../../components/commaSeparatedInput/CommaSeparatedInput';
 import { EmptyState } from '../../components/emptyState';
 import ProfilePageAvatar from '../../components/users/ProfilePageAvatar';
@@ -340,21 +342,15 @@ const Profile = () => {
 
   const profileDisplayName = fullName || profile?.fullName;
 
-  const countryTrigger = countryLabel ? (
-    countryLabel
-  ) : (
+  const countryTrigger = countryLabel || (
     <span className="profile-page__placeholder">{formatMessage(messages.countryPlaceholder)}</span>
   );
 
-  const languageTrigger = languageLabel ? (
-    languageLabel
-  ) : (
+  const languageTrigger = languageLabel || (
     <span className="profile-page__placeholder">{formatMessage(messages.languagePlaceholder)}</span>
   );
 
-  const managerTrigger = managerLabel ? (
-    managerLabel
-  ) : (
+  const managerTrigger = managerLabel || (
     <span className="profile-page__placeholder">{formatMessage(messages.managerPlaceholder)}</span>
   );
 

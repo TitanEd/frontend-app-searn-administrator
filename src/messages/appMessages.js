@@ -91,6 +91,11 @@ const appMessages = defineMessages({
     defaultMessage: 'NRA-Specific Training Catalog',
     description: 'Top header title for NRA-specific training catalog route',
   },
+  uploadTrainingWithAiTitle: {
+    id: 'app.layout.route.uploadTrainingWithAi.title',
+    defaultMessage: 'Upload Training with AI',
+    description: 'Top header title for upload training with AI route',
+  },
   myTrainingTitle: {
     id: 'app.layout.route.myTraining.title',
     defaultMessage: 'My Trainings',

@@ -1,3 +1,9 @@
+html.is-popup-open,
+html.is-popup-open body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 .popup-dialog {
   position: fixed;
   inset: 0;
@@ -6,12 +12,16 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  overflow: hidden;
+  overscroll-behavior: none;
+  cursor: default;
 
   &__backdrop {
     position: absolute;
     inset: 0;
     border: 0;
     background: rgb(0 0 0 / .8);
+    cursor: default;
   }
 
   &__content {

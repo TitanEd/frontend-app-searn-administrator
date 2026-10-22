@@ -201,4 +201,3 @@ const regulatoryPassportMessages = defineMessages({
 });
 
 export default regulatoryPassportMessages;
-

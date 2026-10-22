@@ -28,7 +28,7 @@ export const TablePagination = ({
 };
 
 /**
- * Footer row with optional left summary and shared pagination on the right.
+ * Footer row with optional summary + reusable centered pagination.
  * Pagination controls render only when `totalPages > 1`.
  * The summary (`footerContent`) renders whenever it is provided, including single-page lists.
  */
@@ -47,16 +47,24 @@ export const TablePaginationFooter = ({
   }
 
   return (
-    <div className="data-table__footer">
-      {hasFooterContent && <div>{footerContent}</div>}
-      {showPagination && (
-        <TablePagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={onPageChange}
-          paginationLabel={paginationLabel}
-        />
+    <div className={`data-table__footer${showPagination ? ' data-table__footer--paginated' : ''}`}>
+      {hasFooterContent ? (
+        <div className="data-table__footer-summary">{footerContent}</div>
+      ) : (
+        <div className="data-table__footer-summary" aria-hidden="true" />
       )}
+      {showPagination && (
+        <div className="data-table__footer-pagination">
+          <TablePagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={onPageChange}
+            paginationLabel={paginationLabel}
+          />
+        </div>
+      )}
+      {/* Balance column so pagination stays visually centered when summary is present */}
+      {showPagination && <div className="data-table__footer-spacer" aria-hidden="true" />}
     </div>
   );
 };

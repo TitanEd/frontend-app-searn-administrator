@@ -40,7 +40,10 @@ export const fetchTrainingsCatalogFrameworkRoleOptions = ({ formatMessage, frame
 /**
  * @param {{ formatMessage: Function, frameworkIdentifier: string }} params
  */
-export const fetchTrainingsCatalogFrameworkDomainOptions = ({ formatMessage, frameworkIdentifier }) => executeApiRequest({
+export const fetchTrainingsCatalogFrameworkDomainOptions = ({
+  formatMessage,
+  frameworkIdentifier,
+}) => executeApiRequest({
   request: () => {
     const httpClient = getHttpClient();
     const url = `${getApiBaseUrl()}${trainingsCatalogOptionsFrameworkDomains(frameworkIdentifier)}`;
@@ -53,7 +56,10 @@ export const fetchTrainingsCatalogFrameworkDomainOptions = ({ formatMessage, fra
 /**
  * @param {{ formatMessage: Function, frameworkIdentifier: string }} params
  */
-export const fetchTrainingsCatalogFrameworkSubDomainOptions = ({ formatMessage, frameworkIdentifier }) => executeApiRequest({
+export const fetchTrainingsCatalogFrameworkSubDomainOptions = ({
+  formatMessage,
+  frameworkIdentifier,
+}) => executeApiRequest({
   request: () => {
     const httpClient = getHttpClient();
     const url = `${getApiBaseUrl()}${trainingsCatalogOptionsFrameworkSubDomains(frameworkIdentifier)}`;

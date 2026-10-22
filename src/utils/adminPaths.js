@@ -37,6 +37,16 @@ export const ADMIN_PATHS = {
   nraSpecificTrainingCatalog: '/admin/nra-specific-training-catalog/',
   nraSpecificTrainingCatalogNew: '/admin/nra-specific-training-catalog/new/',
   nraSpecificTrainingCatalogEdit: (trainingId) => adminPath(`/admin/nra-specific-training-catalog/${trainingId}/edit`),
+  uploadTrainingWithAi: '/admin/upload-training-with-ai/',
+  uploadTrainingWithAiNew: '/admin/upload-training-with-ai/new/',
+  uploadTrainingWithAiJob: (jobId) => {
+    const id = String(jobId ?? '').replace(/^job_/i, '');
+    return `/admin/upload-training-with-ai/?job=${encodeURIComponent(id)}`;
+  },
+  uploadTrainingWithAiNewJob: (jobId) => {
+    const id = String(jobId ?? '').replace(/^job_/i, '');
+    return `/admin/upload-training-with-ai/new/?job=${encodeURIComponent(id)}`;
+  },
   myTraining: '/admin/my-training/',
   nras: '/admin/nras/',
   countries: '/admin/countries/',

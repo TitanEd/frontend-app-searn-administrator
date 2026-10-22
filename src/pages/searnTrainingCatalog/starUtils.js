@@ -10,4 +10,3 @@ export const getStarFill = (rating, index) => {
   }
   return Math.max(0, Math.min(1, value - lower));
 };
-

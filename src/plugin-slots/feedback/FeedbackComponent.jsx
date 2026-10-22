@@ -165,7 +165,6 @@ const FeedbackComponent = ({ isOpen, setIsOpen }) => {
         setIsOpen(false);
       }, 3000);
     } catch (error) {
-      console.error('Error submitting feedback:', error);
       setStatusMessage(
         getApiBodyMessage(error?.response?.data)
           || formatMessage(feedbackMessages.errorMessage),
@@ -197,16 +196,18 @@ const FeedbackComponent = ({ isOpen, setIsOpen }) => {
       {isOpen && (
         <div className="feedback-form-container">
           <div className="feedback-body">
-            {submitStatus === 'success' ? (
+            {submitStatus === 'success' && (
               <div className="success-message">
                 <Check className="check-icon" />
                 {hasDisplayValue(statusMessage) && <p>{statusMessage}</p>}
               </div>
-            ) : submitStatus === 'error' ? (
+            )}
+            {submitStatus === 'error' && (
               <div className="error-message">
                 {hasDisplayValue(statusMessage) && <p>{statusMessage}</p>}
               </div>
-            ) : (
+            )}
+            {submitStatus !== 'success' && submitStatus !== 'error' && (
               <>
                 <div className="feedback-question">
                   {formatMessage(feedbackMessages.question)}

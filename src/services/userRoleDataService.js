@@ -18,11 +18,12 @@ import superUserRolePayload from '../data/userRole/super-user.json';
  *   'super-user' | 'secretariat' | 'training-provider' | 'nra-admin' | 'nra-manager' | 'nra-staff'
  *
  * If the chosen source returns no row in `results` (or the API fails), the app
- * applies empty permissions: only pages/components that do not require permissions
- * stay available (see hasNavbarAccessForPath in App.jsx).
+ * applies empty permissions: only pages/components that do not require
+ * permissions stay available (see hasNavbarAccessForPath in App.jsx).
  */
 
-// ─── Permissions plug-in (change here only) here only two change required line number 27 cahnge api to local and on line 30 choose any one role have listed on line 29───────────────────────────────────
+// ─── Permissions plug-in (change here only) ──────────────────────────────────
+// Two changes: set ROLE_DATA_SOURCE to 'api' or 'local', then pick LOCAL_ROLE_DATA_KEY.
 /** @type {'api' | 'local'} */
 export const ROLE_DATA_SOURCE = 'api';
 

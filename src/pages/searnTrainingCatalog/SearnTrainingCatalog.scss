@@ -127,7 +127,8 @@
     line-height: 1.05rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: box;
+    /* stylelint-disable-next-line value-no-vendor-prefix -- line-clamp needs -webkit-box */
+    display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }

@@ -74,9 +74,9 @@ const PencilIcon = ({ className }) => (
 );
 
 const statusClass = (status) => {
-  if (status === 'approved') return 'pending-requests-page__status-pill--approved';
-  if (status === 'rejected') return 'pending-requests-page__status-pill--rejected';
-  if (status === 'closed') return 'pending-requests-page__status-pill--closed';
+  if (status === 'approved') { return 'pending-requests-page__status-pill--approved'; }
+  if (status === 'rejected') { return 'pending-requests-page__status-pill--rejected'; }
+  if (status === 'closed') { return 'pending-requests-page__status-pill--closed'; }
   return 'pending-requests-page__status-pill--pending';
 };
 
@@ -204,102 +204,104 @@ const PendingRequests = () => {
     }
 
     return (
-      <>
-        <div className="pending-requests-page__table-card">
-          <div className="pending-requests-page__table-wrap">
-            <table className="pending-requests-page__table">
-              <thead>
-                <tr className="pending-requests-page__thead-row">
-                  <th className="pending-requests-page__th">{formatMessage(messages.tableRequest)}</th>
-                  <th className="pending-requests-page__th">{formatMessage(messages.tableType)}</th>
-                  <th className="pending-requests-page__th pending-requests-page__th--center">{formatMessage(messages.tableStatus)}</th>
-                  <th className="pending-requests-page__th">{formatMessage(messages.tableSubmitted)}</th>
-                  {canEditPendingRequest && (
-                    <th className="pending-requests-page__th pending-requests-page__th--right">{formatMessage(messages.tableActions)}</th>
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((item) => {
-                  const rowKey = hasDisplayValue(item.id) ? String(item.id) : `pending-request-${item.title}`;
+      <div className="pending-requests-page__table-card">
+        <div className="pending-requests-page__table-wrap">
+          <table className="pending-requests-page__table">
+            <thead>
+              <tr className="pending-requests-page__thead-row">
+                <th className="pending-requests-page__th">{formatMessage(messages.tableRequest)}</th>
+                <th className="pending-requests-page__th">{formatMessage(messages.tableType)}</th>
+                <th className="pending-requests-page__th pending-requests-page__th--center">{formatMessage(messages.tableStatus)}</th>
+                <th className="pending-requests-page__th">{formatMessage(messages.tableSubmitted)}</th>
+                {canEditPendingRequest && (
+                <th className="pending-requests-page__th pending-requests-page__th--right">{formatMessage(messages.tableActions)}</th>
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item) => {
+                const rowKey = hasDisplayValue(item.id) ? String(item.id) : `pending-request-${item.title}`;
 
-                  return (
-                    <tr
-                      className={[
-                        'pending-requests-page__row',
-                        canEditPendingRequest ? 'pending-requests-page__row--clickable' : '',
-                      ].filter(Boolean).join(' ')}
-                      key={rowKey}
-                      onClick={canEditPendingRequest ? () => navigate(ADMIN_PATHS.pendingRequestDetail(item.id)) : undefined}
-                      role={canEditPendingRequest ? 'button' : undefined}
-                      tabIndex={canEditPendingRequest ? 0 : undefined}
-                      onKeyDown={canEditPendingRequest ? (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          navigate(ADMIN_PATHS.pendingRequestDetail(item.id));
-                        }
-                      } : undefined}
-                    >
-                      <td className="pending-requests-page__td">
-                        <div className="pending-requests-page__request-cell">
-                          <div className="pending-requests-page__icon-box">
-                            <InboxIcon className="h-5 w-5" />
-                          </div>
-                          <div style={{ minWidth: 0 }}>
-                            {hasDisplayValue(item.title) && (
-                              <p className="pending-requests-page__title">{item.title}</p>
-                            )}
-                            {hasDisplayValue(item.subtitle) && (
-                              <p className="pending-requests-page__subtitle">{item.subtitle}</p>
-                            )}
-                          </div>
+                return (
+                  <tr
+                    className={[
+                      'pending-requests-page__row',
+                      canEditPendingRequest ? 'pending-requests-page__row--clickable' : '',
+                    ].filter(Boolean).join(' ')}
+                    key={rowKey}
+                    onClick={
+                      canEditPendingRequest
+                        ? () => navigate(ADMIN_PATHS.pendingRequestDetail(item.id))
+                        : undefined
+                    }
+                    role={canEditPendingRequest ? 'button' : undefined}
+                    tabIndex={canEditPendingRequest ? 0 : undefined}
+                    onKeyDown={canEditPendingRequest ? (e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        navigate(ADMIN_PATHS.pendingRequestDetail(item.id));
+                      }
+                    } : undefined}
+                  >
+                    <td className="pending-requests-page__td">
+                      <div className="pending-requests-page__request-cell">
+                        <div className="pending-requests-page__icon-box">
+                          <InboxIcon className="h-5 w-5" />
                         </div>
-                      </td>
-                      <td className="pending-requests-page__td">
-                        {hasDisplayValue(item.type) ? item.type : null}
-                      </td>
-                      <td className="pending-requests-page__td pending-requests-page__td--center">
-                        {hasDisplayValue(item.status) && (
-                          <span className={`pending-requests-page__status-pill ${statusClass(item.status)}`}>
-                            {renderStatusLabel(item.status)}
-                          </span>
-                        )}
-                      </td>
-                      <td className="pending-requests-page__td">
-                        {hasDisplayValue(item.submittedRelative) ? item.submittedRelative : null}
-                      </td>
-                      {canEditPendingRequest && (
-                        <td className="pending-requests-page__td pending-requests-page__td--right">
-                          <button
-                            type="button"
-                            className="pending-requests-page__icon-button"
-                            aria-label={formatMessage(messages.viewRequest)}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate(ADMIN_PATHS.pendingRequestDetail(item.id));
-                            }}
-                          >
-                            <PencilIcon className="h-4 w-4" />
-                          </button>
-                        </td>
+                        <div style={{ minWidth: 0 }}>
+                          {hasDisplayValue(item.title) && (
+                            <p className="pending-requests-page__title">{item.title}</p>
+                          )}
+                          {hasDisplayValue(item.subtitle) && (
+                            <p className="pending-requests-page__subtitle">{item.subtitle}</p>
+                          )}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="pending-requests-page__td">
+                      {hasDisplayValue(item.type) ? item.type : null}
+                    </td>
+                    <td className="pending-requests-page__td pending-requests-page__td--center">
+                      {hasDisplayValue(item.status) && (
+                        <span className={`pending-requests-page__status-pill ${statusClass(item.status)}`}>
+                          {renderStatusLabel(item.status)}
+                        </span>
                       )}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          <TablePaginationFooter
-            currentPage={page}
-            totalPages={totalPages}
-            onPageChange={setPage}
-            paginationLabel={formatMessage(messages.paginationLabel)}
-            footerContent={formatMessage(
-              messages.showingCount,
-              buildPaginationShowingParams(items, requestsCount),
-            )}
-          />
+                    </td>
+                    <td className="pending-requests-page__td">
+                      {hasDisplayValue(item.submittedRelative) ? item.submittedRelative : null}
+                    </td>
+                    {canEditPendingRequest && (
+                      <td className="pending-requests-page__td pending-requests-page__td--right">
+                        <button
+                          type="button"
+                          className="pending-requests-page__icon-button"
+                          aria-label={formatMessage(messages.viewRequest)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(ADMIN_PATHS.pendingRequestDetail(item.id));
+                          }}
+                        >
+                          <PencilIcon className="h-4 w-4" />
+                        </button>
+                      </td>
+                    )}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
-      </>
+        <TablePaginationFooter
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+          paginationLabel={formatMessage(messages.paginationLabel)}
+          footerContent={formatMessage(
+            messages.showingCount,
+            buildPaginationShowingParams(items, requestsCount),
+          )}
+        />
+      </div>
     );
   };
 

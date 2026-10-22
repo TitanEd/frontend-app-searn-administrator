@@ -327,9 +327,7 @@ const RequestedTrainings = () => {
     }
   };
 
-  const activityTrigger = selectedActivityLabel ? (
-    selectedActivityLabel
-  ) : (
+  const activityTrigger = selectedActivityLabel || (
     <span className="request-training-modal__placeholder">
       {formatMessage(messages.modalActivityPlaceholder)}
     </span>
@@ -367,114 +365,114 @@ const RequestedTrainings = () => {
     }
 
     return (
-      <>
-        <div className="requested-trainings-page__table-card">
-          <div className="requested-trainings-page__table-wrap">
-            <table className="requested-trainings-page__table">
-              <thead>
-                <tr className="requested-trainings-page__thead-row">
-                  <th className="requested-trainings-page__th">{formatMessage(messages.tableActivity)}</th>
-                  <th className="requested-trainings-page__th">{formatMessage(messages.tableStatus)}</th>
-                  <th className="requested-trainings-page__th">{formatMessage(messages.tableFlags)}</th>
-                  {showActionsColumn && (
-                    <th className="requested-trainings-page__th requested-trainings-page__th--right">
-                      {formatMessage(messages.tableActions)}
-                    </th>
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((item) => {
-                  const rowKey = hasDisplayValue(item.id) ? String(item.id) : `requested-training-${item.activity}`;
-                  const isClosed = item.status === 'closed';
+      <div className="requested-trainings-page__table-card">
+        <div className="requested-trainings-page__table-wrap">
+          <table className="requested-trainings-page__table">
+            <thead>
+              <tr className="requested-trainings-page__thead-row">
+                <th className="requested-trainings-page__th">{formatMessage(messages.tableActivity)}</th>
+                <th className="requested-trainings-page__th">{formatMessage(messages.tableStatus)}</th>
+                <th className="requested-trainings-page__th">{formatMessage(messages.tableFlags)}</th>
+                {showActionsColumn && (
+                <th className="requested-trainings-page__th requested-trainings-page__th--right">
+                  {formatMessage(messages.tableActions)}
+                </th>
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item) => {
+                const rowKey = hasDisplayValue(item.id) ? String(item.id) : `requested-training-${item.activity}`;
+                const isClosed = item.status === 'closed';
 
-                  return (
-                    <tr className="requested-trainings-page__row" key={rowKey}>
-                      <td className="requested-trainings-page__td">
-                        {hasDisplayValue(item.activity) && (
-                          <p className="requested-trainings-page__activity-title">{item.activity}</p>
-                        )}
-                        {hasDisplayValue(item.description) && (
-                          <p className="requested-trainings-page__activity-desc">{item.description}</p>
-                        )}
-                      </td>
-                      <td className="requested-trainings-page__td">
-                        {hasDisplayValue(item.status) && (
-                          <span className={`requested-trainings-page__pill ${isClosed ? 'requested-trainings-page__pill--closed' : ''}`}>
-                            {renderStatusLabel(item.status)}
-                          </span>
-                        )}
-                      </td>
-                      <td className="requested-trainings-page__td">
-                        {hasFlagsCount(item.flags) && (
-                          <span className="requested-trainings-page__flag">
-                            <FlagIcon className="h-3.5 w-3.5" />
-                            {item.flags}
-                          </span>
-                        )}
-                      </td>
-                      {showActionsColumn && (
-                        <td className="requested-trainings-page__td requested-trainings-page__td--right">
-                          <div className="requested-trainings-page__actions-cell">
-                            {showFlagButton && rowHasFlagButton(item) && (
+                return (
+                  <tr className="requested-trainings-page__row" key={rowKey}>
+                    <td className="requested-trainings-page__td">
+                      {hasDisplayValue(item.activity) && (
+                      <p className="requested-trainings-page__activity-title">{item.activity}</p>
+                      )}
+                      {hasDisplayValue(item.description) && (
+                      <p className="requested-trainings-page__activity-desc">{item.description}</p>
+                      )}
+                    </td>
+                    <td className="requested-trainings-page__td">
+                      {hasDisplayValue(item.status) && (
+                        <span
+                          className={`requested-trainings-page__pill ${isClosed ? 'requested-trainings-page__pill--closed' : ''}`}
+                        >
+                          {renderStatusLabel(item.status)}
+                        </span>
+                      )}
+                    </td>
+                    <td className="requested-trainings-page__td">
+                      {hasFlagsCount(item.flags) && (
+                        <span className="requested-trainings-page__flag">
+                          <FlagIcon className="h-3.5 w-3.5" />
+                          {item.flags}
+                        </span>
+                      )}
+                    </td>
+                    {showActionsColumn && (
+                      <td className="requested-trainings-page__td requested-trainings-page__td--right">
+                        <div className="requested-trainings-page__actions-cell">
+                          {showFlagButton && rowHasFlagButton(item) && (
+                            <button
+                              type="button"
+                              className={
+                                item.isFlagged
+                                  ? 'requested-trainings-page__flag-button requested-trainings-page__flag-button--active'
+                                  : 'requested-trainings-page__flag-button'
+                              }
+                              disabled={flagMutation.isPending}
+                              onClick={() => handleFlagAction(item)}
+                            >
+                              <FlagIcon className="h-3.5 w-3.5" />
+                              {formatMessage(item.isFlagged ? messages.flagged : messages.flagInterest)}
+                            </button>
+                          )}
+                          {showOpenCloseButton && (
+                            isClosed ? (
                               <button
                                 type="button"
-                                className={
-                                  item.isFlagged
-                                    ? 'requested-trainings-page__flag-button requested-trainings-page__flag-button--active'
-                                    : 'requested-trainings-page__flag-button'
-                                }
-                                disabled={flagMutation.isPending}
-                                onClick={() => handleFlagAction(item)}
+                                className="requested-trainings-page__outline-button"
+                                disabled={statusMutation.isPending}
+                                onClick={() => handleStatusAction(item, 'reopen')}
                               >
-                                <FlagIcon className="h-3.5 w-3.5" />
-                                {formatMessage(item.isFlagged ? messages.flagged : messages.flagInterest)}
+                                <CircleCheckIcon className="h-3.5 w-3.5" />
+                                {formatMessage(messages.reopen)}
                               </button>
-                            )}
-                            {showOpenCloseButton && (
-                              isClosed ? (
-                                <button
-                                  type="button"
-                                  className="requested-trainings-page__outline-button"
-                                  disabled={statusMutation.isPending}
-                                  onClick={() => handleStatusAction(item, 'reopen')}
-                                >
-                                  <CircleCheckIcon className="h-3.5 w-3.5" />
-                                  {formatMessage(messages.reopen)}
-                                </button>
-                              ) : (
-                                <button
-                                  type="button"
-                                  className="requested-trainings-page__outline-button"
-                                  disabled={statusMutation.isPending}
-                                  onClick={() => handleStatusAction(item, 'close')}
-                                >
-                                  <CircleXIcon className="h-3.5 w-3.5" />
-                                  {formatMessage(messages.close)}
-                                </button>
-                              )
-                            )}
-                          </div>
-                        </td>
-                      )}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          <TablePaginationFooter
-            currentPage={page}
-            totalPages={totalPages}
-            onPageChange={setPage}
-            paginationLabel={formatMessage(messages.paginationLabel)}
-            footerContent={formatMessage(
-              messages.showingCount,
-              buildPaginationShowingParams(items, trainingsCount),
-            )}
-          />
+                            ) : (
+                              <button
+                                type="button"
+                                className="requested-trainings-page__outline-button"
+                                disabled={statusMutation.isPending}
+                                onClick={() => handleStatusAction(item, 'close')}
+                              >
+                                <CircleXIcon className="h-3.5 w-3.5" />
+                                {formatMessage(messages.close)}
+                              </button>
+                            )
+                          )}
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
-      </>
+        <TablePaginationFooter
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+          paginationLabel={formatMessage(messages.paginationLabel)}
+          footerContent={formatMessage(
+            messages.showingCount,
+            buildPaginationShowingParams(items, trainingsCount),
+          )}
+        />
+      </div>
     );
   };
 

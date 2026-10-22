@@ -1,0 +1,76 @@
+{
+  "job_id": 2,
+  "status": "processing",
+  "current_step": "mapping_competencies",
+  "progress": 62,
+  "message": "Mapping competencies...",
+  "total_records": 28,
+  "processed_records": 12,
+  "error": null,
+  "started_at": "2026-10-16T11:21:00.000Z",
+  "steps": [
+    {
+      "id": 1,
+      "key": "validating_document",
+      "value": "validating_document",
+      "label": "Validating your document",
+      "order": 1
+    },
+    {
+      "id": 2,
+      "key": "reading_document",
+      "value": "reading_document",
+      "label": "Reading your document",
+      "order": 2
+    },
+    {
+      "id": 3,
+      "key": "extracting_data",
+      "value": "extracting_data",
+      "label": "Understanding training information",
+      "order": 3
+    },
+    {
+      "id": 4,
+      "key": "identifying_trainings",
+      "value": "identifying_trainings",
+      "label": "Identifying training records",
+      "order": 4
+    },
+    {
+      "id": 5,
+      "key": "mapping_fields",
+      "value": "mapping_fields",
+      "label": "Extracting training records",
+      "order": 5
+    },
+    {
+      "id": 6,
+      "key": "mapping_competencies",
+      "value": "mapping_competencies",
+      "label": "Mapping competencies",
+      "order": 6
+    },
+    {
+      "id": 7,
+      "key": "mapping_activities",
+      "value": "mapping_activities",
+      "label": "Mapping activities",
+      "order": 7
+    },
+    {
+      "id": 8,
+      "key": "validating_records",
+      "value": "validating_records",
+      "label": "Validating extracted information",
+      "order": 8
+    },
+    {
+      "id": 9,
+      "key": "preparing_results",
+      "value": "preparing_results",
+      "label": "Preparing your training catalog",
+      "order": 9
+    }
+  ]
+}

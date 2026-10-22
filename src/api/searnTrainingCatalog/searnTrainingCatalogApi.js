@@ -1,11 +1,29 @@
 import { executeApiRequest } from '../apiRequest';
-import { API_PAGE_SIZE, SEARN_TRAINING_CATALOG, searnTrainingCatalogDetail, searnTrainingCatalogFeedback, searnTrainingCatalogProviderDetail } from '../endpoints';
+import {
+  API_PAGE_SIZE,
+  SEARN_TRAINING_CATALOG,
+  searnTrainingCatalogDetail,
+  searnTrainingCatalogFeedback,
+  searnTrainingCatalogProviderDetail,
+} from '../endpoints';
 import { getApiBaseUrl, getHttpClient } from '../httpClient';
 import catalogMessages from '../../pages/searnTrainingCatalog/messages';
 import { buildSearnTrainingCatalogListParams } from './searnTrainingCatalogUtils';
 
 /**
- * @param {{ formatMessage: Function, page?: number, pageSize?: number, search?: string, frameworkFilter?: string, roleFilter?: string, domainFilter?: string, subDomainFilter?: string, activityFilter?: string, nraGoalFilter?: string, providerFilter?: string }} params
+ * @param {{
+ *   formatMessage: Function,
+ *   page?: number,
+ *   pageSize?: number,
+ *   search?: string,
+ *   frameworkFilter?: string,
+ *   roleFilter?: string,
+ *   domainFilter?: string,
+ *   subDomainFilter?: string,
+ *   activityFilter?: string,
+ *   nraGoalFilter?: string,
+ *   providerFilter?: string,
+ * }} params
  */
 export const fetchSearnTrainingCatalogList = ({
   formatMessage,

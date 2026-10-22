@@ -44,7 +44,11 @@ const UserMappedCompetencies = ({ items }) => {
                 <span
                   className={`user-about-page__competency-status${item.completed ? ' user-about-page__competency-status--done' : ''}`}
                 >
-                  {formatMessage(item.completed ? detailMessages.competencyCompleted : detailMessages.competencyPending)}
+                  {formatMessage(
+                    item.completed
+                      ? detailMessages.competencyCompleted
+                      : detailMessages.competencyPending,
+                  )}
                 </span>
               </div>
             </div>

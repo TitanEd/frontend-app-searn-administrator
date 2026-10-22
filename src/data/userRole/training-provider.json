@@ -22,7 +22,8 @@
         "accessOrganizationProfile": true,
         "accessRoles": false,
         "accessSettings": false,
-        "accessReports": true
+        "accessReports": true,
+        "accessUploadTrainingWithAi": true
       },
       "componentAccess": {
         "dashboard": {

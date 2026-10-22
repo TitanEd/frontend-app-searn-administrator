@@ -341,9 +341,20 @@ const SearnTrainingCatalogListSection = ({
           {lockProviderFilter ? (
             <SearchableDropdown
               value={providerFilter}
-              options={lockedProviderOptions.length > 0 ? lockedProviderOptions : [{ value: providerFilter, label: lockedProviderLabel || providerFilter }]}
+              options={
+                lockedProviderOptions.length > 0
+                  ? lockedProviderOptions
+                  : [{
+                    value: providerFilter,
+                    label: lockedProviderLabel || providerFilter,
+                  }]
+              }
               onChange={() => {}}
-              triggerLabel={lockedProviderLabel || lockedProviderOptions[0]?.label || formatMessage(messages.allProviders)}
+              triggerLabel={
+                lockedProviderLabel
+                || lockedProviderOptions[0]?.label
+                || formatMessage(messages.allProviders)
+              }
               searchPlaceholder={dropdownSearchPlaceholder}
               noOptionsText={dropdownNoOptions}
               disabled

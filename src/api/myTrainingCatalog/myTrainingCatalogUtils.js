@@ -1,6 +1,6 @@
 import { normalizePickerOptionRows } from '../competencyFramework/competencyFrameworkUtils';
 import { hasDisplayValue } from '../../utils/hasDisplayValue';
-import { FILTER_ALL } from '../searnTrainingCatalog/trainingsCatalogOptionsUtils';
+import { FILTER_ALL, mapCatalogFilterOptionsToDropdown } from '../searnTrainingCatalog/trainingsCatalogOptionsUtils';
 import {
   mapSearnTrainingCatalogDetail,
   mapSearnTrainingCatalogFeedback,
@@ -8,7 +8,6 @@ import {
   unwrapSearnTrainingCatalogDetail,
   unwrapSearnTrainingCatalogFeedback,
 } from '../searnTrainingCatalog/searnTrainingCatalogUtils';
-import { mapCatalogFilterOptionsToDropdown } from '../searnTrainingCatalog/trainingsCatalogOptionsUtils';
 
 export {
   mapSearnTrainingCatalogDetail as mapMyTrainingCatalogDetail,
@@ -49,6 +48,21 @@ export const mapMyTrainingCatalogFormOptionsToDropdown = (results) => {
 };
 
 /**
+ * @param {object} row
+ * @param {string} snakeKey
+ * @param {string} camelKey
+ */
+const pickDisplayableArrayField = (row, snakeKey, camelKey) => {
+  if (Array.isArray(row[snakeKey])) {
+    return row[snakeKey].filter(hasDisplayValue);
+  }
+  if (Array.isArray(row[camelKey])) {
+    return row[camelKey].filter(hasDisplayValue);
+  }
+  return [];
+};
+
+/**
  * @param {object|null|undefined} data
  */
 export const unwrapMyTrainingCatalogFormDetail = (data) => {
@@ -83,24 +97,20 @@ export const mapMyTrainingCatalogFormDetail = (row) => {
     evaluation: row.evaluation ?? '',
     outcome: row.outcome ?? '',
     productType: row.product_type ?? row.productType ?? '',
-    nraObjectives: Array.isArray(row.nra_objectives)
-      ? row.nra_objectives.filter(hasDisplayValue)
-      : Array.isArray(row.nraObjectives)
-        ? row.nraObjectives.filter(hasDisplayValue)
-        : [],
+    nraObjectives: pickDisplayableArrayField(row, 'nra_objectives', 'nraObjectives'),
     registrationBy: row.registration_by ?? row.registrationBy ?? 'url',
     registrationUrl: row.registration_url ?? row.registrationUrl ?? '',
     registrationEmail: row.registration_email ?? row.registrationEmail ?? '',
-    mappedCompetencies: Array.isArray(row.mapped_competencies)
-      ? row.mapped_competencies.filter(hasDisplayValue)
-      : Array.isArray(row.mappedCompetencies)
-        ? row.mappedCompetencies.filter(hasDisplayValue)
-        : [],
-    mappedActivities: Array.isArray(row.mapped_activities)
-      ? row.mapped_activities.filter(hasDisplayValue)
-      : Array.isArray(row.mappedActivities)
-        ? row.mappedActivities.filter(hasDisplayValue)
-        : [],
+    mappedCompetencies: pickDisplayableArrayField(
+      row,
+      'mapped_competencies',
+      'mappedCompetencies',
+    ),
+    mappedActivities: pickDisplayableArrayField(
+      row,
+      'mapped_activities',
+      'mappedActivities',
+    ),
   };
 };
 

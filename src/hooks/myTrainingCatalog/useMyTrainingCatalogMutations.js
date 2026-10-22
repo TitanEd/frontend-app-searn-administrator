@@ -5,7 +5,6 @@ import {
   deleteMyTrainingCatalog,
   updateMyTrainingCatalog,
 } from '../../api/myTrainingCatalog/myTrainingCatalogApi';
-import { myTrainingCatalogListQueryKey } from './useMyTrainingCatalogList';
 
 const useMyTrainingCatalogMutations = () => {
   const { formatMessage } = useIntl();
