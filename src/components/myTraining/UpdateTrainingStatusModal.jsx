@@ -75,11 +75,14 @@ const UpdateTrainingStatusModal = ({
   const statusTrigger = statusOptions.find((option) => option.value === status)?.label
     || formatMessage(messages.modalStatusLabel);
 
-  const proofButtonLabel = proofFile
-    ? proofFile.name
-    : hasDisplayValue(training?.proofFileName)
-      ? formatMessage(messages.modalProofReplace, { fileName: training.proofFileName })
-      : formatMessage(messages.modalProofChoose);
+  let proofButtonLabel = formatMessage(messages.modalProofChoose);
+  if (proofFile) {
+    proofButtonLabel = proofFile.name;
+  } else if (hasDisplayValue(training?.proofFileName)) {
+    proofButtonLabel = formatMessage(messages.modalProofReplace, {
+      fileName: training.proofFileName,
+    });
+  }
 
   const handleSave = () => {
     if (!training) {

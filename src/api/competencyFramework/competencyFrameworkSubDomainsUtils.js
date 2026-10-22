@@ -11,9 +11,15 @@ export const mapSubDomainOptionsToMultiSelect = (results) => {
     value: String(row.value ?? row.id),
     label: row.label,
     description: row.description ?? '',
-    parentDomain: row.parent_domain_id != null
-      ? String(row.parent_domain_id)
-      : (row.parentDomain != null ? String(row.parentDomain) : ''),
+    parentDomain: (() => {
+      if (row.parent_domain_id != null) {
+        return String(row.parent_domain_id);
+      }
+      if (row.parentDomain != null) {
+        return String(row.parentDomain);
+      }
+      return '';
+    })(),
   }));
 };
 

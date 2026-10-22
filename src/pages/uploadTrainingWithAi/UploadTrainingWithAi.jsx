@@ -21,15 +21,6 @@ import { buildPaginationShowingParams } from '../../utils/paginationUtils';
 import messages from './messages';
 import './UploadTrainingWithAi.scss';
 
-const UploadTrainingWithAi = () => {
-  const [searchParams] = useSearchParams();
-  const reviewJobId = searchParams.get('job');
-  if (hasDisplayValue(reviewJobId)) {
-    return <AITrainingCreate />;
-  }
-  return <UploadTrainingHistory />;
-};
-
 const UploadTrainingHistory = () => {
   const { formatMessage } = useIntl();
   const navigate = useNavigate();
@@ -59,7 +50,7 @@ const UploadTrainingHistory = () => {
 
   const goToNewUpload = () => navigate(ADMIN_PATHS.uploadTrainingWithAiNew);
   const goToReview = (jobId) => {
-    if (!hasDisplayValue(jobId)) return;
+    if (!hasDisplayValue(jobId)) { return; }
     navigate(ADMIN_PATHS.uploadTrainingWithAiJob(jobId));
   };
 
@@ -205,6 +196,15 @@ const UploadTrainingHistory = () => {
       )}
     </section>
   );
+};
+
+const UploadTrainingWithAi = () => {
+  const [searchParams] = useSearchParams();
+  const reviewJobId = searchParams.get('job');
+  if (hasDisplayValue(reviewJobId)) {
+    return <AITrainingCreate />;
+  }
+  return <UploadTrainingHistory />;
 };
 
 export default UploadTrainingWithAi;

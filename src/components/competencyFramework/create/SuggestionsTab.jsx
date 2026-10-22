@@ -467,9 +467,15 @@ const SuggestionsTab = ({ frameworkUuid, canEdit, actionsLocked = false }) => {
                 disabled={isSaveDisabled || !actionsEnabled}
                 onClick={handleSave}
               >
-                {isSaving
-                  ? formatMessage(messages.suggestionSaving)
-                  : (modalMode === 'edit' ? formatMessage(messages.save) : formatMessage(messages.add))}
+                {(() => {
+                  if (isSaving) {
+                    return formatMessage(messages.suggestionSaving);
+                  }
+                  if (modalMode === 'edit') {
+                    return formatMessage(messages.save);
+                  }
+                  return formatMessage(messages.add);
+                })()}
               </button>
             </div>
           </div>

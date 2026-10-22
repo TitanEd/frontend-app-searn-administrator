@@ -502,6 +502,113 @@ const TrainingProviders = () => {
     </div>
   );
 
+  let providersListContent;
+  if (isProvidersLoading) {
+    providersListContent = (
+      <SkeletonScreen
+        variant={SKELETON_VARIANTS.TABLE}
+        tablePreset="trainingProviders"
+        rows={6}
+        ariaLabel={formatMessage(messages.listLoading)}
+      />
+    );
+  } else if (!canShowTable || providers.length === 0 || isProvidersError) {
+    providersListContent = emptyState;
+  } else {
+    providersListContent = (
+      <div className="training-providers-page__table-card">
+        <div className="training-providers-page__table-wrap">
+          <table className="training-providers-page__table">
+            <thead>
+              <tr className="training-providers-page__thead-row">
+                <th className="training-providers-page__th">{formatMessage(messages.tableProvider)}</th>
+                <th className="training-providers-page__th training-providers-page__th--center">
+                  {formatMessage(messages.tableAdmins)}
+                </th>
+                <th className="training-providers-page__th training-providers-page__th--center">
+                  {formatMessage(messages.tableCourses)}
+                </th>
+                <th className="training-providers-page__th training-providers-page__th--right">
+                  {formatMessage(messages.tableActions)}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {providers.map((provider) => (
+                <tr className="training-providers-page__tbody-row" key={provider.id}>
+                  <td className="training-providers-page__td">
+                    <div className="training-providers-page__provider-cell">
+                      <div className="training-providers-page__provider-icon">
+                        <BuildingIcon className="h-5 w-5" />
+                      </div>
+                      <div style={{ minWidth: 0 }}>
+                        {hasDisplayValue(provider.name) && (
+                          <p className="training-providers-page__provider-name">{provider.name}</p>
+                        )}
+                        {hasDisplayValue(provider.email) && (
+                          <p className="training-providers-page__provider-email">
+                            <MailIcon className="h-3 w-3" />
+                            {provider.email}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </td>
+                  <td className="training-providers-page__td training-providers-page__td--center">
+                    {typeof provider.adminCount === 'number' ? provider.adminCount : 0}
+                  </td>
+                  <td className="training-providers-page__td training-providers-page__td--center">
+                    {provider.courses ?? 0}
+                  </td>
+                  <td className="training-providers-page__td training-providers-page__td--right">
+                    <div className="training-providers-page__row-actions">
+                      {canEdit && (
+                        <button
+                          type="button"
+                          className="training-providers-page__icon-button"
+                          aria-label={formatMessage(messages.edit)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openEdit(provider);
+                          }}
+                        >
+                          <PencilIcon className="h-4 w-4" />
+                        </button>
+                      )}
+                      {canDelete && (
+                        <button
+                          type="button"
+                          className="training-providers-page__icon-button training-providers-page__icon-button--danger"
+                          aria-label={formatMessage(messages.delete)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setDeleteTarget(provider);
+                          }}
+                        >
+                          <TrashIcon className="h-4 w-4" />
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <TablePaginationFooter
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+          paginationLabel={formatMessage(messages.paginationLabel)}
+          footerContent={formatMessage(
+            messages.showingCount,
+            buildPaginationShowingParams(providers, providersCount),
+          )}
+        />
+      </div>
+    );
+  }
+
   return (
     <section className="training-providers-page">
       <div className="training-providers-page__toolbar">
@@ -526,109 +633,7 @@ const TrainingProviders = () => {
         )}
       </div>
 
-      {isProvidersLoading ? (
-        <SkeletonScreen
-          variant={SKELETON_VARIANTS.TABLE}
-          tablePreset="trainingProviders"
-          rows={6}
-          ariaLabel={formatMessage(messages.listLoading)}
-        />
-      ) : (!canShowTable || providers.length === 0 || isProvidersError) ? (
-        emptyState
-      ) : (
-        <>
-          <div className="training-providers-page__table-card">
-            <div className="training-providers-page__table-wrap">
-              <table className="training-providers-page__table">
-                <thead>
-                  <tr className="training-providers-page__thead-row">
-                    <th className="training-providers-page__th">{formatMessage(messages.tableProvider)}</th>
-                    <th className="training-providers-page__th training-providers-page__th--center">
-                      {formatMessage(messages.tableAdmins)}
-                    </th>
-                    <th className="training-providers-page__th training-providers-page__th--center">
-                      {formatMessage(messages.tableCourses)}
-                    </th>
-                    <th className="training-providers-page__th training-providers-page__th--right">
-                      {formatMessage(messages.tableActions)}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {providers.map((provider) => (
-                    <tr className="training-providers-page__tbody-row" key={provider.id}>
-                      <td className="training-providers-page__td">
-                        <div className="training-providers-page__provider-cell">
-                          <div className="training-providers-page__provider-icon">
-                            <BuildingIcon className="h-5 w-5" />
-                          </div>
-                          <div style={{ minWidth: 0 }}>
-                            {hasDisplayValue(provider.name) && (
-                              <p className="training-providers-page__provider-name">{provider.name}</p>
-                            )}
-                            {hasDisplayValue(provider.email) && (
-                              <p className="training-providers-page__provider-email">
-                                <MailIcon className="h-3 w-3" />
-                                {provider.email}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="training-providers-page__td training-providers-page__td--center">
-                        {typeof provider.adminCount === 'number' ? provider.adminCount : 0}
-                      </td>
-                      <td className="training-providers-page__td training-providers-page__td--center">
-                        {provider.courses ?? 0}
-                      </td>
-                      <td className="training-providers-page__td training-providers-page__td--right">
-                        <div className="training-providers-page__row-actions">
-                          {canEdit && (
-                            <button
-                              type="button"
-                              className="training-providers-page__icon-button"
-                              aria-label={formatMessage(messages.edit)}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                openEdit(provider);
-                              }}
-                            >
-                              <PencilIcon className="h-4 w-4" />
-                            </button>
-                          )}
-                          {canDelete && (
-                            <button
-                              type="button"
-                              className="training-providers-page__icon-button training-providers-page__icon-button--danger"
-                              aria-label={formatMessage(messages.delete)}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setDeleteTarget(provider);
-                              }}
-                            >
-                              <TrashIcon className="h-4 w-4" />
-                            </button>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <TablePaginationFooter
-              currentPage={page}
-              totalPages={totalPages}
-              onPageChange={setPage}
-              paginationLabel={formatMessage(messages.paginationLabel)}
-              footerContent={formatMessage(
-                messages.showingCount,
-                buildPaginationShowingParams(providers, providersCount),
-              )}
-            />
-          </div>
-        </>
-      )}
+      {providersListContent}
 
       <PopupDialog
         isOpen={modalOpen}

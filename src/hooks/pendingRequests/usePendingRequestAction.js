@@ -1,6 +1,7 @@
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { patchPendingRequestAction } from '../../api/pendingRequests/pendingRequestsApi';
+
 const usePendingRequestAction = () => {
   const { formatMessage } = useIntl();
   const queryClient = useQueryClient();
@@ -16,7 +17,7 @@ const usePendingRequestAction = () => {
         id,
         action: 'approve',
       });
-      if (!result.ok) throw new Error(result.message);
+      if (!result.ok) { throw new Error(result.message); }
       return result;
     },
     onSuccess: invalidatePendingRequests,
@@ -29,7 +30,7 @@ const usePendingRequestAction = () => {
         id,
         action: 'reject',
       });
-      if (!result.ok) throw new Error(result.message);
+      if (!result.ok) { throw new Error(result.message); }
       return result;
     },
     onSuccess: invalidatePendingRequests,
@@ -42,7 +43,7 @@ const usePendingRequestAction = () => {
         id,
         action: 'close',
       });
-      if (!result.ok) throw new Error(result.message);
+      if (!result.ok) { throw new Error(result.message); }
       return result;
     },
     onSuccess: invalidatePendingRequests,

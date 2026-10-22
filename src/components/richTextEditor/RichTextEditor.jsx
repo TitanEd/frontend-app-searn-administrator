@@ -109,7 +109,11 @@ const RichTextEditor = ({
           disabled={disabled}
         />
       ) : (
-        <div className="app-rich-text-editor__preview" dangerouslySetInnerHTML={{ __html: value || '' }} />
+        <div
+          className="app-rich-text-editor__preview"
+          // eslint-disable-next-line react/no-danger -- editor HTML preview
+          dangerouslySetInnerHTML={{ __html: value || '' }}
+        />
       )}
     </div>
   );

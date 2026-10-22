@@ -498,86 +498,84 @@ const Nras = () => {
     }
 
     return (
-      <>
-        <div className="nras-page__table-card">
-          <div className="nras-page__table-wrap">
-            <table className="nras-page__table">
-              <thead>
-                <tr className="nras-page__thead-row">
-                  <th className="nras-page__th">{formatMessage(messages.tableName)}</th>
-                  <th className="nras-page__th">{formatMessage(messages.tableAdmins)}</th>
-                  <th className="nras-page__th nras-page__th--right">{formatMessage(messages.tableActions)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((nra) => {
-                  const adminCount = typeof nra.adminCount === 'number' && !Number.isNaN(nra.adminCount)
-                    ? nra.adminCount
-                    : 0;
+      <div className="nras-page__table-card">
+        <div className="nras-page__table-wrap">
+          <table className="nras-page__table">
+            <thead>
+              <tr className="nras-page__thead-row">
+                <th className="nras-page__th">{formatMessage(messages.tableName)}</th>
+                <th className="nras-page__th">{formatMessage(messages.tableAdmins)}</th>
+                <th className="nras-page__th nras-page__th--right">{formatMessage(messages.tableActions)}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((nra) => {
+                const adminCount = typeof nra.adminCount === 'number' && !Number.isNaN(nra.adminCount)
+                  ? nra.adminCount
+                  : 0;
 
-                  return (
-                    <tr className="nras-page__tr" key={nra.id}>
-                      <td className="nras-page__td">
-                        <div className="nras-page__name-cell">
-                          <div className="nras-page__badge-icon">
-                            <GlobeIcon className="h-4 w-4" />
-                          </div>
-                          {hasDisplayValue(nra.name) && (
-                            <span className="nras-page__name" title={nra.name}>{nra.name}</span>
-                          )}
+                return (
+                  <tr className="nras-page__tr" key={nra.id}>
+                    <td className="nras-page__td">
+                      <div className="nras-page__name-cell">
+                        <div className="nras-page__badge-icon">
+                          <GlobeIcon className="h-4 w-4" />
                         </div>
-                      </td>
-                      <td className="nras-page__td">
-                        {formatMessage(messages.adminCount, { count: adminCount })}
-                      </td>
-                      <td className="nras-page__td nras-page__td--right">
-                        <div className="nras-page__actions">
-                          {canEdit && (
-                            <button
-                              type="button"
-                              className="nras-page__icon-button"
-                              aria-label={formatMessage(messages.edit)}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                openEdit(nra);
-                              }}
-                            >
-                              <PencilIcon className="h-4 w-4" />
-                            </button>
-                          )}
-                          {canDelete && (
-                            <button
-                              type="button"
-                              className="nras-page__icon-button nras-page__icon-button--danger"
-                              aria-label={formatMessage(messages.delete)}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setDeleteTarget(nra);
-                              }}
-                            >
-                              <TrashIcon className="h-4 w-4" />
-                            </button>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          <TablePaginationFooter
-            currentPage={page}
-            totalPages={totalPages}
-            onPageChange={setPage}
-            paginationLabel={formatMessage(messages.paginationLabel)}
-            footerContent={formatMessage(
-              messages.showingCount,
-              buildPaginationShowingParams(items, nrasCount),
-            )}
-          />
+                        {hasDisplayValue(nra.name) && (
+                          <span className="nras-page__name" title={nra.name}>{nra.name}</span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="nras-page__td">
+                      {formatMessage(messages.adminCount, { count: adminCount })}
+                    </td>
+                    <td className="nras-page__td nras-page__td--right">
+                      <div className="nras-page__actions">
+                        {canEdit && (
+                          <button
+                            type="button"
+                            className="nras-page__icon-button"
+                            aria-label={formatMessage(messages.edit)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              openEdit(nra);
+                            }}
+                          >
+                            <PencilIcon className="h-4 w-4" />
+                          </button>
+                        )}
+                        {canDelete && (
+                          <button
+                            type="button"
+                            className="nras-page__icon-button nras-page__icon-button--danger"
+                            aria-label={formatMessage(messages.delete)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setDeleteTarget(nra);
+                            }}
+                          >
+                            <TrashIcon className="h-4 w-4" />
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
-      </>
+        <TablePaginationFooter
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+          paginationLabel={formatMessage(messages.paginationLabel)}
+          footerContent={formatMessage(
+            messages.showingCount,
+            buildPaginationShowingParams(items, nrasCount),
+          )}
+        />
+      </div>
     );
   };
 

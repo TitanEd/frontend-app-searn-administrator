@@ -14,7 +14,9 @@ import {
   faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useEffect, useMemo, useRef, useState,
+} from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { formatFileSize, normalizeAiJobId, optionSubmitValue } from '../../api/aiTraining/aiTrainingUtils';
 import AIReviewList from '../../components/aiTraining/AIReviewList';
@@ -24,7 +26,9 @@ import { EmptyState } from '../../components/emptyState';
 import { TablePaginationFooter } from '../../components/dataTable';
 import SearchInput from '../../components/searchInput/SearchInput';
 import SearchableDropdown from '../../components/searchableDropdown/SearchableDropdown';
-import { SkeletonCardList, SkeletonScreen, SkeletonStatsGrid, SkeletonToolbar, SKELETON_VARIANTS } from '../../components/skeleton';
+import {
+  SkeletonCardList, SkeletonScreen, SkeletonStatsGrid, SkeletonToolbar, SKELETON_VARIANTS,
+} from '../../components/skeleton';
 import { useToast } from '../../components/toast/ToastProvider';
 import useCreateTrainings from '../../hooks/aiTraining/useCreateTrainings';
 import useAiTrainingFilterOptions from '../../hooks/aiTraining/useAiTrainingFilterOptions';
@@ -85,7 +89,7 @@ const AITrainingCreate = () => {
   const resumeJob = normalizeAiJobId(searchParams.get('job'));
 
   const [phase, setPhase] = useState(() => {
-    if (!hasDisplayValue(resumeJob)) return 'upload';
+    if (!hasDisplayValue(resumeJob)) { return 'upload'; }
     return isNewUploadFlow ? 'processing' : 'review';
   });
   const [files, setFiles] = useState([]);
@@ -125,7 +129,6 @@ const AITrainingCreate = () => {
     totalPages,
     total: extractedTotal,
     matchingIds,
-    results,
     isLoading: loadingResults,
     isError: resultsError,
     errorMessage: resultsErrorMessage,
@@ -139,13 +142,15 @@ const AITrainingCreate = () => {
     enabled: (phase === 'review' || phase === 'creating') && Boolean(jobId),
   });
   const pageSize = backendPageSize || PAGE_SIZE;
-  const { updateMappings, updateTraining, reanalyzeTraining, revertHistory, isUpdating } = useUpdateExtractedTraining({ jobId });
+  const {
+    updateMappings, updateTraining, reanalyzeTraining, revertHistory, isUpdating,
+  } = useUpdateExtractedTraining({ jobId });
   const { create, isCreating } = useCreateTrainings({ jobId });
 
   useEffect(() => {
     const rawJob = searchParams.get('job');
     const resume = normalizeAiJobId(rawJob);
-    if (!hasDisplayValue(resume)) return;
+    if (!hasDisplayValue(resume)) { return; }
     setJobId(resume);
     // Rewrite legacy ?job=job_52 bookmarks to ?job=52
     if (hasDisplayValue(rawJob) && rawJob !== resume) {
@@ -188,9 +193,8 @@ const AITrainingCreate = () => {
   }, [resultsError, resultsErrorMessage, formatMessage, showToast]);
 
   useEffect(() => {
-    if (phase !== 'processing' || !status) return;
-    if (status.status === 'completed') setPhase('review');
-    else if (status.status === 'failed') {
+    if (phase !== 'processing' || !status) { return; }
+    if (status.status === 'completed') { setPhase('review'); } else if (status.status === 'failed') {
       const message = (
         (typeof status.error === 'string' && status.error)
         || status.error?.message
@@ -229,7 +233,7 @@ const AITrainingCreate = () => {
   };
 
   const addFiles = (list) => {
-    if (!list) return;
+    if (!list) { return; }
     setFiles((prev) => [...prev, ...Array.from(list)]);
   };
 
@@ -237,8 +241,8 @@ const AITrainingCreate = () => {
     const usingUrl = sourceMode === SOURCE_URL;
     const trimmedUrl = sourceUrl.trim();
     if (usingUrl) {
-      if (!isHttpUrl(trimmedUrl)) return;
-    } else if (files.length === 0) return;
+      if (!isHttpUrl(trimmedUrl)) { return; }
+    } else if (files.length === 0) { return; }
     try {
       const data = await upload({
         file: usingUrl ? undefined : files[0],
@@ -252,13 +256,21 @@ const AITrainingCreate = () => {
     } catch (err) {
       showToast({
         title: formatMessage(messages.toastUploadFailed),
-        description: hasDisplayValue(err?.message) ? err.message : formatMessage(messages.toastUploadFailed),
+        description: hasDisplayValue(err?.message)
+          ? err.message
+          : formatMessage(messages.toastUploadFailed),
       });
     }
   };
 
   const selectableIds = useMemo(
-    () => items.filter((item) => !item.created && (item.activities || []).length > 0 && (item.competencies || []).length > 0).map((item) => item.id),
+    () => items
+      .filter((item) => (
+        !item.created
+        && (item.activities || []).length > 0
+        && (item.competencies || []).length > 0
+      ))
+      .map((item) => item.id),
     [items],
   );
   const allPageSelected = selectableIds.length > 0 && selectableIds.every((id) => selected.has(id));
@@ -267,8 +279,11 @@ const AITrainingCreate = () => {
   const toggleAllPage = () => {
     setSelected((prev) => {
       const next = new Set(prev);
-      if (allPageSelected) selectableIds.forEach((id) => next.delete(id));
-      else selectableIds.forEach((id) => next.add(id));
+      if (allPageSelected) {
+        selectableIds.forEach((id) => next.delete(id));
+      } else {
+        selectableIds.forEach((id) => next.add(id));
+      }
       return next;
     });
   };
@@ -292,7 +307,7 @@ const AITrainingCreate = () => {
   };
 
   const handleSaveSelected = async () => {
-    if (selected.size === 0) return;
+    if (selected.size === 0) { return; }
     setPhase('creating');
     setShowCreateBanner(false);
     try {
@@ -322,7 +337,7 @@ const AITrainingCreate = () => {
   };
 
   const handleApprove = async (training) => {
-    if (training.created || busy) return;
+    if (training.created || busy) { return; }
     setApproving((prev) => new Set(prev).add(training.id));
     try {
       const result = await create([training.id]);
@@ -349,7 +364,7 @@ const AITrainingCreate = () => {
   };
 
   const handleDrawerSave = async (form, { skipSuccessToast = false, syncCatalog = false } = {}) => {
-    if (!editing) return;
+    if (!editing) { return; }
     const trainingId = editing.id;
     const trainingName = hasDisplayValue(editing.training_name)
       ? editing.training_name
@@ -433,14 +448,22 @@ const AITrainingCreate = () => {
     navigate(ADMIN_PATHS.uploadTrainingWithAiNew, { replace: true });
   };
 
-  const stepNumber = phase === 'upload' ? 1 : (phase === 'processing' || phase === 'failed' ? 2 : 3);
+  let stepNumber = 3;
+  if (phase === 'upload') {
+    stepNumber = 1;
+  } else if (phase === 'processing' || phase === 'failed') {
+    stepNumber = 2;
+  }
   // Processing timeline keys/labels come from backend status.steps (AI pipeline source of truth).
   const backendSteps = Array.isArray(status?.steps) ? status.steps : [];
   const visibleSteps = backendSteps.filter((step) => step.key && step.key !== 'completed');
   const currentIndex = visibleSteps.findIndex((step) => step.key === status?.current_step);
-  const activeStepIndex = status?.current_step === 'completed' || status?.status === 'completed'
-    ? visibleSteps.length
-    : (currentIndex >= 0 ? currentIndex : 0);
+  let activeStepIndex = 0;
+  if (status?.current_step === 'completed' || status?.status === 'completed') {
+    activeStepIndex = visibleSteps.length;
+  } else if (currentIndex >= 0) {
+    activeStepIndex = currentIndex;
+  }
   const isReviewLoading = loadingResults && items.length === 0 && !resultsError;
 
   return (
@@ -483,45 +506,45 @@ const AITrainingCreate = () => {
             </label>
           </fieldset>
           {sourceMode === SOURCE_FILE ? (
-          <div
-            className={`ai-training-create__dropzone ${dragging ? 'is-dragging' : ''}`}
-            role="group"
-            aria-label={formatMessage(messages.dropzoneLabel)}
-            onDragOver={(event) => { event.preventDefault(); setDragging(true); }}
-            onDragLeave={() => setDragging(false)}
-            onDrop={(event) => { event.preventDefault(); setDragging(false); addFiles(event.dataTransfer.files); }}
-          >
-            <FontAwesomeIcon icon={faCloudUploadAlt} className="ai-training-create__drop-icon" aria-hidden />
-            <p className="ai-training-create__drop-title">{formatMessage(messages.uploadDocumentButton)}</p>
-            <p className="ai-training-create__drop-sub">{formatMessage(messages.dragDrop)}</p>
-            <p className="ai-training-create__drop-or">{formatMessage(messages.orLabel)}</p>
-            <button type="button" className="ai-training-create__outline-button" onClick={() => fileRef.current?.click()}>
-              {formatMessage(messages.browseFiles)}
-            </button>
-            <input ref={fileRef} type="file" hidden multiple accept=".pdf,.docx,.doc,.xlsx,.xls,.csv,.txt" onChange={(event) => addFiles(event.target.files)} aria-label={formatMessage(messages.browseFiles)} />
-            <p className="ai-training-create__drop-formats">{formatMessage(messages.supportedFormats)}</p>
-          </div>
+            <div
+              className={`ai-training-create__dropzone ${dragging ? 'is-dragging' : ''}`}
+              role="group"
+              aria-label={formatMessage(messages.dropzoneLabel)}
+              onDragOver={(event) => { event.preventDefault(); setDragging(true); }}
+              onDragLeave={() => setDragging(false)}
+              onDrop={(event) => { event.preventDefault(); setDragging(false); addFiles(event.dataTransfer.files); }}
+            >
+              <FontAwesomeIcon icon={faCloudUploadAlt} className="ai-training-create__drop-icon" aria-hidden />
+              <p className="ai-training-create__drop-title">{formatMessage(messages.uploadDocumentButton)}</p>
+              <p className="ai-training-create__drop-sub">{formatMessage(messages.dragDrop)}</p>
+              <p className="ai-training-create__drop-or">{formatMessage(messages.orLabel)}</p>
+              <button type="button" className="ai-training-create__outline-button" onClick={() => fileRef.current?.click()}>
+                {formatMessage(messages.browseFiles)}
+              </button>
+              <input ref={fileRef} type="file" hidden multiple accept=".pdf,.docx,.doc,.xlsx,.xls,.csv,.txt" onChange={(event) => addFiles(event.target.files)} aria-label={formatMessage(messages.browseFiles)} />
+              <p className="ai-training-create__drop-formats">{formatMessage(messages.supportedFormats)}</p>
+            </div>
           ) : (
-          <div className="ai-training-create__url-panel">
-            <FontAwesomeIcon icon={faLink} className="ai-training-create__drop-icon" aria-hidden />
-            <label className="ai-training-create__url-label" htmlFor="ai-source-url-input">
-              {formatMessage(messages.sourceUrlLabel)}
-            </label>
-            <input
-              id="ai-source-url-input"
-              className="ai-training-create__url-input"
-              type="url"
-              value={sourceUrl}
-              placeholder={formatMessage(messages.sourceUrlPlaceholder)}
-              onChange={(event) => setSourceUrl(event.target.value)}
-              autoComplete="url"
-            />
-          </div>
+            <div className="ai-training-create__url-panel">
+              <FontAwesomeIcon icon={faLink} className="ai-training-create__drop-icon" aria-hidden />
+              <label className="ai-training-create__url-label" htmlFor="ai-source-url-input">
+                {formatMessage(messages.sourceUrlLabel)}
+              </label>
+              <input
+                id="ai-source-url-input"
+                className="ai-training-create__url-input"
+                type="url"
+                value={sourceUrl}
+                placeholder={formatMessage(messages.sourceUrlPlaceholder)}
+                onChange={(event) => setSourceUrl(event.target.value)}
+                autoComplete="url"
+              />
+            </div>
           )}
           {sourceMode === SOURCE_FILE && files.length > 0 && (
             <div className="ai-training-create__file-list">
-              {files.map((file, index) => (
-                <div key={`${file.name}-${index}`} className="ai-training-create__file-row">
+              {files.map((file, fileIndex) => (
+                <div key={`${file.name}-${file.size}-${file.lastModified}`} className="ai-training-create__file-row">
                   <div className="ai-training-create__file-icon"><FontAwesomeIcon icon={faFileAlt} aria-hidden /></div>
                   <div className="ai-training-create__file-meta">
                     {hasDisplayValue(file.name) && (
@@ -535,14 +558,19 @@ const AITrainingCreate = () => {
                         })}
                       </p>
                     )}
-                    {isUploading && index === 0 && (
+                    {isUploading && fileIndex === 0 && (
                       <div className="ai-training-create__progress">
                         <div className="ai-training-create__progress-bar progress-shimmer" style={{ width: `${uploadPct}%` }} />
                       </div>
                     )}
                   </div>
                   {!isUploading ? (
-                    <button type="button" className="ai-training-create__icon-btn" onClick={() => setFiles((prev) => prev.filter((_, idx) => idx !== index))} aria-label={formatMessage(messages.removeFile)}>
+                    <button
+                      type="button"
+                      className="ai-training-create__icon-btn"
+                      onClick={() => setFiles((prev) => prev.filter((_, idx) => idx !== fileIndex))}
+                      aria-label={formatMessage(messages.removeFile)}
+                    >
                       <FontAwesomeIcon icon={faTimes} aria-hidden />
                     </button>
                   ) : (
@@ -574,30 +602,37 @@ const AITrainingCreate = () => {
 
       {phase === 'processing' && (
         <div className="ai-training-create__processing">
-          {statusLoading && !status ? (
-            <SkeletonScreen
-              variant={SKELETON_VARIANTS.CARD_LIST}
-              rows={6}
-              hasHeader
-              ariaLabel={formatMessage(messages.processingListLoading)}
-            />
-          ) : statusError && !status ? (
-            <div className="ai-training-create__empty">
-              <EmptyState message={statusErrorMessage} />
-              <button type="button" className="ai-training-create__outline-button" onClick={() => refetchStatus()}>
-                {formatMessage(messages.retry)}
-              </button>
-            </div>
-          ) : (
-            <>
-              <div className="ai-training-create__sparkle">
-                <span className="animate-step-ring" aria-hidden />
-                <span className="animate-step-ring is-delayed" aria-hidden />
-                <SparklesIcon />
-              </div>
-              <h2 className="ai-training-create__heading">{formatMessage(messages.processingHeading)}</h2>
-              <p className="ai-training-create__hint">{formatMessage(messages.processingKeepOpen)}</p>
-              {status && Number(status.total_records || 0) > 0 && (
+          {(() => {
+            if (statusLoading && !status) {
+              return (
+                <SkeletonScreen
+                  variant={SKELETON_VARIANTS.CARD_LIST}
+                  rows={6}
+                  hasHeader
+                  ariaLabel={formatMessage(messages.processingListLoading)}
+                />
+              );
+            }
+            if (statusError && !status) {
+              return (
+                <div className="ai-training-create__empty">
+                  <EmptyState message={statusErrorMessage} />
+                  <button type="button" className="ai-training-create__outline-button" onClick={() => refetchStatus()}>
+                    {formatMessage(messages.retry)}
+                  </button>
+                </div>
+              );
+            }
+            return (
+              <>
+                <div className="ai-training-create__sparkle">
+                  <span className="animate-step-ring" aria-hidden />
+                  <span className="animate-step-ring is-delayed" aria-hidden />
+                  <SparklesIcon />
+                </div>
+                <h2 className="ai-training-create__heading">{formatMessage(messages.processingHeading)}</h2>
+                <p className="ai-training-create__hint">{formatMessage(messages.processingKeepOpen)}</p>
+                {status && Number(status.total_records || 0) > 0 && (
                 <p className="ai-training-create__progress-text">
                   {formatMessage(messages.processingRecords, {
                     processed: Number(status.processed_records || 0).toLocaleString(),
@@ -605,46 +640,50 @@ const AITrainingCreate = () => {
                     progress: status.progress ?? 0,
                   })}
                 </p>
-              )}
-              <div className="ai-training-create__progress is-wide progress-shimmer">
-                <div className="ai-training-create__progress-bar" style={{ width: `${status?.progress ?? 0}%` }} />
-              </div>
-              <ol className="ai-training-create__timeline">
-                {visibleSteps.map((step, idx) => {
-                  const done = idx < activeStepIndex || status?.status === 'completed';
-                  const active = status?.status !== 'completed' && idx === activeStepIndex;
-                  const isLast = idx === visibleSteps.length - 1;
-                  const stepMessage = PROCESS_STEP_MESSAGES[step.key];
-                  const label = stepMessage
-                    ? formatMessage(stepMessage)
-                    : (hasDisplayValue(step.label) ? step.label : step.key);
-                  return (
-                    <li key={step.key} className={`ai-training-create__timeline-row ${done ? 'is-done' : ''} ${active ? 'is-active' : ''}`}>
-                      {!isLast && <span className={`ai-training-create__connector ${done ? 'is-done' : ''}`} aria-hidden />}
-                      <span className="ai-training-create__node">
-                        {done && <FontAwesomeIcon icon={faCheck} aria-hidden />}
-                        {active && <FontAwesomeIcon icon={faSpinner} spin aria-hidden />}
-                        {!done && !active && <FontAwesomeIcon icon={faCircle} aria-hidden />}
-                        {active && <span className="animate-step-ring" aria-hidden />}
-                      </span>
-                      <div>
-                        <p>
-                          {done ? formatMessage(messages.processStepDone, { step: label }) : label}
-                          {active && (
+                )}
+                <div className="ai-training-create__progress is-wide progress-shimmer">
+                  <div className="ai-training-create__progress-bar" style={{ width: `${status?.progress ?? 0}%` }} />
+                </div>
+                <ol className="ai-training-create__timeline">
+                  {visibleSteps.map((step, idx) => {
+                    const done = idx < activeStepIndex || status?.status === 'completed';
+                    const active = status?.status !== 'completed' && idx === activeStepIndex;
+                    const isLast = idx === visibleSteps.length - 1;
+                    const stepMessage = PROCESS_STEP_MESSAGES[step.key];
+                    let label = step.key;
+                    if (stepMessage) {
+                      label = formatMessage(stepMessage);
+                    } else if (hasDisplayValue(step.label)) {
+                      label = step.label;
+                    }
+                    return (
+                      <li key={step.key} className={`ai-training-create__timeline-row ${done ? 'is-done' : ''} ${active ? 'is-active' : ''}`}>
+                        {!isLast && <span className={`ai-training-create__connector ${done ? 'is-done' : ''}`} aria-hidden />}
+                        <span className="ai-training-create__node">
+                          {done && <FontAwesomeIcon icon={faCheck} aria-hidden />}
+                          {active && <FontAwesomeIcon icon={faSpinner} spin aria-hidden />}
+                          {!done && !active && <FontAwesomeIcon icon={faCircle} aria-hidden />}
+                          {active && <span className="animate-step-ring" aria-hidden />}
+                        </span>
+                        <div>
+                          <p>
+                            {done ? formatMessage(messages.processStepDone, { step: label }) : label}
+                            {active && (
                             <span className="ai-training-create__dots" aria-hidden>
                               <span className="animate-dot" />
                               <span className="animate-dot" style={{ animationDelay: '0.15s' }} />
                               <span className="animate-dot" style={{ animationDelay: '0.3s' }} />
                             </span>
-                          )}
-                        </p>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ol>
-            </>
-          )}
+                            )}
+                          </p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </>
+            );
+          })()}
         </div>
       )}
 
@@ -668,7 +707,11 @@ const AITrainingCreate = () => {
             {summary && (
               <>
                 {' '}
-                <strong>{formatMessage(messages.trainingsFound, { count: Number(summary.total || 0).toLocaleString() })}</strong>
+                <strong>
+                  {formatMessage(messages.trainingsFound, {
+                    count: Number(summary.total || 0).toLocaleString(),
+                  })}
+                </strong>
               </>
             )}
           </p>
@@ -684,10 +727,18 @@ const AITrainingCreate = () => {
           {!isReviewLoading && summary && (
             <div className="ai-training-create__stats">
               {[
-                { icon: faFileAlt, label: formatMessage(messages.statAll), value: summary.total, tone: '' },
-                { icon: faCheckCircle, label: formatMessage(messages.statApproved), value: summary.approved, tone: 'is-approved' },
-                { icon: faPencilAlt, label: formatMessage(messages.statEdited), value: summary.edited_pending, tone: 'is-edited' },
-                { icon: faCircle, label: formatMessage(messages.statPending), value: summary.pending, tone: 'is-pending' },
+                {
+                  icon: faFileAlt, label: formatMessage(messages.statAll), value: summary.total, tone: '',
+                },
+                {
+                  icon: faCheckCircle, label: formatMessage(messages.statApproved), value: summary.approved, tone: 'is-approved',
+                },
+                {
+                  icon: faPencilAlt, label: formatMessage(messages.statEdited), value: summary.edited_pending, tone: 'is-edited',
+                },
+                {
+                  icon: faCircle, label: formatMessage(messages.statPending), value: summary.pending, tone: 'is-pending',
+                },
               ].map((stat) => (
                 <div key={stat.label} className={`ai-training-create__stat ${stat.tone}`}>
                   <span className="ai-training-create__stat-icon"><FontAwesomeIcon icon={stat.icon} aria-hidden /></span>
@@ -702,36 +753,36 @@ const AITrainingCreate = () => {
 
           {!isReviewLoading && (
           <>
-          <div className="ai-training-create__toolbar">
-            <SearchInput
-              className="ai-training-create__search"
-              type="search"
-              placeholder={formatMessage(messages.searchPlaceholder)}
-              value={searchInput}
-              onChange={(event) => setSearchInput(event.target.value)}
-              ariaLabel={formatMessage(messages.searchPlaceholder)}
-            />
-            <SearchableDropdown
-              className="ai-training-create__filter is-match"
-              value={filters.confidence}
-              options={confidenceOptions}
-              onChange={(value) => setFilters((prev) => ({ ...prev, confidence: value }))}
-              triggerLabel={formatMessage(messages.confidenceFilter)}
-              searchPlaceholder={formatMessage(messages.dropdownSearchPlaceholder)}
-              noOptionsText={formatMessage(messages.dropdownNoOptions)}
-            />
-            <SearchableDropdown
-              className="ai-training-create__filter is-status"
-              value={filters.created}
-              options={statusOptions}
-              onChange={(value) => setFilters((prev) => ({ ...prev, created: value }))}
-              triggerLabel={formatMessage(messages.trainingStatusFilter)}
-              searchPlaceholder={formatMessage(messages.dropdownSearchPlaceholder)}
-              noOptionsText={formatMessage(messages.dropdownNoOptions)}
-            />
-          </div>
+            <div className="ai-training-create__toolbar">
+              <SearchInput
+                className="ai-training-create__search"
+                type="search"
+                placeholder={formatMessage(messages.searchPlaceholder)}
+                value={searchInput}
+                onChange={(event) => setSearchInput(event.target.value)}
+                ariaLabel={formatMessage(messages.searchPlaceholder)}
+              />
+              <SearchableDropdown
+                className="ai-training-create__filter is-match"
+                value={filters.confidence}
+                options={confidenceOptions}
+                onChange={(value) => setFilters((prev) => ({ ...prev, confidence: value }))}
+                triggerLabel={formatMessage(messages.confidenceFilter)}
+                searchPlaceholder={formatMessage(messages.dropdownSearchPlaceholder)}
+                noOptionsText={formatMessage(messages.dropdownNoOptions)}
+              />
+              <SearchableDropdown
+                className="ai-training-create__filter is-status"
+                value={filters.created}
+                options={statusOptions}
+                onChange={(value) => setFilters((prev) => ({ ...prev, created: value }))}
+                triggerLabel={formatMessage(messages.trainingStatusFilter)}
+                searchPlaceholder={formatMessage(messages.dropdownSearchPlaceholder)}
+                noOptionsText={formatMessage(messages.dropdownNoOptions)}
+              />
+            </div>
 
-          {busy && (
+            {busy && (
             <div className="ai-training-create__create-progress">
               <strong>{formatMessage(messages.savingTrainings)}</strong>
               <p>{formatMessage(messages.savingTrainingsHint)}</p>
@@ -739,86 +790,90 @@ const AITrainingCreate = () => {
                 <div className="ai-training-create__progress-bar" style={{ width: `${createResult?.progress || 35}%` }} />
               </div>
             </div>
-          )}
-          {!busy && showCreateBanner && createResult && (
+            )}
+            {!busy && showCreateBanner && createResult && (
             <div className={`ai-training-create__create-result ${createResult.failed > 0 ? 'has-errors' : ''}`}>
               <FontAwesomeIcon icon={faCheckCircle} aria-hidden />
               <div>
                 <strong>{formatMessage(messages.importComplete)}</strong>
-                <p>{formatMessage(messages.importCompleteSummary, { created: Number(createResult.created || 0).toLocaleString(), failed: Number(createResult.failed || 0).toLocaleString() })}</p>
+                <p>
+                  {formatMessage(messages.importCompleteSummary, {
+                    created: Number(createResult.created || 0).toLocaleString(),
+                    failed: Number(createResult.failed || 0).toLocaleString(),
+                  })}
+                </p>
               </div>
               <button type="button" className="ai-training-create__text-btn" onClick={() => setShowCreateBanner(false)}>{formatMessage(messages.dismiss)}</button>
             </div>
-          )}
+            )}
 
-          <div className="ai-training-create__table">
-            <div className="ai-training-create__selection-bar">
-              <label className="ai-training-create__select-page">
-                <input
-                  type="checkbox"
-                  checked={allPageSelected}
-                  onChange={toggleAllPage}
-                  disabled={busy || selectableIds.length === 0}
-                  aria-label={formatMessage(messages.selectPage)}
-                />
-                <span>{formatMessage(messages.selectPage)}</span>
-              </label>
-              {extractedTotal > pageSize && (
+            <div className="ai-training-create__table">
+              <div className="ai-training-create__selection-bar">
+                <label className="ai-training-create__select-page">
+                  <input
+                    type="checkbox"
+                    checked={allPageSelected}
+                    onChange={toggleAllPage}
+                    disabled={busy || selectableIds.length === 0}
+                    aria-label={formatMessage(messages.selectPage)}
+                  />
+                  <span>{formatMessage(messages.selectPage)}</span>
+                </label>
+                {extractedTotal > pageSize && (
                 <button type="button" className="ai-training-create__text-btn" onClick={() => setSelected(new Set(matchingIds))}>
                   {formatMessage(messages.selectAllMatching, { count: matchingIds.length.toLocaleString() })}
                 </button>
-              )}
-              {selected.size > 0 && (
+                )}
+                {selected.size > 0 && (
                 <button type="button" className="ai-training-create__text-btn" onClick={() => setSelected(new Set())}>{formatMessage(messages.clearSelection)}</button>
+                )}
+                <span className="ai-training-create__selected-count">{formatMessage(messages.selectedCount, { count: selected.size.toLocaleString() })}</span>
+              </div>
+
+              {resultsError && !loadingResults ? (
+                <div className="ai-training-create__empty">
+                  <EmptyState message={resultsErrorMessage} />
+                  <button type="button" className="ai-training-create__outline-button" onClick={() => refetchResults()}>{formatMessage(messages.retry)}</button>
+                </div>
+              ) : (
+                <AIReviewList
+                  items={items}
+                  selected={selected}
+                  onToggleSelect={(training) => setSelected((prev) => {
+                    const next = new Set(prev);
+                    if (next.has(training.id)) { next.delete(training.id); } else { next.add(training.id); }
+                    return next;
+                  })}
+                  onToggleMapping={handleToggleMapping}
+                  onApprove={handleApprove}
+                  onEdit={(training) => { setEditing(training); setDrawerTab('edit'); }}
+                  onHistory={(training) => { setEditing(training); setDrawerTab('history'); }}
+                  approving={approving}
+                  reanalyzing={reanalyzing}
+                  busy={busy}
+                />
               )}
-              <span className="ai-training-create__selected-count">{formatMessage(messages.selectedCount, { count: selected.size.toLocaleString() })}</span>
+
+              <TablePaginationFooter
+                currentPage={page}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+                paginationLabel={formatMessage(messages.extractedPaginationLabel)}
+                footerContent={formatMessage(messages.showingResults, {
+                  start: items.length ? ((page - 1) * pageSize) + 1 : 0,
+                  end: Math.min(page * pageSize, extractedTotal || items.length),
+                  total: (extractedTotal || items.length).toLocaleString(),
+                })}
+              />
             </div>
 
-            {resultsError && !loadingResults ? (
-              <div className="ai-training-create__empty">
-                <EmptyState message={resultsErrorMessage} />
-                <button type="button" className="ai-training-create__outline-button" onClick={() => refetchResults()}>{formatMessage(messages.retry)}</button>
-              </div>
-            ) : (
-              <AIReviewList
-                items={items}
-                selected={selected}
-                onToggleSelect={(training) => setSelected((prev) => {
-                  const next = new Set(prev);
-                  if (next.has(training.id)) next.delete(training.id);
-                  else next.add(training.id);
-                  return next;
-                })}
-                onToggleMapping={handleToggleMapping}
-                onApprove={handleApprove}
-                onEdit={(training) => { setEditing(training); setDrawerTab('edit'); }}
-                onHistory={(training) => { setEditing(training); setDrawerTab('history'); }}
-                approving={approving}
-                reanalyzing={reanalyzing}
-                busy={busy}
-              />
-            )}
-
-            <TablePaginationFooter
-              currentPage={page}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-              paginationLabel={formatMessage(messages.extractedPaginationLabel)}
-              footerContent={formatMessage(messages.showingResults, {
-                start: items.length ? ((page - 1) * pageSize) + 1 : 0,
-                end: Math.min(page * pageSize, extractedTotal || items.length),
-                total: (extractedTotal || items.length).toLocaleString(),
-              })}
-            />
-          </div>
-
-          <div className="ai-training-create__bottom-actions">
-            <button type="button" className="ai-training-create__outline-button" onClick={() => navigate(ADMIN_PATHS.uploadTrainingWithAi)}>{formatMessage(messages.cancel)}</button>
-            <button type="button" className="ai-training-create__primary-button" disabled={selected.size === 0 || busy} onClick={handleSaveSelected}>
-              {busy && <FontAwesomeIcon icon={faSpinner} spin aria-hidden />}
-              {formatMessage(messages.createSelectedCount, { count: selected.size })}
-            </button>
-          </div>
+            <div className="ai-training-create__bottom-actions">
+              <button type="button" className="ai-training-create__outline-button" onClick={() => navigate(ADMIN_PATHS.uploadTrainingWithAi)}>{formatMessage(messages.cancel)}</button>
+              <button type="button" className="ai-training-create__primary-button" disabled={selected.size === 0 || busy} onClick={handleSaveSelected}>
+                {busy && <FontAwesomeIcon icon={faSpinner} spin aria-hidden />}
+                {formatMessage(messages.createSelectedCount, { count: selected.size })}
+              </button>
+            </div>
           </>
           )}
         </div>

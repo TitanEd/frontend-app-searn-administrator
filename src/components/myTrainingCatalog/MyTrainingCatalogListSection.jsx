@@ -39,7 +39,6 @@ import '../../pages/myTrainingCatalog/MyTrainingCatalog.scss';
 const MyTrainingCatalogListSection = ({
   initialProviderFilter = FILTER_ALL,
   lockProviderFilter = false,
-  lockedProviderLabel = '',
 } = {}) => {
   const { formatMessage } = useIntl();
   const navigate = useNavigate();
@@ -313,7 +312,10 @@ const MyTrainingCatalogListSection = ({
             value={roleFilter}
             options={roleOptions}
             onChange={(v) => { setRoleFilter(v); setPage(1); }}
-            triggerLabel={roleOptions.find((o) => o.value === roleFilter)?.label || formatMessage(catalogMessages.allRoles)}
+            triggerLabel={
+              roleOptions.find((o) => o.value === roleFilter)?.label
+              || formatMessage(catalogMessages.allRoles)
+            }
             searchPlaceholder={dropdownSearchPlaceholder}
             noOptionsText={dropdownNoOptions}
             disabled={isOptionsLoading}

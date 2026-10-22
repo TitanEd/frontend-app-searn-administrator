@@ -93,7 +93,7 @@ const MyTraining = () => {
       return;
     }
 
-    const accessUrl = startConfirmTraining.accessUrl;
+    const { accessUrl } = startConfirmTraining;
     const trainingName = startConfirmTraining.title;
 
     try {

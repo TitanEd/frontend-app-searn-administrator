@@ -176,7 +176,13 @@
     font-size: .875rem;
   }
 
-  &__history-list { display: flex; flex-direction: column; gap: .75rem; padding: 0; }
+  &__history-list {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    padding: 0;
+  }
+
   &__history-item {
     display: flex;
     flex-direction: column;
@@ -187,19 +193,23 @@
     border-radius: .5rem;
     font-size: .8125rem;
   }
+
   &__history-field {
     color: #2A3B8F;
     font-weight: 700;
   }
+
   &__history-before {
     margin: 0;
     color: #6B7280;
     text-decoration: line-through;
   }
+
   &__history-after {
     margin: 0;
     color: #2A3B8F;
   }
+
   &__history-meta {
     display: flex;
     width: 100%;
@@ -209,6 +219,7 @@
     color: #6B7280;
     font-size: .75rem;
   }
+
   &__actor {
     padding: .125rem .5rem;
     border: 1px solid rgb(42 59 143 / .2);
@@ -281,6 +292,6 @@
   margin-top: 0;
 }
 
-@media (max-width: 640px) {
+@media (width <= 640px) {
   .popup-dialog__content.ai-training-dialog { max-height: 96vh; }
 }

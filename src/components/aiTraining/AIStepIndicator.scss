@@ -65,6 +65,6 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (width <= 640px) {
   .ai-step-indicator__line { width: 1rem; }
 }

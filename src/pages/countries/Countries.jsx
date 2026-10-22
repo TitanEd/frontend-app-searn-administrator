@@ -238,6 +238,57 @@ const Countries = () => {
     </div>
   );
 
+  let countriesListContent;
+  if (isSearnCountriesLoading) {
+    countriesListContent = (
+      <SkeletonScreen
+        variant={SKELETON_VARIANTS.GRID_CARDS}
+        count={6}
+        ariaLabel={formatMessage(messages.listLoading)}
+      />
+    );
+  } else if (isSearnCountriesError) {
+    countriesListContent = (
+      <div className="countries-page__empty">
+        <EmptyState message={searnCountriesErrorMessage || formatMessage(messages.listLoadError)} fullSize />
+      </div>
+    );
+  } else if (searnCountries.length === 0) {
+    countriesListContent = emptyState;
+  } else {
+    countriesListContent = (
+      <div className="countries-page__grid">
+        {searnCountries.map(country => (
+          <div className="countries-page__card" key={country.id}>
+            <div className="countries-page__icon">
+              <EarthIcon className="h-5 w-5" />
+            </div>
+
+            <div style={{ minWidth: 0, flex: 1 }}>
+              {hasDisplayValue(country.label) && (
+                <p className="countries-page__name" title={country.label}>{country.label}</p>
+              )}
+            </div>
+
+            <div className="countries-page__actions">
+              {canDeleteCountry && (
+                <button
+                  type="button"
+                  className="countries-page__icon-button countries-page__icon-button--danger"
+                  aria-label={formatMessage(messages.deleteCountry)}
+                  disabled={patchCountryMutation.isPending}
+                  onClick={() => setDeleteTarget(country)}
+                >
+                  <TrashIcon className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <section className="countries-page">
       <div className="countries-page__top">
@@ -262,49 +313,7 @@ const Countries = () => {
         )}
       </div>
 
-      {isSearnCountriesLoading ? (
-        <SkeletonScreen
-          variant={SKELETON_VARIANTS.GRID_CARDS}
-          count={6}
-          ariaLabel={formatMessage(messages.listLoading)}
-        />
-      ) : isSearnCountriesError ? (
-        <div className="countries-page__empty">
-          <EmptyState message={searnCountriesErrorMessage || formatMessage(messages.listLoadError)} fullSize />
-        </div>
-      ) : searnCountries.length === 0 ? (
-        emptyState
-      ) : (
-        <div className="countries-page__grid">
-          {searnCountries.map(country => (
-            <div className="countries-page__card" key={country.id}>
-              <div className="countries-page__icon">
-                <EarthIcon className="h-5 w-5" />
-              </div>
-
-              <div style={{ minWidth: 0, flex: 1 }}>
-                {hasDisplayValue(country.label) && (
-                  <p className="countries-page__name" title={country.label}>{country.label}</p>
-                )}
-              </div>
-
-              <div className="countries-page__actions">
-                {canDeleteCountry && (
-                  <button
-                    type="button"
-                    className="countries-page__icon-button countries-page__icon-button--danger"
-                    aria-label={formatMessage(messages.deleteCountry)}
-                    disabled={patchCountryMutation.isPending}
-                    onClick={() => setDeleteTarget(country)}
-                  >
-                    <TrashIcon className="h-4 w-4" />
-                  </button>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      {countriesListContent}
 
       <PopupDialog
         isOpen={modalOpen}

@@ -317,7 +317,10 @@ const MyTrainingCatalogCreate = () => {
               value={approach}
               options={approachOptions}
               onChange={setApproach}
-              triggerLabel={approachOptions.find((o) => o.value === approach)?.label || formatMessage(messages.selectApproach)}
+              triggerLabel={
+                approachOptions.find((o) => o.value === approach)?.label
+                || formatMessage(messages.selectApproach)
+              }
               searchPlaceholder={dropdownSearchPlaceholder}
               noOptionsText={dropdownNoOptions}
             />
@@ -330,7 +333,10 @@ const MyTrainingCatalogCreate = () => {
               value={evaluation}
               options={evaluationOptions}
               onChange={setEvaluation}
-              triggerLabel={evaluationOptions.find((o) => o.value === evaluation)?.label || formatMessage(messages.selectEvaluation)}
+              triggerLabel={
+                evaluationOptions.find((o) => o.value === evaluation)?.label
+                || formatMessage(messages.selectEvaluation)
+              }
               searchPlaceholder={dropdownSearchPlaceholder}
               noOptionsText={dropdownNoOptions}
             />
@@ -340,7 +346,10 @@ const MyTrainingCatalogCreate = () => {
               value={outcome}
               options={outcomeOptions}
               onChange={setOutcome}
-              triggerLabel={outcomeOptions.find((o) => o.value === outcome)?.label || formatMessage(messages.selectOutcome)}
+              triggerLabel={
+                outcomeOptions.find((o) => o.value === outcome)?.label
+                || formatMessage(messages.selectOutcome)
+              }
               searchPlaceholder={dropdownSearchPlaceholder}
               noOptionsText={dropdownNoOptions}
             />
@@ -353,7 +362,10 @@ const MyTrainingCatalogCreate = () => {
               value={productType}
               options={productTypeOptions}
               onChange={setProductType}
-              triggerLabel={productTypeOptions.find((o) => o.value === productType)?.label || formatMessage(messages.selectProductType)}
+              triggerLabel={
+                productTypeOptions.find((o) => o.value === productType)?.label
+                || formatMessage(messages.selectProductType)
+              }
               searchPlaceholder={dropdownSearchPlaceholder}
               noOptionsText={dropdownNoOptions}
             />

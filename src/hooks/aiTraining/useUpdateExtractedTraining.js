@@ -38,7 +38,7 @@ const useUpdateExtractedTraining = ({ jobId } = {}) => {
   const reanalyzeMutation = useMutation({
     mutationFn: async ({ trainingId }) => {
       const result = await reanalyzeExtractedTraining({ formatMessage, jobId, trainingId });
-      if (!result.ok) throw new Error(result.message);
+      if (!result.ok) { throw new Error(result.message); }
       return result;
     },
     onSuccess: invalidate,

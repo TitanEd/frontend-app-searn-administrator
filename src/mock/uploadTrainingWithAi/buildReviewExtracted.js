@@ -96,16 +96,21 @@ export const buildReviewExtracted = (jobId, count = 50) => (
     const activitySuggestions = skipActivities
       ? suggestionsFor(ACTIVITY_POOL, i, 2, n * 10)
       : suggestionsFor(ACTIVITY_POOL, i + 2, 2 + (i % 2), n * 10);
-    const competencies = skipCompetencies ? [] : competencySuggestions.filter((_, idx) => idx === 0 || n % 5 !== 0);
-    const activities = skipActivities ? [] : activitySuggestions.filter((_, idx) => idx === 0 || n % 6 !== 0);
+    const competencies = skipCompetencies
+      ? []
+      : competencySuggestions.filter((_item, idx) => idx === 0 || n % 5 !== 0);
+    const activities = skipActivities
+      ? []
+      : activitySuggestions.filter((_item, idx) => idx === 0 || n % 6 !== 0);
     const emptyDescription = n % 13 === 0;
     const duration = n % 7 === 0 ? '' : `${(n % 10) + 1} days`;
     const confidenceBucket = n % 5;
-    const confidence = confidenceBucket === 0
-      ? 0.32 + ((i % 12) / 100)
-      : (confidenceBucket === 1 || confidenceBucket === 2)
-        ? 0.52 + ((i % 18) / 100)
-        : 0.78 + ((i % 16) / 100);
+    let confidence = 0.78 + ((i % 16) / 100);
+    if (confidenceBucket === 0) {
+      confidence = 0.32 + ((i % 12) / 100);
+    } else if (confidenceBucket === 1 || confidenceBucket === 2) {
+      confidence = 0.52 + ((i % 18) / 100);
+    }
     const created = n % 8 === 0;
 
     const edited = !created && n % 6 === 0;
@@ -135,11 +140,15 @@ export const buildReviewExtracted = (jobId, count = 50) => (
       activities,
       competency_suggestions: competencySuggestions,
       activity_suggestions: activitySuggestions,
-      status: created
-        ? { id: 3, value: 'created', label: 'Created' }
-        : edited
-          ? { id: 2, value: 'edited', label: 'Edited' }
-          : { id: 1, value: 'needs_review', label: 'Needs Review' },
+      status: (() => {
+        if (created) {
+          return { id: 3, value: 'created', label: 'Created' };
+        }
+        if (edited) {
+          return { id: 2, value: 'edited', label: 'Edited' };
+        }
+        return { id: 1, value: 'needs_review', label: 'Needs Review' };
+      })(),
       confidence,
       created,
       edited,

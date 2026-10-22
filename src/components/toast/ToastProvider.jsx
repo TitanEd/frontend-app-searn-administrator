@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useIntl } from '@edx/frontend-platform/i18n';
-import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import {
+  createContext, useCallback, useContext, useMemo, useState,
+} from 'react';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { hasDisplayValue } from '../../utils/hasDisplayValue';

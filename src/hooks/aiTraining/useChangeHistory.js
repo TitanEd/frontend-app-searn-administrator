@@ -7,7 +7,9 @@ export const changeHistoryQueryKey = (jobId, trainingId) => [
   'aiTraining', 'history', jobId, trainingId,
 ];
 
-const useChangeHistory = ({ jobId, trainingId, trainingName, enabled = true } = {}) => {
+const useChangeHistory = ({
+  jobId, trainingId, trainingName, enabled = true,
+} = {}) => {
   const { formatMessage } = useIntl();
 
   const query = useQuery({

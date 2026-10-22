@@ -5,7 +5,9 @@ import {
   fetchCreateJobStatus,
 } from '../../api/aiTraining/aiTrainingApi';
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const sleep = (ms) => new Promise((resolve) => {
+  setTimeout(resolve, ms);
+});
 
 /**
  * Create selected trainings and poll until complete.
@@ -21,9 +23,12 @@ const useCreateTrainings = ({ jobId } = {}) => {
         throw new Error(start.message);
       }
       let job = start.data;
-      let message = start.message;
+      let { message } = start;
+      /* Sequential poll of create-job status; each request depends on the previous. */
       while (job.status === 'processing') {
+        // eslint-disable-next-line no-await-in-loop
         await sleep(600);
+        // eslint-disable-next-line no-await-in-loop
         const poll = await fetchCreateJobStatus({
           formatMessage,
           createJobId: job.create_job_id,

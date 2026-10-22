@@ -38,8 +38,28 @@ const RoleCard = ({
     return () => document.removeEventListener('mousedown', onClickOutside);
   }, []);
 
+  const handleCardActivate = () => {
+    if (canViewRole) {
+      onView(role);
+    }
+  };
+
+  const handleCardKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleCardActivate();
+    }
+  };
+
   return (
-    <article className="roles-page__card" key={role.id} onClick={() => canViewRole && onView(role)}>
+    <div
+      className="roles-page__card"
+      key={role.id}
+      role="button"
+      tabIndex={canViewRole ? 0 : -1}
+      onClick={handleCardActivate}
+      onKeyDown={handleCardKeyDown}
+    >
       <div className="roles-page__card-head">
         <div className="roles-page__icon-wrap">
           <FontAwesomeIcon icon={faShieldAlt} />
@@ -122,7 +142,7 @@ const RoleCard = ({
           <span>{role.permissionCount}</span>
         </div>
       </div>
-    </article>
+    </div>
   );
 };
 

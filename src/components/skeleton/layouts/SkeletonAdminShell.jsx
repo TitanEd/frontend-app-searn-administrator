@@ -47,6 +47,8 @@ const SkeletonAdminShell = ({
           <Skeleton className="skeleton-admin-shell__section-label" width={96} height={14} rounded="md" />
           <nav className="admin-sidebar__nav skeleton-admin-shell__nav" aria-hidden="true">
             {Array.from({ length: SIDEBAR_NAV_PLACEHOLDER_COUNT }).map((_, index) => (
+              // Static skeleton placeholders have no stable identity besides position.
+              // eslint-disable-next-line react/no-array-index-key
               <div key={`skeleton-nav-${index}`} className="skeleton-admin-shell__nav-item">
                 <Skeleton width={16} height={16} rounded="md" />
                 <Skeleton className="skeleton-admin-shell__nav-label" height={14} rounded="md" />

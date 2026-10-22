@@ -6,7 +6,9 @@ import {
   faUpload,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import RoleSpecificActivitiesTab, { createRsaRoleItem } from '../../components/competencyFramework/create/RoleSpecificActivitiesTab';
@@ -111,6 +113,7 @@ import { ADMIN_PATHS } from '../../utils/adminPaths';
 import { buildPaginationShowingParams } from '../../utils/paginationUtils';
 import messages from './messages';
 import './CompetencyFramework.scss';
+
 const BUILDER_TABS_CONFIG = [
   { id: 'general', messageKey: 'tabGeneralInformation' },
   { id: 'introduction', messageKey: 'tabIntroduction' },
@@ -189,9 +192,12 @@ const CompetencyFramework = () => {
   });
 
   const builderTabIdContext = location.state?.tabId || 'who';
-  const builderMode = location.state?.mode === 'view'
-    ? 'view'
-    : (isBuilderEditPage ? 'edit' : 'create');
+  let builderMode = 'create';
+  if (location.state?.mode === 'view') {
+    builderMode = 'view';
+  } else if (isBuilderEditPage) {
+    builderMode = 'edit';
+  }
   const isReadOnlyMode = builderMode === 'view';
 
   const {
@@ -2307,9 +2313,9 @@ const CompetencyFramework = () => {
               aria-busy="true"
               aria-label={formatMessage(messages.frameworkListLoading)}
             >
-              {Array.from({ length: 5 }).map((_, index) => (
+              {['fw-sk-1', 'fw-sk-2', 'fw-sk-3', 'fw-sk-4', 'fw-sk-5'].map((skeletonKey) => (
                 <SkeletonCard
-                  key={`framework-skeleton-${index}`}
+                  key={skeletonKey}
                   hasHeader={false}
                   bodyLines={3}
                   className="competency-framework-page__card-skeleton"
@@ -2337,31 +2343,31 @@ const CompetencyFramework = () => {
           {!isFrameworkListLoading && !isFrameworkListError && frameworks.length > 0 && (
             <div className="competency-framework-page__list">
               {frameworks.map(item => (
-              <FrameworkCard
-                key={item.id}
-                item={item}
-                labels={cardLabels}
-                canViewFramework={canViewFramework}
-                canEditFramework={canEditFramework}
-                canDeleteFramework={canDeleteFramework}
-                onDeleteClick={setPendingDeleteFramework}
-                onViewClick={(framework) => {
-                  navigate(ADMIN_PATHS.competencyFrameworkEdit(framework.id), {
-                    state: {
-                      mode: 'view',
-                      tabId: activeTabSafe,
-                    },
-                  });
-                }}
-                onEditClick={(framework) => {
-                  navigate(ADMIN_PATHS.competencyFrameworkEdit(framework.id), {
-                    state: {
-                      tabId: activeTabSafe,
-                    },
-                  });
-                }}
-              />
-            ))}
+                <FrameworkCard
+                  key={item.id}
+                  item={item}
+                  labels={cardLabels}
+                  canViewFramework={canViewFramework}
+                  canEditFramework={canEditFramework}
+                  canDeleteFramework={canDeleteFramework}
+                  onDeleteClick={setPendingDeleteFramework}
+                  onViewClick={(framework) => {
+                    navigate(ADMIN_PATHS.competencyFrameworkEdit(framework.id), {
+                      state: {
+                        mode: 'view',
+                        tabId: activeTabSafe,
+                      },
+                    });
+                  }}
+                  onEditClick={(framework) => {
+                    navigate(ADMIN_PATHS.competencyFrameworkEdit(framework.id), {
+                      state: {
+                        tabId: activeTabSafe,
+                      },
+                    });
+                  }}
+                />
+              ))}
             </div>
           )}
 

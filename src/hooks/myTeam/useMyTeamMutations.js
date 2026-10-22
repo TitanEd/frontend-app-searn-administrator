@@ -1,7 +1,6 @@
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addMyTeamMember, removeMyTeamMember } from '../../api/myTeam/myTeamApi';
-import myTeamMessages from '../../pages/myTeam/messages';
 import { myTeamCandidatesQueryKey } from './useMyTeamCandidateUsers';
 import { myTeamListQueryRootKey } from './useMyTeamList';
 

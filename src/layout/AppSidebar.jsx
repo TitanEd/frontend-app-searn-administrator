@@ -126,9 +126,10 @@ const AppSidebar = ({
             const isParentActive = item.children
               ? item.children.some(child => location.pathname.startsWith(child.path))
               : location.pathname.startsWith(item.path);
-            const navPath = item.key === 'dashboard'
-              ? (role ? ADMIN_PATHS.dashboardRole(role) : item.path)
-              : item.path;
+            let navPath = item.path;
+            if (item.key === 'dashboard' && role) {
+              navPath = ADMIN_PATHS.dashboardRole(role);
+            }
 
             return (
               <div

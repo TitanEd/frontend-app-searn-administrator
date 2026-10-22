@@ -105,8 +105,15 @@ const OrganizationalCompetenciesTab = ({
                   <SearchableDropdown
                     value={typeItem.competencyType}
                     options={competencyTypeOptions}
-                    onChange={next => mutate(prev => prev.map(item => (item.id === typeItem.id ? { ...item, competencyType: next } : item)))}
-                    triggerLabel={competencyTypeOptions.find(o => o.value === typeItem.competencyType)?.label || labels.selectTypePlaceholder}
+                    onChange={next => mutate(prev => prev.map(item => (
+                      item.id === typeItem.id
+                        ? { ...item, competencyType: next }
+                        : item
+                    )))}
+                    triggerLabel={
+                      competencyTypeOptions.find(o => o.value === typeItem.competencyType)?.label
+                      || labels.selectTypePlaceholder
+                    }
                     searchPlaceholder={labels.dropdownSearchPlaceholder}
                     noOptionsText={labels.dropdownNoOptions}
                     disabled={dropdownDisabled}
@@ -140,10 +147,20 @@ const OrganizationalCompetenciesTab = ({
                             options={domainOptions}
                             onChange={next => mutate(prev => prev.map(item => (
                               item.id === typeItem.id
-                                ? { ...item, domains: item.domains.map(d => (d.id === domainItem.id ? { ...d, domain: next } : d)) }
+                                ? {
+                                  ...item,
+                                  domains: item.domains.map(d => (
+                                    d.id === domainItem.id
+                                      ? { ...d, domain: next }
+                                      : d
+                                  )),
+                                }
                                 : item
                             )))}
-                            triggerLabel={domainOptions.find(o => o.value === domainItem.domain)?.label || labels.selectDomainPlaceholder}
+                            triggerLabel={
+                              domainOptions.find(o => o.value === domainItem.domain)?.label
+                              || labels.selectDomainPlaceholder
+                            }
                             searchPlaceholder={labels.dropdownSearchPlaceholder}
                             noOptionsText={labels.dropdownNoOptions}
                             disabled={dropdownDisabled}
@@ -184,13 +201,24 @@ const OrganizationalCompetenciesTab = ({
                                           ...item,
                                           domains: item.domains.map(d => (
                                             d.id === domainItem.id
-                                              ? { ...d, levels: d.levels.map(l => (l.id === levelItem.id ? { ...l, proficiencyLevel: next } : l)) }
+                                              ? {
+                                                ...d,
+                                                levels: d.levels.map(l => (
+                                                  l.id === levelItem.id
+                                                    ? { ...l, proficiencyLevel: next }
+                                                    : l
+                                                )),
+                                              }
                                               : d
                                           )),
                                         }
                                         : item
                                     )))}
-                                    triggerLabel={proficiencyLevelOptions.find(o => o.value === levelItem.proficiencyLevel)?.label || labels.selectLevelPlaceholder}
+                                    triggerLabel={
+                                      proficiencyLevelOptions.find(
+                                        o => o.value === levelItem.proficiencyLevel,
+                                      )?.label || labels.selectLevelPlaceholder
+                                    }
                                     searchPlaceholder={labels.dropdownSearchPlaceholder}
                                     noOptionsText={labels.dropdownNoOptions}
                                     disabled={dropdownDisabled}
@@ -207,7 +235,20 @@ const OrganizationalCompetenciesTab = ({
                                           ...item,
                                           domains: item.domains.map(d => (
                                             d.id === domainItem.id
-                                              ? { ...d, levels: d.levels.map(l => (l.id === levelItem.id ? { ...l, competencies: [...l.competencies, createCompetencyEntry()] } : l)) }
+                                              ? {
+                                                ...d,
+                                                levels: d.levels.map(l => (
+                                                  l.id === levelItem.id
+                                                    ? {
+                                                      ...l,
+                                                      competencies: [
+                                                        ...l.competencies,
+                                                        createCompetencyEntry(),
+                                                      ],
+                                                    }
+                                                    : l
+                                                )),
+                                              }
                                               : d
                                           )),
                                         }
@@ -263,7 +304,14 @@ const OrganizationalCompetenciesTab = ({
                                                     ...d,
                                                     levels: d.levels.map(l => (
                                                       l.id === levelItem.id
-                                                        ? { ...l, competencies: l.competencies.map(c => (c.id === compItem.id ? { ...c, text: event.target.value } : c)) }
+                                                        ? {
+                                                          ...l,
+                                                          competencies: l.competencies.map(c => (
+                                                            c.id === compItem.id
+                                                              ? { ...c, text: event.target.value }
+                                                              : c
+                                                          )),
+                                                        }
                                                         : l
                                                     )),
                                                   }
@@ -291,7 +339,12 @@ const OrganizationalCompetenciesTab = ({
                                                       ...d,
                                                       levels: d.levels.map(l => (
                                                         l.id === levelItem.id
-                                                          ? { ...l, competencies: l.competencies.filter(c => c.id !== compItem.id) }
+                                                          ? {
+                                                            ...l,
+                                                            competencies: l.competencies.filter(
+                                                              c => c.id !== compItem.id,
+                                                            ),
+                                                          }
                                                           : l
                                                       )),
                                                     }
@@ -315,10 +368,23 @@ const OrganizationalCompetenciesTab = ({
                         <button
                           type="button"
                           className="competency-framework-page__outline-button framework-builder__org-small-add"
-                          disabled={!canEdit || domainItem.levels.some(level => !level.proficiencyLevel || level.competencies.some(comp => !comp.text.trim()))}
+                          disabled={
+                            !canEdit
+                            || domainItem.levels.some(level => (
+                              !level.proficiencyLevel
+                              || level.competencies.some(comp => !comp.text.trim())
+                            ))
+                          }
                           onClick={() => mutate(prev => prev.map(item => (
                             item.id === typeItem.id
-                              ? { ...item, domains: item.domains.map(d => (d.id === domainItem.id ? { ...d, levels: [...d.levels, createLevel()] } : d)) }
+                              ? {
+                                ...item,
+                                domains: item.domains.map(d => (
+                                  d.id === domainItem.id
+                                    ? { ...d, levels: [...d.levels, createLevel()] }
+                                    : d
+                                )),
+                              }
                               : item
                           )))}
                         >
@@ -333,8 +399,21 @@ const OrganizationalCompetenciesTab = ({
                 <button
                   type="button"
                   className="competency-framework-page__outline-button framework-builder__org-small-add"
-                  disabled={!canEdit || typeItem.domains.some(domain => !domain.domain || domain.levels.some(level => !level.proficiencyLevel || level.competencies.some(comp => !comp.text.trim())))}
-                  onClick={() => mutate(prev => prev.map(item => (item.id === typeItem.id ? { ...item, domains: [...item.domains, createDomain()] } : item)))}
+                  disabled={
+                    !canEdit
+                    || typeItem.domains.some(domain => (
+                      !domain.domain
+                      || domain.levels.some(level => (
+                        !level.proficiencyLevel
+                        || level.competencies.some(comp => !comp.text.trim())
+                      ))
+                    ))
+                  }
+                  onClick={() => mutate(prev => prev.map(item => (
+                    item.id === typeItem.id
+                      ? { ...item, domains: [...item.domains, createDomain()] }
+                      : item
+                  )))}
                 >
                   <FontAwesomeIcon icon={faPlus} />
                   {labels.addDomain}

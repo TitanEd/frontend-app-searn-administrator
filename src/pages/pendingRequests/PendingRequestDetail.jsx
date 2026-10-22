@@ -72,9 +72,9 @@ const CircleXIcon = ({ className }) => (
 );
 
 const statusChipClass = (status) => {
-  if (status === 'approved') return 'pending-request-detail__chip--approved';
-  if (status === 'rejected') return 'pending-request-detail__chip--rejected';
-  if (status === 'closed') return 'pending-request-detail__chip--closed';
+  if (status === 'approved') { return 'pending-request-detail__chip--approved'; }
+  if (status === 'rejected') { return 'pending-request-detail__chip--rejected'; }
+  if (status === 'closed') { return 'pending-request-detail__chip--closed'; }
   return 'pending-request-detail__chip--pending';
 };
 

@@ -9,7 +9,9 @@ import {
   faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useId, useRef, useState } from 'react';
+import {
+  useEffect, useId, useRef, useState,
+} from 'react';
 import { EmptyState } from '../emptyState';
 import { optionDisplayLabel, optionSubmitValue } from '../../api/aiTraining/aiTrainingUtils';
 import { hasDisplayValue } from '../../utils/hasDisplayValue';
@@ -89,7 +91,7 @@ const FieldLabel = ({ label, info }) => (
   </span>
 );
 
-const isSelectedOption = (selected = [], option) => {
+const isSelectedOption = (option, selected = []) => {
   const needle = optionSubmitValue(option);
   if (!hasDisplayValue(needle)) {
     return false;
@@ -97,7 +99,9 @@ const isSelectedOption = (selected = [], option) => {
   return selected.some((value) => optionSubmitValue(value) === needle);
 };
 
-const SuggestionChips = ({ label, suggestions = [], selected = [], disabled, onToggle }) => {
+const SuggestionChips = ({
+  label, suggestions = [], selected = [], disabled, onToggle,
+}) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -112,8 +116,13 @@ const SuggestionChips = ({ label, suggestions = [], selected = [], disabled, onT
           }
           const score = typeof item === 'object' ? Number(item.score) : null;
           const hasScore = Number.isFinite(score);
-          const isOn = isSelectedOption(selected, item);
-          const scoreClass = score >= 75 ? 'is-high' : score >= 50 ? 'is-mid' : 'is-low';
+          const isOn = isSelectedOption(item, selected);
+          let scoreClass = 'is-low';
+          if (score >= 75) {
+            scoreClass = 'is-high';
+          } else if (score >= 50) {
+            scoreClass = 'is-mid';
+          }
           return (
             <button
               key={value || name}
@@ -167,7 +176,10 @@ const AIReviewList = ({
         const isReanalyzing = reanalyzing.has(training.id);
 
         return (
-          <article key={training.id} className={`ai-review-list__card ${selected.has(training.id) ? 'is-selected' : ''} ${training.created ? 'is-created' : ''}`}>
+          <article
+            key={training.id}
+            className={`ai-review-list__card ${selected.has(training.id) ? 'is-selected' : ''} ${training.created ? 'is-created' : ''}`}
+          >
             <div className="ai-review-list__check">
               {!training.created && (
                 <input
@@ -175,7 +187,11 @@ const AIReviewList = ({
                   checked={selected.has(training.id)}
                   disabled={!canApprove || busy || isReanalyzing}
                   onChange={() => onToggleSelect(training)}
-                  aria-label={hasDisplayValue(training.training_name) ? training.training_name : formatMessage(messages.untitled)}
+                  aria-label={
+                    hasDisplayValue(training.training_name)
+                      ? training.training_name
+                      : formatMessage(messages.untitled)
+                  }
                 />
               )}
             </div>
@@ -184,7 +200,9 @@ const AIReviewList = ({
                 <div>
                   <div className="ai-review-list__title-line">
                     <h3 className="ai-review-list__title">
-                      {hasDisplayValue(training.training_name) ? training.training_name : formatMessage(messages.untitled)}
+                      {hasDisplayValue(training.training_name)
+                        ? training.training_name
+                        : formatMessage(messages.untitled)}
                     </h3>
                     {training.created && (
                       <span className="ai-review-list__badge is-created">
@@ -265,12 +283,17 @@ const AIReviewList = ({
               )}
 
               <div className="ai-review-list__fields">
-                {INLINE_FIELDS.filter((field) => hasDisplayValue(optionDisplayLabel(training[field.key]))).map((field) => (
-                  <div key={field.key} className="ai-review-list__field">
-                    <FieldLabel label={formatMessage(messages[field.labelKey])} info={formatMessage(messages[field.infoKey])} />
-                    <p>{optionDisplayLabel(training[field.key])}</p>
-                  </div>
-                ))}
+                {INLINE_FIELDS
+                  .filter((field) => hasDisplayValue(optionDisplayLabel(training[field.key])))
+                  .map((field) => (
+                    <div key={field.key} className="ai-review-list__field">
+                      <FieldLabel
+                        label={formatMessage(messages[field.labelKey])}
+                        info={formatMessage(messages[field.infoKey])}
+                      />
+                      <p>{optionDisplayLabel(training[field.key])}</p>
+                    </div>
+                  ))}
               </div>
               {!canApprove && !training.created && (
                 <p className="ai-review-list__hint">{formatMessage(messages.needsCompetency)}</p>

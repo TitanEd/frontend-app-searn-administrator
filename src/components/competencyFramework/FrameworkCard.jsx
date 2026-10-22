@@ -32,6 +32,7 @@ const FrameworkCard = ({
         {hasRichTextContent(item.description) && (
           <div
             className="competency-framework-page__card-description"
+            // eslint-disable-next-line react/no-danger -- API rich text HTML
             dangerouslySetInnerHTML={{ __html: getRichTextHtml(item.description) }}
           />
         )}

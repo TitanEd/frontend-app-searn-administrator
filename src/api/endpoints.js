@@ -101,6 +101,9 @@ export const trainingsCatalogAiDraftCreate = (draftId) => (
 
 export const CORE_PERMISSIONS = '/api/v1/core-permissions/';
 
+export const MFE_CONFIG = '/api/mfe_config/v1';
+export const MFE_CONFIG_APP_NAME = 'frontend-app-searn-administrator';
+
 export const DASHBOARD_STATS = '/api/v1/dashboard/stats/';
 export const DASHBOARD_USERS_PER_COUNTRY = '/api/v1/dashboard/users-per-country/';
 export const DASHBOARD_TOP_REQUESTED_ACTIVITIES = '/api/v1/dashboard/top-requested-activities/?limit=5';

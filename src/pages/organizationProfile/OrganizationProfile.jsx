@@ -472,9 +472,14 @@ const OrganizationProfile = () => {
                 <div className="organization-profile-page__admin-list">
                   {administrators.map((admin) => {
                     const editKey = admin.id || admin.email;
-                    const adminKey = hasDisplayValue(admin.id)
-                      ? admin.id
-                      : (hasDisplayValue(admin.email) ? admin.email : `${admin.name}-${admin.email}`);
+                    let adminKey;
+                    if (hasDisplayValue(admin.id)) {
+                      adminKey = admin.id;
+                    } else if (hasDisplayValue(admin.email)) {
+                      adminKey = admin.email;
+                    } else {
+                      adminKey = `${admin.name}-${admin.email}`;
+                    }
 
                     if (!hasDisplayValue(adminKey)) {
                       return null;

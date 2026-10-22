@@ -59,8 +59,10 @@ const AiIcon = () => (
 
 const formatHistoryValue = (value) => optionDisplayLabel(value);
 
-const mergeSelectOptions = (options = [], selected) => {
-  const catalog = mapAiTrainingChoiceOptions(options).filter((item) => hasDisplayValue(item.value));
+const mergeSelectOptions = (options, selected) => {
+  const catalog = mapAiTrainingChoiceOptions(options || []).filter(
+    (item) => hasDisplayValue(item.value),
+  );
   const selectedList = Array.isArray(selected) ? selected : [selected];
   const extras = mapAiTrainingChoiceOptions(selectedList)
     .filter((item) => hasDisplayValue(item.value) && !catalog.some((option) => option.value === item.value));
@@ -225,69 +227,82 @@ const ExtractedTrainingDrawer = ({
         {hasDisplayValue(training.training_name) && (
           <p className="ai-drawer__subtitle">{training.training_name}</p>
         )}
-        {historyLoading ? (
-          <SkeletonScreen
-            variant={SKELETON_VARIANTS.CARD_LIST}
-            rows={3}
-            hasHeader={false}
-            ariaLabel={formatMessage(messages.historyListDialogLoading)}
-          />
-        ) : events.length === 0 ? (
-          <p className="ai-drawer__history-empty">{formatMessage(messages.drawerHistoryEmpty)}</p>
-        ) : (
-          <div className="ai-drawer__history-list">
-            {events.filter((event) => hasDisplayValue(event.id)).map((event) => {
-              const actorName = hasDisplayValue(event.actor)
-                ? event.actor
-                : formatMessage(messages.historyActorUser);
-              const actorKey = String(actorName).toLowerCase();
-              const isAiEvent = actorKey === 'ai';
-              const isSystemEvent = actorKey === 'system';
-              const canRevert = !isAiEvent && !isSystemEvent;
-              const fieldMessage = HISTORY_FIELD_MESSAGES[event.field];
-              const fieldLabel = fieldMessage
-                ? formatMessage(fieldMessage)
-                : (isSystemEvent || event.field === 'created'
-                  ? ''
-                  : formatMessage(messages.drawerTrainingUpdated));
-              return (
-                <article className="ai-drawer__history-item" key={event.id}>
-                  <div className="ai-drawer__history-meta">
-                    <span className={`ai-drawer__actor ${isAiEvent ? 'is-ai' : ''} ${isSystemEvent ? 'is-system' : ''}`}>
-                      {isAiEvent
-                        ? formatMessage(messages.historyActorAi)
-                        : isSystemEvent
-                          ? formatMessage(messages.historyActorSystem)
-                          : formatMessage(messages.historyActorEdited, { name: actorName })}
-                    </span>
-                    {hasDisplayValue(event.timestamp) && (
+        {(() => {
+          if (historyLoading) {
+            return (
+              <SkeletonScreen
+                variant={SKELETON_VARIANTS.CARD_LIST}
+                rows={3}
+                hasHeader={false}
+                ariaLabel={formatMessage(messages.historyListDialogLoading)}
+              />
+            );
+          }
+          if (events.length === 0) {
+            return (
+              <p className="ai-drawer__history-empty">{formatMessage(messages.drawerHistoryEmpty)}</p>
+            );
+          }
+          return (
+            <div className="ai-drawer__history-list">
+              {events.filter((event) => hasDisplayValue(event.id)).map((event) => {
+                const actorName = hasDisplayValue(event.actor)
+                  ? event.actor
+                  : formatMessage(messages.historyActorUser);
+                const actorKey = String(actorName).toLowerCase();
+                const isAiEvent = actorKey === 'ai';
+                const isSystemEvent = actorKey === 'system';
+                const canRevert = !isAiEvent && !isSystemEvent;
+                const fieldMessage = HISTORY_FIELD_MESSAGES[event.field];
+                let fieldLabel = '';
+                if (fieldMessage) {
+                  fieldLabel = formatMessage(fieldMessage);
+                } else if (!isSystemEvent && event.field !== 'created') {
+                  fieldLabel = formatMessage(messages.drawerTrainingUpdated);
+                }
+                return (
+                  <article className="ai-drawer__history-item" key={event.id}>
+                    <div className="ai-drawer__history-meta">
+                      <span className={`ai-drawer__actor ${isAiEvent ? 'is-ai' : ''} ${isSystemEvent ? 'is-system' : ''}`}>
+                        {(() => {
+                          if (isAiEvent) {
+                            return formatMessage(messages.historyActorAi);
+                          }
+                          if (isSystemEvent) {
+                            return formatMessage(messages.historyActorSystem);
+                          }
+                          return formatMessage(messages.historyActorEdited, { name: actorName });
+                        })()}
+                      </span>
+                      {hasDisplayValue(event.timestamp) && (
                       <time>{new Date(event.timestamp).toLocaleString()}</time>
-                    )}
-                  </div>
-                  {hasDisplayValue(fieldLabel) && (
+                      )}
+                    </div>
+                    {hasDisplayValue(fieldLabel) && (
                     <strong className="ai-drawer__history-field">{fieldLabel}</strong>
-                  )}
-                  {hasDisplayValue(formatHistoryValue(event.before)) && (
+                    )}
+                    {hasDisplayValue(formatHistoryValue(event.before)) && (
                     <p className="ai-drawer__history-before">
                       {formatMessage(messages.drawerBefore)} {formatHistoryValue(event.before)}
                     </p>
-                  )}
-                  {hasDisplayValue(formatHistoryValue(event.after)) && (
+                    )}
+                    {hasDisplayValue(formatHistoryValue(event.after)) && (
                     <p className="ai-drawer__history-after">
                       {formatMessage(messages.drawerAfter)} {formatHistoryValue(event.after)}
                     </p>
-                  )}
-                  {canRevert && (
+                    )}
+                    {canRevert && (
                     <button type="button" className="ai-drawer__outline-button" disabled={isSaving} onClick={() => onRevert?.(event)}>
                       <FontAwesomeIcon icon={faUndo} aria-hidden />
                       {formatMessage(messages.revertAndSave)}
                     </button>
-                  )}
-                </article>
-              );
-            })}
-          </div>
-        )}
+                    )}
+                  </article>
+                );
+              })}
+            </div>
+          );
+        })()}
         <div className="ai-drawer__footer">
           <button type="button" className="ai-drawer__primary-button" onClick={onClose}>
             {formatMessage(messages.closeDrawer)}
@@ -517,7 +532,7 @@ const ExtractedTrainingDrawer = ({
             disabled={isSaving}
             onClick={async () => {
               const saved = await persist({ skipSuccessToast: true, syncCatalog: false });
-              if (saved) onCreateOne?.(draft);
+              if (saved) { onCreateOne?.(draft); }
             }}
           >
             {formatMessage(messages.saveAndCreate)}

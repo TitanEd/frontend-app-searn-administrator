@@ -115,6 +115,7 @@
     font-size: .75rem;
     color: #6B7280;
     line-height: 1rem;
+    /* stylelint-disable-next-line value-no-vendor-prefix -- line-clamp needs -webkit-box */
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;

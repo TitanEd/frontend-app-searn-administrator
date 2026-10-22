@@ -10,7 +10,9 @@ const useUploadTrainingDocument = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: async ({ file, fileName, sourceUrl, onProgress }) => {
+    mutationFn: async ({
+      file, fileName, sourceUrl, onProgress,
+    }) => {
       const result = await uploadTrainingDocument({
         formatMessage,
         file,

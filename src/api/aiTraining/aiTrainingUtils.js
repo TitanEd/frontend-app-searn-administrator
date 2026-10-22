@@ -105,7 +105,6 @@ export const mapAiTrainingChoiceOptions = (rows = []) => (
     .filter(Boolean)
 );
 
-
 /**
  * Normalize public job ids to plain document pk strings.
  * Accepts ``52`` / ``"52"`` and legacy ``job_52``.

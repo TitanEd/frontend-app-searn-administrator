@@ -64,7 +64,11 @@ const mapLevelsToForm = (levels, itemsKey, levelIdPrefix, itemIdPrefix) => {
 
 /**
  * @param {Array<object>|undefined} domains
- * @param {{ itemsKey: 'competencies'|'activities', flatKey: 'flat_competencies'|'flat_activities', flatFormKey: 'flatCompetencies'|'flatActivities' }} config
+ * @param {{
+ *   itemsKey: 'competencies'|'activities',
+ *   flatKey: 'flat_competencies'|'flat_activities',
+ *   flatFormKey: 'flatCompetencies'|'flatActivities',
+ * }} config
  */
 const mapDomainsToForm = (domains, config) => {
   if (!Array.isArray(domains) || domains.length === 0) {
@@ -168,7 +172,12 @@ const buildTextPayload = (entries) => (entries ?? [])
 
 /**
  * @param {object} domain
- * @param {{ levelItemsKey: 'competencies'|'activities', flatItemsKey: 'flat_competencies'|'flat_activities', flatFormKey: 'flatCompetencies'|'flatActivities', levelsFormKey: 'levels' }} config
+ * @param {{
+ *   levelItemsKey: 'competencies'|'activities',
+ *   flatItemsKey: 'flat_competencies'|'flat_activities',
+ *   flatFormKey: 'flatCompetencies'|'flatActivities',
+ *   levelsFormKey: 'levels',
+ * }} config
  */
 const buildDomainSyncEntry = (domain, config) => {
   const base = {
@@ -197,7 +206,12 @@ const buildDomainSyncEntry = (domain, config) => {
 
 /**
  * @param {Array<object>} roles
- * @param {{ levelItemsKey: 'competencies'|'activities', flatItemsKey: 'flat_competencies'|'flat_activities', flatFormKey: 'flatCompetencies'|'flatActivities', levelFormItemsKey: 'competencies'|'activities' }} config
+ * @param {{
+ *   levelItemsKey: 'competencies'|'activities',
+ *   flatItemsKey: 'flat_competencies'|'flat_activities',
+ *   flatFormKey: 'flatCompetencies'|'flatActivities',
+ *   levelFormItemsKey: 'competencies'|'activities',
+ * }} config
  */
 const buildRoleSpecificSyncPayload = (roles, config) => ({
   roles: (roles ?? [])

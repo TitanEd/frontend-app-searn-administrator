@@ -2,7 +2,9 @@
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { faChevronDown, faSignOutAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  useCallback, useEffect, useRef, useState,
+} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import UserAvatar from '../components/users/UserAvatar';
 import { signOutAndRedirectToLogin } from '../auth/signOut';

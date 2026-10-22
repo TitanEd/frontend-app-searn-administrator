@@ -103,9 +103,10 @@ const NraSpecificTrainingProvider = () => {
                 className="provider-page__logo-img"
                 src={hasDisplayValue(provider.logoUrl) ? provider.logoUrl : brandPlaceholder}
                 alt=""
-                onError={(event) => {
-                  event.currentTarget.onerror = null;
-                  event.currentTarget.src = brandPlaceholder;
+                onError={({ currentTarget }) => {
+                  const image = currentTarget;
+                  image.onerror = null;
+                  image.src = brandPlaceholder;
                 }}
               />
             </div>

@@ -412,7 +412,9 @@ export const fetchExtractedTrainings = async ({
 /**
  * Toggle competencies / activities arrays.
  */
-export const updateMappings = async ({ formatMessage, jobId, trainingId, payload }) => withNormalized(
+export const updateMappings = async ({
+  formatMessage, jobId, trainingId, payload,
+}) => withNormalized(
   await executeApiRequest({
     request: () => getHttpClient().patch(
       `${getApiBaseUrl()}${aiTrainingExtractedMappings(jobId, trainingId)}`,
@@ -427,7 +429,9 @@ export const updateMappings = async ({ formatMessage, jobId, trainingId, payload
 /**
  * Full field update from edit drawer.
  */
-export const updateExtractedTraining = async ({ formatMessage, jobId, trainingId, payload }) => withNormalized(
+export const updateExtractedTraining = async ({
+  formatMessage, jobId, trainingId, payload,
+}) => withNormalized(
   await executeApiRequest({
     request: () => getHttpClient().patch(
       `${getApiBaseUrl()}${aiTrainingExtractedDetail(jobId, trainingId)}`,

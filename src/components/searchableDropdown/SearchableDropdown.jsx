@@ -119,7 +119,6 @@ const SearchableDropdown = ({
           }
         }}
         aria-expanded={isInteractive ? open : false}
-        aria-readonly={readOnly || undefined}
         disabled={disabled}
       >
         <span className="searchable-dropdown__trigger-label">{displayContent}</span>
